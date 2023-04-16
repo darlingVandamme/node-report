@@ -1,0 +1,89 @@
+{
+  "root" : "./test/reports",
+  "channels": [
+    {
+      "name": "copy",
+      "type": "copy",
+      "options": {
+
+      }
+    },
+    {
+      "name": "paging",
+      "type": "paging",
+      "options": {
+      }
+    },
+    {
+      "name": "testFiles",
+      "type": "file",
+      "options": {
+        "root": "/home/geert/projects/nodeReport/test/data/"
+      }
+    },
+    {
+      "name": "inline",
+      "type": "inline",
+      "options": {
+      }
+    },
+    {
+      "name": "rfam",
+      "type": "mysql",
+      "options": {
+        "help": "https://docs.rfam.org/en/latest/database.html",
+        "host": "mysql-rfam-public.ebi.ac.uk",
+        "db": "Rfam",
+        "port": "4497",
+        "user": "rfamro"
+      }
+    },
+    {
+      "name": "StackExchange",
+      "type": "mysql",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "stats",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
+
+      }
+    },
+
+    {
+      "name": "bq",
+      "type": "bigQuery",
+      "options": {
+        "keyFilename": "./settings/GCP_auth.json",
+        "projectId": "nth-subset-276608",
+        "root": "./test/reports"
+      }
+    },
+    {
+      "name": "ttt",
+      "type": "mongo",
+      "options": {
+        "connectURI": "mongodb://172.30.0.124:27017/?replicaSet=store01&readPreference=secondaryPreferred&connectTimeoutMS=10000",
+        "db": "text2tree",
+        "options": {
+          "root": "./test/reports"
+        }
+      }
+    },
+    {
+      "name": "mongo",
+      "type": "mongo",
+      "options": {
+        "connectURI": "mongodb://127.0.0.1:27017/",
+        "db": "reports",
+        "options": {
+          "root": "./test/reports"
+        }
+      }
+    }
+  ]
+}
+
+
