@@ -112,3 +112,4 @@ dist
 .idea/misc.xml
 .idea/modules.xml
 .idea/node-report.iml
+/package-lock.json
