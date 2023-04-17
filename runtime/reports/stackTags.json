@@ -12,10 +12,6 @@
         "tag": {
           "style" : "underline",
           "default": ""
-        },
-        "limit": {
-          "type": "parseInt",
-          "default": 20
         }
       }
     },
