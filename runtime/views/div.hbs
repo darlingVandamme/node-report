@@ -1,5 +1,7 @@
     {{#each datasets}}
+        <div id="dataset_{{this.name}}" class="{{this.options.style}}">
         <h2>{{this.name}}</h2>
     <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
             {{{this.html}}}
+        </div>
     {{/each}}
