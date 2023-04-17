@@ -1,5 +1,5 @@
 {
-  "root" : "./test/reports",
+  "root" : "./runtime/reports",
   "channels": [
     {
       "name": "copy",

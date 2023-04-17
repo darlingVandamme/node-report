@@ -3,6 +3,7 @@
         {{#if this.position.header}}
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+            {{this.url}}
             {{{this.html}}}
         {{/if}}
     {{/each}}
@@ -15,6 +16,7 @@
         {{#if this.position.main}}
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+            {{this.url}}
                 {{{this.html}}}
         {{/if}}
     {{/each}}
@@ -24,6 +26,7 @@
         {{#if this.position.hidden}}
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+            {{this.url}}
             {{{this.html}}}
         {{/if}}
     {{/each}}
