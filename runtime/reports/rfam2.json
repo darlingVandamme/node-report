@@ -1,0 +1,52 @@
+{
+  "name": "rfam2",
+  "description": "Test report for Mysql",
+
+  "require": ["query","session"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "columns": {
+        "name": {
+          "style" : "underline",
+          "default": "geert"
+        },
+        "limit": {
+          "type": "parseInt",
+          "default": 20
+        }
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "This data shows you some list of bacteria and stuff",
+      "type" : "rfam",
+      "style" : "zebra",
+      "sources": ["query","session"],
+      "query" : "select * from family limit {{query.limit}}",
+      "show" : "*"
+      }
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","log"],
+      "table": ["log","main"],
+      "argForm": "query",
+      "template": "serverHTML",
+      "type" : "serverHtml"
+    },
+    "arg": {
+      "include" : "main",
+      "type": "hbs",
+      "page": "argtest"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "name": "stack User",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "form",
+      "source" : "copy",
+      "from" : "query",
+      "position" : "header",
+      "columns": {
+        "id": {
+          "type": "parseInt",
+          "input" : {
+            "type": "number"
+          }
+        }
+      }
+    },
+
+
+    {
+      "name" : "main",
+      "description" : "",
+      "type" : "table",
+      "source" : "StackExchange",
+      "style" : "zebra",
+      "query" : "select * from users where id = {{args.id}}",
+      "show" : "*",
+      "columns": {
+        "LastAccessDate": {
+          "display": "date",
+          "header": "Last Access",
+          "year1": "numeric",
+          "month1": "long"
+        },
+        "Details": {
+          "type": "link",
+          "header": "link"
+
+        }
+      }
+      },
+    {
+      "name" : "posts",
+      "description" : "",
+      "source" : "StackExchange",
+      "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
+      "show" : "*"
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","args","posts","server","log"],
+      "argForm": {
+          "dataset": "args",
+          "extention" : "html"
+      },
+      "template": "serverHTML",
+      "type" : "serverHtml"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "target" : "html",
+      "argForm": {
+        "dataset": "args",
+        "extention" : "html"
+      },
+      "type2": "hbs",
+      "template": "serverHTML",
+      "type" : "serverHtml",
+      "page": "argtest"
+    }
+  }
+}

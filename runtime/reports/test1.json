@@ -1,0 +1,35 @@
+{
+  "name": "test1",
+  "description": "Test report for development",
+
+  "require": ["query","session"],
+
+  "datasets":[
+    {
+      "name": "query"
+    },
+    {
+      "name": "session"
+    },
+    {
+      "name" : "input",
+      "type" : "merge",
+      "sources": ["query","session"]
+    }
+
+
+  ],
+
+  "output": {
+    "json": {
+        "include": ["log","query"],
+        "type" : "json"
+    },
+    "arg": {
+        "include" : "",
+        "type": "hbs",
+        "page": "argtest"
+    }
+  }
+
+}

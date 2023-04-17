@@ -1,0 +1,58 @@
+{
+  "name": "stackTags",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","session"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "columns": {
+        "tag": {
+          "style" : "underline",
+          "default": ""
+        },
+        "limit": {
+          "type": "parseInt",
+          "default": 20
+        }
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "",
+      "type" : "StackExchange",
+      "style" : "zebra",
+      "sources": ["query","session"],
+      "query" : "select * from tags where TagName like {{query.tag}} limit {{paging.limit}}",
+      "show" : "*",
+      "columns": {
+        "TagName": {
+          "type": "format",
+          "format" : "<a href='stackList.html?tag={{TagName}}'>{{TagName}}</a>"
+        }
+      }
+      }
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","log"],
+      "table": ["log","main"],
+      "argForm": "query",
+      "template": "serverHTML",
+      "type" : "serverHtml"
+    },
+    "arg": {
+      "include" : "main",
+      "type": "hbs",
+      "page": "argtest"
+    }
+  }
+}

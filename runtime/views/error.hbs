@@ -1,0 +1,12 @@
+<h1>ERROR  {{name}}</h1>
+<div >
+    {{#each data}}
+    <h2>{{this.name}}</h2>
+        <table>
+        {{#each data}}
+            <tr><td>{{this.level}}</td><td>{{this.msg}}</td><td>{{this.info}}</td></tr>
+        {{/each}}
+        </table>
+    {{/each}}
+
+</div>

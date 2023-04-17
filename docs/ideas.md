@@ -20,7 +20,6 @@
 - cost quota
 - cost, timings & bytes  per user  logging
 
-
 ## ES6 import
 - dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
 - https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
@@ -77,6 +76,7 @@
     - dir
     - file (csv, json, avro?, ... )
     - API's    
+    - report files
 - internal 
     - counter
     - datecounter
@@ -114,7 +114,7 @@
 
 ## caching
 - caching on dataset level (dataset cache ID)
-- hash on input parameters
+- hash on input parameters (sorted)
 - cache time
 - No cache for user dependent data or time critical
 
@@ -142,6 +142,8 @@
 ## HTML output
 - single dataset
 - <main> </main>
+- position per dataset (main, footer, nav, ....)
+- hidden dataset
 - stacked datasets  ( achors)
 - tabs 
 - includes  ? 
@@ -152,7 +154,7 @@
 - https://uxmovement.medium.com/10-design-tips-for-a-better-data-table-interface-8d6705e56be2
 - images and icons  list lookup  // handlebars helper?
 
-- tags  
+- html tags  
     - address?
     - article
     - main
@@ -166,12 +168,16 @@
     - meter
     - nav
     - section ?
+    - input different types (argform)
     
-    
-
 ## handlebars
 - dynamic partials  https://handlebarsjs.com/guide/partials.html#dynamic-partials 
+- express-handlebars https://www.npmjs.com/package/express-handlebars
 
+
+## testing
+- ???
+- Mocha?
 
 ## reportEngine 
 - keep sources, config
@@ -241,8 +247,10 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - development vs production 
 
 ## I18n ?
+- date formatting. client side locale?
 
 ## Themes ??
+
 
 ## debugging
 - report.info 
@@ -266,6 +274,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - mocha??
 
 ## CSS
+- sass less
 - Themes in directories
 - Custom file 
 - Versions?
@@ -273,7 +282,14 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - dataset id?
 - used classes
     - col1 col2 ... 
-    - options.style    
+    - options.style
+- general usefull concepts (colors, icons ...)
+    - warning
+    - ok
+    - collapse
+    - hide / show
+    - ellipse
+    
 
 ## Client side javascript
 - React render table
@@ -309,10 +325,11 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - skip & limit
 - filter
 
-
 ## SQL channel
 - dynamic SQL
 - Query as array
+- slow queries log
+- total query time / total # queries
 
 ## Mongo Channel
 - vm script
@@ -327,7 +344,9 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 
 ## Dependencies
 - as low as possible
-- date formatting?  Days.js?
+- date formatting?  
+    + Intl.dateFormat https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+    - Days.js?
 - channels specific dependencies in separate sub packages (mysql, mongo,)
  
  ## Public access
@@ -338,4 +357,5 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Postgres  RNA https://rnacentral.org/help/public-database
  - MariaDB   https://relational.fit.cvut.cz/search
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
+ 
  

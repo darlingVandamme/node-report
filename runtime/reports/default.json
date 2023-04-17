@@ -1,0 +1,73 @@
+{
+  "name": "default",
+  "description": "default settings for all reports",
+
+  "defaults": {
+    "dateLocale": "en-SE",
+    "numberLocale": "en-SE",
+    "dateType":{
+      "long": {
+        "dateStyle":"long",
+        "timeStyle": "long"
+      },
+      "dateLong": {
+        "dateStyle":"long"
+      },
+      "short": {
+        "dateStyle":"short",
+        "timeStyle": "short"
+      },
+      "dateShort": {
+        "dateStyle":"short"
+      },
+      "custom": {  "year": "numeric", "month": "2-digit", "day": "2-digit", "hour": "2-digit", "minute":"2-digit","second":"2-digit"}
+    }
+  },
+  "require": [],
+
+  "datasets":[
+    {
+      "name" : "log",
+      "show": ["level","timestamp","msg","info"],
+      "columns": {
+        "info": {
+          "display": "json"
+        }
+      }
+    },
+    {
+      "name" : "error",
+      "style": "",
+      "show": ["level","timestamp","msg","info"],
+      "columns": {
+        "info": {
+          "display": "json"
+        }
+      }
+    },
+    {
+      "name" : "query",
+      "type" : "row",
+      "show": "*"
+    },
+    {
+      "name" : "server",
+      "type" : "row",
+      "show": "*"
+    },
+    {
+      "name" : "paging",
+      "show": "*",
+      "type" : "row",
+      "source": "paging"
+    }
+  ],
+
+  "output": {
+    "error": {
+      "include": ["error","log"],
+      "type" : "hbs",
+      "template" : "error"
+    }
+  }
+}

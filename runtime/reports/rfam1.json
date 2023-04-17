@@ -1,0 +1,107 @@
+{
+  "name": "rfam",
+  "description": "Test report for Mysql",
+
+  "require": ["query","session"],
+
+  "datasets":[
+    {
+      "name" : "log",
+      "show": ["level","timestamp","msg","info"],
+      "columns": {
+        "info": {
+          "display": "json"
+        }
+      }
+    },
+    {
+      "name" : "query",
+      "show": "*",
+      "columns": {
+        "tax_string": {
+          "style" : "underline",
+          "default": ""
+        },
+        "limit": {
+          "type": "parseInt",
+          "default": 20
+        }
+      }
+    },
+
+    {
+      "name" : "args",
+      "show": "*",
+      "columns": {
+        "limit": {
+          "type": "copy",
+          "default": 20
+        }
+      }
+    },
+
+
+    {
+      "name" : "table",
+      "description" : "This data shows you some list of bacteria and stuff",
+      "type" : "rfam",
+      "style" : "zebra",
+      "sources": ["query","session"],
+      "query1" : "select tax_string , count(*) as aantal from taxonomy group by tax_string order by aantal desc limit 50",
+      "query2" : "select  CURRENT_TIMESTAMP, tax_string,ncbi_id,tree_display_name, align_display_name, species from taxonomy where tax_string like {{query.tax_string}}  limit 20",
+      "query4 " : "select * from taxonomy  limit {{query.limit}}",
+      "query3" : "select * from taxonomy  limit 50",
+      "query" : "select * from taxonomy where tax_string like {{query.tax_string}}  limit {{query.limit}}",
+      "show" : "*",
+      "columns": {
+        "tax_string": {
+          "type": "",
+          "header": "Taxonomy",
+          "style": "col_bold",
+          "order" : 20
+
+        },
+        "link": {
+          "type": "format",
+          "header": "Details",
+          "style": "col_bold",
+          "order" : 20,
+          "format" : "<a href='details.html?id={{ncbi_id}}'>{{tree_display_name}}</a>",
+          "escape": false
+        },
+
+        "species": {
+          "type": "",
+          "header": "Taxonomy",
+          "style": "col_bold",
+          "order" : 200
+        },
+        "name": {
+          "type": "copy",
+          "source": "query",
+          "sourceColumn": "name",
+          "default": "-"
+        }
+      }
+    }
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","table","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","table","log"],
+      "table": ["log","table"],
+      "argForm": "query",
+      "template": "serverHTML",
+      "type" : "serverHtml"
+    },
+    "arg": {
+      "include" : "table",
+      "type": "hbs",
+      "page": "argtest"
+    }
+  }
+}

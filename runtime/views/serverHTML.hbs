@@ -1,0 +1,30 @@
+<header>
+    {{#each datasets}}
+        {{#if this.position.header}}
+            <h2>{{this.name}}</h2>
+            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+            {{{this.html}}}
+        {{/if}}
+    {{/each}}
+</header>
+
+<h1>{{name}}</h1>
+<div>{{momentString}} Prof: {{profile}}ms  </div>
+<main >
+    {{#each datasets}}
+        {{#if this.position.main}}
+            <h2>{{this.name}}</h2>
+            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+                {{{this.html}}}
+        {{/if}}
+    {{/each}}
+</main>
+<div class="hidden" >
+    {{#each datasets}}
+        {{#if this.position.hidden}}
+            <h2>{{this.name}}</h2>
+            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+            {{{this.html}}}
+        {{/if}}
+    {{/each}}
+</div>

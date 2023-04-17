@@ -9,7 +9,7 @@
 
 ## HTML
 - Evaluation of current generated reports
-    - Server generated
+    - Server generated  (output.js serverHtml())
     - handlebars
 - Move to pure handlebars solution 
 - multiple templates
