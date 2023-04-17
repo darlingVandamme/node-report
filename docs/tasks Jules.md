@@ -1,13 +1,15 @@
 # Tasks Jules
 
 ## Global
-- set up project
-- run server.js
+
++ set up project
++ run server.js
 - setup time reporting
 - communication setup
 - Contract  
 
 ## HTML
+
 - Evaluation of current generated reports
     - Server generated  (output.js serverHtml())
     - handlebars
