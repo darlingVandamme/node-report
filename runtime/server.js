@@ -26,7 +26,8 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 //
 // })
 app.get("/", (req,res)=>{
-    res.send("Test reporting engine")
+    //res.send("Test reporting engine")
+    res.render("index", { user:{name:"Jules"}  })
 })
 
 app.listen(3000,() => {
