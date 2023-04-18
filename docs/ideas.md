@@ -173,6 +173,8 @@
 ## handlebars
 - dynamic partials  https://handlebarsjs.com/guide/partials.html#dynamic-partials 
 - express-handlebars https://www.npmjs.com/package/express-handlebars
+- advanced example  https://github.com/express-handlebars/express-handlebars/blob/master/examples/advanced/server.js
+- expose templates to client side!
 
 
 ## testing
