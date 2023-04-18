@@ -1,10 +1,9 @@
 <header>
     {{#each datasets}}
         {{#if this.position.header}}
-        <div id="dataset_{{this.name}}" class="{{this.options.style}}">
+        <div id="dataset_{{this.name}}" class="{{this.options.style}}" data-src="{{this.url}}">
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-            {{this.url}}
             {{{this.html}}}
             </div>
         {{/if}}
@@ -16,10 +15,9 @@
 <main >
     {{#each datasets}}
         {{#if this.position.main}}
-            <div id="dataset_{{this.name}}" class="{{this.options.style}}">
+            <div id="dataset_{{this.name}}" class="{{this.options.style}}"  data-src="{{this.url}}">
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-            {{this.url}}
                 {{{this.html}}}
             </div>
         {{/if}}
@@ -28,10 +26,9 @@
 <div class="hidden" >
     {{#each datasets}}
         {{#if this.position.hidden}}
-            <div id="dataset_{{this.name}}" class="{{this.options.style}}">
+            <div id="dataset_{{this.name}}" class="{{this.options.style}}"  data-src="{{this.url}}">
             <h2>{{this.name}}</h2>
             <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-            {{this.url}}
             {{{this.html}}}
             </div>
         {{/if}}
