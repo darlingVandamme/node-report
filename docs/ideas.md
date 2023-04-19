@@ -1,6 +1,6 @@
 
 ## General
-- Git setup 
++ Git setup 
     - internal sharing quick
     - external github / npm
 - Naming consistency!
