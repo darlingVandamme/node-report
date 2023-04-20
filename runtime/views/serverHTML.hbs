@@ -11,10 +11,9 @@
 </header>
 
 <div class="container">
-    <nav>
-        <div class="hide_button">
-            <h1 class="toggle_hide"> x </h1> 
-        </div>
+    <div class="hide_button toggle_hide" data-target="nav" data-level="1"> x
+    </div>
+    <nav >
         {{#each datasets}}
             {{#if this.position.nav}}
                 {{> serverDSnav}}

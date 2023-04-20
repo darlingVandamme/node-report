@@ -53,6 +53,10 @@
     - url / link
     - predefined calculation (percentage, sum, ...)
     - js function (value,columnName,row,dataset,report)=>{ }   vm.script
+- tooltip / hover/ ellipsis
+- column as parent client side filter criterium?
+- labels, icons, https://www.w3schools.com/howto/howto_css_cards.asp
+
         
 ## displays
 - simple display functions for cell data values
@@ -155,6 +159,9 @@
 - tabbed view 
 - https://uxmovement.medium.com/10-design-tips-for-a-better-data-table-interface-8d6705e56be2
 - images and icons  list lookup  // handlebars helper?
+- show hide toggle
+    https://alvarotrigo.com/blog/toggle-switch-css/
+    
 
 - html tags  
     - address?
