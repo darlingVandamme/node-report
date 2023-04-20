@@ -3,26 +3,29 @@
   }
   
 .dataset_table td, .dataset_table th {
-    border: 1px solid var(--color-quinary);
+    border: 1px solid var(--color-3);
     padding: 8px;
   }
   
-.dataset_table tr:nth-child(even){background-color: var(--color-quaternary);}
+.dataset_table tr:nth-child(even){background-color: var(--color-4);}
   
-.dataset_table tr:hover {background-color: var(--color-quinary);}
+.dataset_table tr:hover {background-color: var(--color-3);}
   
 .dataset_table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: var(--color-secondary);
+    background-color: var(--color-3);
     color: var(--color-text);
   }
 
 .scroll > .table {
     width: fit-content;
-    max-width: 90%;
+    max-width: 99%;
     overflow-x: auto;
-    border: var(--color-quinary) inset;
+    box-shadow: 3px 3px 3px var(--color-3);
+    border-radius: 10px;
+    border: 1px solid var(--color-3);
+  ;
 }
 
