@@ -12,6 +12,7 @@
       "type" :  "form",
       "source" : "copy",
       "from": "query",
+      "position" : "nav",
       "columns": {
         "tagContains": {
           "type" : "format",
