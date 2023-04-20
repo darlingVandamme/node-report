@@ -1,0 +1,28 @@
+.dataset_table {
+    border-collapse: collapse;
+  }
+  
+.dataset_table td, .dataset_table th {
+    border: 1px solid var(--color-quinary);
+    padding: 8px;
+  }
+  
+.dataset_table tr:nth-child(even){background-color: var(--color-quaternary);}
+  
+.dataset_table tr:hover {background-color: var(--color-quinary);}
+  
+.dataset_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+  }
+
+.scroll > .table {
+    width: fit-content;
+    max-width: 90%;
+    overflow-x: auto;
+    border: var(--color-quinary) inset;
+}
+

@@ -1,71 +1,110 @@
-header {
-    display: flex;
-    justify-content: space-between;
+:root {
+  --color-primary: #ddd8c4;
+  --color-secondary: #50808e;
+  --color-tertiary: #68a195;
+  --color-quaternary: #a3c9a8;
+  --color-quinary: #84b59f;
+  --color-text-dark: #000000;
+  --color-text-light: #ffffff;
+}
+
+:root {
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0%;
+  margin: 0%;
+  background-color: var(--color-primary);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-secondary);
 }
 
 .logo {
-    width: 20vw;
+  width: 20vw;
 }
 
 .company_name {
-    width: 80vw;
-    text-align: center;
-}
-.report_name {
-    width: 80vw;
-    text-align: center;
+  width: 80vw;
+  text-align: center;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-}
-
-main {
-    flex-basis: 80vw;
-    flex-grow: 1;
-    overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 nav {
-    width: 15vw;
-    text-align: center;
+  top: 0;
+  position: sticky;
+  height: 100vh;
+  background-color: var(--color-tertiary);
+}
+
+.form {
+  width: 20vw;
+  text-align: center;
+  overflow: hidden;
+  transition: all 2s ease;
+}
+
+.hide_button {
+  margin: 0%;
+  min-width: 5vw;
+  text-align: end;
+}
+
+.hide_button h1 {
+  margin: 0;
+}
+
+main {
+  margin: 2%;
+  flex-basis: 80vw;
+  flex-grow: 1;
+  overflow-x: hidden;
 }
 
 .dataset_table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 .dataset_table td, .dataset_table th {
-    border: 1px solid #ddd;
-    padding: 8px;
+  border: 1px solid var(--color-quinary);
+  padding: 8px;
 }
 
-.dataset_table tr:nth-child(even){background-color: #f2f2f2;}
+.dataset_table tr:nth-child(even) {
+  background-color: var(--color-quaternary);
+}
 
-.dataset_table tr:hover {background-color: #ddd;}
+.dataset_table tr:hover {
+  background-color: var(--color-quinary);
+}
 
 .dataset_table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #c77b24;
-    color: rgb(255, 255, 255);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
 }
 
-.scroll {
-    overflow-x:auto;
-    width: 90%;
+.scroll > .table {
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 90%;
+  overflow-x: auto;
+  border: var(--color-quinary) inset;
 }
 
 .hide {
-    display: none
+  display: none;
 }
 
 .toggle_hide:hover {
-    cursor: pointer;
-}
+  cursor: pointer;
+}/*# sourceMappingURL=report.css.map */
