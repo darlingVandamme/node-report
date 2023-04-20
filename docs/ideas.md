@@ -155,6 +155,9 @@
 - tabbed view 
 - https://uxmovement.medium.com/10-design-tips-for-a-better-data-table-interface-8d6705e56be2
 - images and icons  list lookup  // handlebars helper?
+- show hide toggle
+    https://alvarotrigo.com/blog/toggle-switch-css/
+    
 
 - html tags  
     - address?
