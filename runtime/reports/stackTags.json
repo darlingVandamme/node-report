@@ -19,9 +19,8 @@
     {
       "name" : "main",
       "description" : "",
-      "type" : "StackExchange",
       "style" : "zebra",
-      "sources": ["query","session"],
+      "source" : "StackExchange",
       "query" : "select * from tags where TagName like {{query.tag}} limit {{paging.limit}}",
       "show" : "*",
       "columns": {

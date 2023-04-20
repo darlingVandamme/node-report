@@ -106,9 +106,11 @@
 - pagNr
 - nextURL
 - previousURL
+- maxHint
+- Query params prefix? (paging_limit...)
 - [url's] 
 - pagerOutput to html
-- estimate total number of pages
+- estimate total number of pages (maxHint)
 
 - endless scroll instead of paging??? load more... 
 
