@@ -53,8 +53,15 @@ nav {
 
 .hide_button {
   margin: 0%;
-  min-width: 5vw;
+  min-width: 0vw;
   text-align: end;
+  position: absolute;
+  left: 20%;
+  z-index: 100;
+}
+
+.hide_button.clicked {
+  left: 0%;
 }
 
 .hide_button h1 {
