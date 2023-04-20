@@ -1,36 +1,55 @@
 <header>
+    <h1 class="report_name">{{name}}</h1>
+    <div>{{momentString}} Prof: {{profile}}ms  </div>
+    {{> logo}}
+
     {{#each datasets}}
         {{#if this.position.header}}
-        <div id="dataset_{{this.name}}" class="{{this.options.style}}" data-src="{{this.url}}">
-            <h2>{{this.name}}</h2>
-            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-            {{{this.html}}}
-            </div>
+            {{> serverDS}}
         {{/if}}
     {{/each}}
 </header>
 
-<h1>{{name}}</h1>
-<div>{{momentString}} Prof: {{profile}}ms  </div>
+<nav>
+    {{#each datasets}}
+        {{#if this.position.nav}}
+            {{> serverDS}}
+        {{/if}}
+    {{/each}}
+</nav>
+
 <main >
     {{#each datasets}}
         {{#if this.position.main}}
-            <div id="dataset_{{this.name}}" class="{{this.options.style}}"  data-src="{{this.url}}">
-            <h2>{{this.name}}</h2>
-            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-                {{{this.html}}}
-            </div>
+            {{> serverDS}}
         {{/if}}
     {{/each}}
 </main>
+
 <div class="hidden" >
     {{#each datasets}}
         {{#if this.position.hidden}}
-            <div id="dataset_{{this.name}}" class="{{this.options.style}}"  data-src="{{this.url}}">
-            <h2>{{this.name}}</h2>
-            <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-            {{{this.html}}}
-            </div>
+            {{> serverDS}}
         {{/if}}
     {{/each}}
 </div>
+
+<script language="JavaScript">
+    const report = {
+        name: "{{name}}",
+        moment: "{{moment}}",
+        momentString: "{{momentString}}",
+        profile: "{{profile}}",
+        url: "{{{url}}}",
+        style: "{{style}}",
+        datasets:[
+            {{#each datasets}}
+                {
+                    name:"{{this.name}}",
+                    columns: {},
+                    data: [ {{{this.JSONData}}}]
+                },
+            {{/each}}
+                ]
+    }
+    </script>

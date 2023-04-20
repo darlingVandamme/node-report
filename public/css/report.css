@@ -1,0 +1,71 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+body {
+    margin: 0%;
+}
+
+.logo {
+    width: 20vw;
+}
+
+.company_name {
+    width: 80vw;
+    text-align: center;
+}
+.report_name {
+    width: 80vw;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    flex-basis: 80vw;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
+
+nav {
+    width: 15vw;
+    text-align: center;
+}
+
+.dataset_table {
+    border-collapse: collapse;
+}
+
+.dataset_table td, .dataset_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.dataset_table tr:nth-child(even){background-color: #f2f2f2;}
+
+.dataset_table tr:hover {background-color: #ddd;}
+
+.dataset_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #c77b24;
+    color: rgb(255, 255, 255);
+}
+
+.scroll {
+    overflow-x:auto;
+    width: 90%;
+}
+
+.hide {
+    display: none
+}
+
+.toggle_hide:hover {
+    cursor: pointer;
+}
