@@ -1,6 +1,6 @@
 
 ## General
-- Git setup 
++ Git setup 
     - internal sharing quick
     - external github / npm
 - Naming consistency!
@@ -106,9 +106,11 @@
 - pagNr
 - nextURL
 - previousURL
+- maxHint
+- Query params prefix? (paging_limit...)
 - [url's] 
 - pagerOutput to html
-- estimate total number of pages
+- estimate total number of pages (maxHint)
 
 - endless scroll instead of paging??? load more... 
 
@@ -173,6 +175,8 @@
 ## handlebars
 - dynamic partials  https://handlebarsjs.com/guide/partials.html#dynamic-partials 
 - express-handlebars https://www.npmjs.com/package/express-handlebars
+- advanced example  https://github.com/express-handlebars/express-handlebars/blob/master/examples/advanced/server.js
+- expose templates to client side!
 
 
 ## testing

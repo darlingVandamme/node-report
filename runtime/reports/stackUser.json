@@ -11,7 +11,7 @@
       "type" :  "form",
       "source" : "copy",
       "from" : "query",
-      "position" : "header",
+      "position" : "nav",
       "columns": {
         "id": {
           "type": "parseInt",

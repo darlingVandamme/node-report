@@ -1,21 +1,26 @@
 import express from 'express'
-import hbs from 'express-handlebars'
+import { create } from 'express-handlebars';
 import path from "path"
 import { fileURLToPath } from 'url';
 import { ReportEngine } from '../lib/reportEngine.js';
 
 const app = express()
-console.log(import.meta)
+const hbs = create({extname: '.hbs'});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const root =  process.cwd()
+console.log(process.cwd())
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('.hbs', hbs.engine({extname: '.hbs'}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.engine('.hbs', hbs.engine );
+app.use(express.static(path.join(root, 'public')));
 
 let reports = new ReportEngine("/settings/reporting.json")
+// link hbs.engine in reporting?
+//reports.setTemplateEngine(hbs)
+// or use a separate hbs engine?
 // correct way???  check node-gallery
 app.use((req,res,next)=>reports.init(req,res,next));
 app.get("/report/:name.:type",(req,res,next)=>reports.express(req,res,next))
