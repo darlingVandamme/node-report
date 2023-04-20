@@ -31,7 +31,13 @@
       "style" : "zebra",
       "query" : "select * from posts where Tags like {{args.tagContains}} limit {{paging.limit}} offset {{paging.offset}}",
       "query1" : "select * from posts where Tags like '%sample%' limit 10",
-      "show" : "*"
+      "show" : "*",
+      "columns": {
+        "Body": {
+          "type" : "default",
+          "style": "hide"
+        }
+      }
       }
   ],
 

@@ -4,13 +4,16 @@
 
 body {
     margin: 0%;
-    background-color: var(--color-primary);
+    background-color: var(--color-1);
 }
 
 header {
+    position: relative;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: var(--color-secondary);
+    background-color: var(--color-2);
+    box-shadow: 5px 0 5px var(--color-5);
 }
 
 .logo {
@@ -30,22 +33,21 @@ header {
 nav {
     top: 0;
     position: sticky;
-    height: 100vh;
-    background-color: var(--color-tertiary);
-}
-
-.form {
-    width: 20vw;
     text-align: center;
-    overflow: hidden;
-    transition: all 2s ease;
+    z-index: 2;
+    height: 100vh;
+    background-color: var(--color-2);
+    box-shadow: 0px 5px 5px var(--color-5);
 }
 
 .hide_button {
     margin: 0%;
-    min-width: 5vw;
+    min-width: 0vw;
     text-align: end;
-}
+    position: absolute;
+    left: 0%;
+    z-index: 100;
+  }
 
 .hide_button h1 {
     margin: 0;
