@@ -61,7 +61,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server"],
+      "include": ["query","main","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
           "extention" : "html"

@@ -1,0 +1,59 @@
+:root {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0%;
+    background-color: var(--color-primary);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-secondary);
+}
+
+.logo {
+    width: 20vw;
+}
+
+.company_name {
+    width: 80vw;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    top: 0;
+    position: sticky;
+    height: 100vh;
+    background-color: var(--color-tertiary);
+}
+
+.form {
+    width: 20vw;
+    text-align: center;
+    overflow: hidden;
+    transition: all 2s ease;
+}
+
+.hide_button {
+    margin: 0%;
+    min-width: 5vw;
+    text-align: end;
+}
+
+.hide_button h1 {
+    margin: 0;
+}
+
+main {
+    margin: 2%;
+    flex-basis: 80vw;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
