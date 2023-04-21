@@ -46,6 +46,12 @@
       }
     },
     {
+      "name" : "query",
+      "type" : "form",
+      "position": "nav",
+      "show": "*"
+    },
+    {
       "name" : "server",
       "type" : "row",
       "show": "*"
