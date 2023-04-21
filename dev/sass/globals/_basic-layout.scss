@@ -30,27 +30,44 @@ header {
     justify-content: center;
 }
 
-nav {
+.left_column {
     top: 0;
     position: sticky;
+    height: 100vh;
+
+}
+
+.float_right {
+    top: 0;
+    right: 0;
+    position: sticky;
+}
+
+.checkboxes {
+    margin: 2%;
+    padding: 1%;
+    min-width: 0vw;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-2);
+    border-radius: 10px;
+    transition: all 1s ease;
+}
+
+nav {
+    width: 25vw;
     text-align: center;
     z-index: 2;
     height: 100vh;
     background-color: var(--color-2);
     box-shadow: 0px 5px 5px var(--color-5);
-}
-
-.hide_button {
-    margin: 0%;
-    min-width: 0vw;
-    text-align: end;
-    position: absolute;
-    left: 0%;
-    z-index: 100;
-  }
-
-.hide_button h1 {
-    margin: 0;
+    overflow: hidden;
+    transition: all 1s ease;
 }
 
 main {

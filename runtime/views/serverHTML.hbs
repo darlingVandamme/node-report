@@ -1,6 +1,5 @@
 <header>
     {{> logo}}
-    <div class="toggle_hide" data-target="#dataset_log" data-level="0"> Log </div>
     <h1 class="report_name">{{name}}</h1>
     <div>{{momentString}} Prof: {{profile}}ms  </div>
 
@@ -11,16 +10,30 @@
     {{/each}}
 </header>
 
-<div class="container">
-    <div class="hide_button toggle_hide" data-target="nav" data-level="0"> x
+<div class="float_right">
+    <div class="hide_button_right toggle_hide icon toggled" data-target=".checkboxes" data-level="0" data-toggleclass="hide_anim">
     </div>
-    <nav >
+
+    <div class="checkboxes hide_anim">
         {{#each datasets}}
-            {{#if this.position.nav}}
-                {{> serverDSnav}}
-            {{/if}}
+            {{> checkbox}}
         {{/each}}
-    </nav>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="left_column">
+        <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
+        </div>
+        <nav >
+            {{#each datasets}}
+                {{#if this.position.nav}}
+                    {{> serverDSnav}}
+                {{/if}}
+            {{/each}}
+        </nav>
+    </div>
 
     <main >
         {{#each datasets}}
