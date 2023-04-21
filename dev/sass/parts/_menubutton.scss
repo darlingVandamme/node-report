@@ -1,0 +1,29 @@
+.hide_button {
+    margin: 0%;
+    min-width: 0vw;
+    text-align: end;
+    position: absolute;
+    left: 0%;
+    z-index: 100;
+  }
+
+  .hide_button_right {
+    margin: 0%;
+    min-width: 0vw;
+    text-align: end;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  }
+
+.icon {
+    background-image: url('/icons/xmark-solid.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 30px;
+    height: 30px;
+}
+
+.toggled.icon {
+    background-image: url('/icons/bars-solid.svg');
+}

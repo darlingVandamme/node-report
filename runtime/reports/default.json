@@ -28,6 +28,7 @@
   "datasets":[
     {
       "name" : "log",
+      "hideable" : "true",
       "show": ["level","timestamp","msg","info"],
       "columns": {
         "info": {
