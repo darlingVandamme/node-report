@@ -47,11 +47,6 @@
       }
     },
     {
-      "name" : "query",
-      "type" : "row",
-      "show": "*"
-    },
-    {
       "name" : "server",
       "type" : "row",
       "show": "*"

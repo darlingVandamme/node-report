@@ -5,14 +5,20 @@
   "require": ["query","session"],
 
   "datasets":[
+    {
+      "name" : "query",
+      "type" : "form",
+      "position": "nav",
+      "show": "*"
+    },
 
     {
       "name" : "args",
       "show": "*",
-      "type" :  "form",
+      "type" :  "table",
       "source" : "copy",
       "from": "query",
-      "position" : "nav",
+      "position" : ",main",
       "columns": {
         "tagContains": {
           "type" : "format",
