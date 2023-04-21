@@ -41,10 +41,10 @@
 - columns can be replaced by new types without really affecting the data 
 - per column 
     - type  string(default), date, numbers  (how conversions?) 
-    - display (date, number ...)
-    - class style (css)
+    + display (date, number ...)
+    + style   class style (css)
     - hide?
-    - order 
+    + order 
 - copy column
 - calculated columns
     - flatten
@@ -269,6 +269,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
     - dataset dependencies
     - available plugins
 - report and engine statis as dataset
+- console log enkel early development
 
 
 ## plugins
@@ -285,7 +286,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - mocha??
 
 ## CSS
-- sass less
+- sass (less)
 - Themes in directories
 - Custom file 
 - Versions?
@@ -312,7 +313,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - dataset sorting!
 - widgets (show hide buttons, sorting, filtering, popups... )
 - reload seconds / polling  vs  continuous update socket.io
-- data- attributes per dataset table (for reloading) 
++ data- attributes per dataset table (for reloading) 
  
 ## dir channel
 - file data (file, extension, size ,)
@@ -368,5 +369,6 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Postgres  RNA https://rnacentral.org/help/public-database
  - MariaDB   https://relational.fit.cvut.cz/search
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
+ 
  
  

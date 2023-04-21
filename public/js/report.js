@@ -17,5 +17,7 @@ function classToggle(event) {
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelector('.toggle_hide').addEventListener('click', classToggle)
+    document.querySelectorAll('.toggle_hide').forEach( element => {
+        element.addEventListener('click', classToggle)
+    })
 });
