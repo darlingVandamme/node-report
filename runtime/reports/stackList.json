@@ -33,6 +33,7 @@
       "columns": {
         "Body": {
           "type" : "default",
+          "order": 145,
           "style": "hide"
         }
       }
