@@ -26,7 +26,13 @@
 
 ## Dataset
 - Row - column set of values
-- singleton
+    - singleton
+    - array
+    - Virtual (copy)
+    - aggregate 
+        - simple
+        - combined
+        - f()
 + dependencies? (auto?) require()
 - dataset.channel (connection to datasource channel)
 + dataset.done  init promise
@@ -34,7 +40,15 @@
 + dataset.load 
 - dataset preload values?
 - load several batches?  (required params multiple values?)
-- filter dataset  (server side and client side)
+- filter dataset 
+ 
+## filter
+- server side 
+- client side
+- simple equal
+- combined equal
+- f()
+
   
 ## Columns
 - per dataset, columns geeft aan welke columns getoond worden (en welke volgorde)
@@ -44,7 +58,7 @@
     + display (date, number ...)
     + style   class style (css)
     - hide?
-    + order 
+    + order (default: 100,110,120,130) 
 - copy column
 - calculated columns
     - flatten
@@ -116,7 +130,8 @@
 - pagerOutput to html
 - estimate total number of pages (maxHint)
 
-- endless scroll instead of paging??? load more... 
+- endless scroll instead of paging??? load more...
+- server side paging (a href) <> client side paging (reload list of datasets) 
 
 ## caching
 - caching on dataset level (dataset cache ID)
@@ -161,7 +176,12 @@
 - images and icons  list lookup  // handlebars helper?
 - show hide toggle
     https://alvarotrigo.com/blog/toggle-switch-css/
-    
+- client side function values
+- recalculate function
+- data-row=1
+- data-value=""
+- data-value=(report,ds,row)=>( )
+- select box column  (radio column)     
 
 - html tags  
     - address?
@@ -180,6 +200,7 @@
     - input different types (argform)
     
 ## handlebars
+- express-handlebars vs express-hbs vs hbs?
 - dynamic partials  https://handlebarsjs.com/guide/partials.html#dynamic-partials 
 - express-handlebars https://www.npmjs.com/package/express-handlebars
 - advanced example  https://github.com/express-handlebars/express-handlebars/blob/master/examples/advanced/server.js

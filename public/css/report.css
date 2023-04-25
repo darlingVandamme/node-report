@@ -40,27 +40,45 @@ header {
   justify-content: center;
 }
 
-nav {
+.left_column {
   top: 0;
   position: sticky;
+  height: 100vh;
+}
+
+.float_right {
+  top: 0;
+  right: 0;
+  position: sticky;
+}
+
+.checkboxes {
+  margin: 2%;
+  padding: 1%;
+  min-width: 0vw;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-2);
+  border-radius: 10px;
+  transition: all 1s ease;
+}
+
+nav {
+  width: 25vw;
   text-align: center;
   z-index: 2;
   height: 100vh;
   background-color: var(--color-2);
   box-shadow: 0px 5px 5px var(--color-5);
-}
-
-.hide_button {
-  margin: 0%;
-  min-width: 0vw;
-  text-align: end;
-  position: absolute;
-  left: 0%;
-  z-index: 100;
-}
-
-.hide_button h1 {
-  margin: 0;
+  overflow: hidden;
+  transition: all 1s ease;
 }
 
 main {
@@ -105,7 +123,16 @@ main {
   border: 1px solid var(--color-3);
 }
 
-.hide {
+.hidden {
+  display: none;
+}
+
+.hide_anim {
+  width: 0;
+  height: 0;
+  padding: 0;
+}
+.hide_anim > * {
   display: none;
 }
 
@@ -130,7 +157,7 @@ label {
   font-weight: 700;
 }
 
-input[type=text], secect {
+input[type=text], select {
   width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -153,4 +180,34 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: var(--color-5);
   color: var(--color-text-light);
+}
+
+.hide_button {
+  margin: 0%;
+  min-width: 0vw;
+  text-align: end;
+  position: absolute;
+  left: 0%;
+  z-index: 100;
+}
+
+.hide_button_right {
+  margin: 0%;
+  min-width: 0vw;
+  text-align: end;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+}
+
+.icon {
+  background-image: url("/icons/xmark-solid.svg");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.toggled.icon {
+  background-image: url("/icons/bars-solid.svg");
 }/*# sourceMappingURL=report.css.map */
