@@ -10,20 +10,8 @@
     {{/each}}
 </header>
 
-<div class="float_right">
-    <div class="hide_button_right toggle_hide icon toggled" data-target=".checkboxes" data-level="0" data-toggleclass="hide_anim">
-    </div>
-
-    <div class="checkboxes hide_anim">
-        {{#each datasets}}
-            {{> checkbox}}
-        {{/each}}
-    </div>
-</div>
-
-
 <div class="container">
-    <div class="left_column">
+    <div class="form_menu">
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav>
@@ -42,12 +30,13 @@
         </div>
     </div>
 
+    <div class="tabs">
+        {{#each datasets}}
+            {{> tabs}}
+        {{/each}}
+    </div>
+
     <main>
-        <div class="tabs">
-            {{#each datasets}}
-                {{> tabs}}
-            {{/each}}
-        </div>
         {{#each datasets}}
             {{#if this.position.main}}
                 {{> serverDS}}

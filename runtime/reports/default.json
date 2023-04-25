@@ -32,7 +32,8 @@
       "show": ["level","timestamp","msg","info"],
       "columns": {
         "info": {
-          "display": "json"
+          "display": "json",
+          "style": "hidden"
         }
       }
     },
@@ -56,6 +57,12 @@
       "show": "*",
       "type" : "row",
       "source": "paging"
+    },
+    {
+      "name" : "query",
+      "type" : "form",
+      "position": "nav",
+      "show": "*"
     }
   ],
 

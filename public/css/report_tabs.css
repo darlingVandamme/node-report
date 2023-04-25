@@ -49,37 +49,15 @@ header {
 .container {
   display: flex;
   justify-content: center;
-}
-
-.left_column {
-  top: 0;
-  position: sticky;
-  height: 100vh;
-  background-color: var(--color-2);
-}
-
-.float_right {
-  top: 0;
-  right: 0;
-  position: sticky;
-}
-
-.checkboxes {
-  margin: 2%;
-  padding: 1%;
-  min-width: 0vw;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  right: 0;
-  z-index: 100;
-  display: flex;
   flex-direction: column;
-  background-color: var(--color-2-alpha);
-  border-radius: 10px;
-  transition: all 1s ease;
+}
+
+.form_menu {
+  padding: 0%;
+  margin: 0%;
+  top: 0;
+  position: sticky;
+  background-color: var(--color-2);
 }
 
 #overlay {
@@ -94,18 +72,17 @@ header {
 }
 
 nav {
-  width: 25vw;
+  width: 100%;
   text-align: center;
   z-index: 2;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-2);
   box-shadow: 0px 5px 5px var(--color-5);
-  overflow: hidden;
   transition: all 1s ease;
 }
 
 main {
-  flex-basis: 80vw;
-  flex-grow: 1;
   overflow-x: hidden;
 }
 
@@ -267,4 +244,4 @@ input[type=submit]:hover {
 .tab:hover {
   background-color: var(--color-4);
   color: var(--color-text-dark);
-}/*# sourceMappingURL=report.css.map */
+}/*# sourceMappingURL=report_tabs.css.map */
