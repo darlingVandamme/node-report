@@ -8,10 +8,10 @@
     {
       "name" : "args",
       "show": "*",
-      "type" :  "form",
+      "type" :  "table",
       "source" : "copy",
       "from" : "query",
-      "position" : "nav",
+      "position" : "tabs",
       "columns": {
         "id": {
           "type": "parseInt",
@@ -48,6 +48,7 @@
     {
       "name" : "posts",
       "description" : "",
+      "position": "tabs",
       "source" : "StackExchange",
       "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
       "show" : "*"
@@ -66,7 +67,7 @@
           "dataset": "args",
           "extention" : "html"
       },
-      "template": "serverHTML",
+      "template": "serverHTML_tabs",
       "type" : "serverHtml"
     },
     "arg": {

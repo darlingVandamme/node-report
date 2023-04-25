@@ -24,7 +24,7 @@ function tableOverlay(event) {
 
 function tabs(event) {
     let selectedTab = event.target.dataset.target;
-    document.querySelectorAll('.dataset').forEach(dataset => 
+    document.querySelectorAll('.dataset_tab').forEach(dataset => 
         {if (dataset.id !== selectedTab) {
             dataset.style.display = "none";
         } else {

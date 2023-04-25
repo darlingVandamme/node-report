@@ -267,4 +267,8 @@ input[type=submit]:hover {
 .tab:hover {
   background-color: var(--color-4);
   color: var(--color-text-dark);
+}
+
+.dataset_tab {
+  display: none;
 }/*# sourceMappingURL=report.css.map */
