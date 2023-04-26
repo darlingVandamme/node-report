@@ -48,4 +48,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs))
 });
-
