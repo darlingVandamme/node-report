@@ -1,20 +1,40 @@
 :root {
-  --color-1: rgb(237, 242, 247);
-  --color-2: rgb(143, 162, 202);
-  --color-2-alpha: rgba(143, 162, 202, 0.3);
-  --color-3: rgb(181, 198, 184);
-  --color-4: rgb(228, 232, 244);
-  --color-5: rgb(72, 82, 61);
+  --color-1-light: rgb(237, 242, 247);
+  --color-2-light: rgb(143, 162, 202);
+  --color-2-alpha-light: rgba(143, 162, 202, 0.3);
+  --color-3-light: rgb(181, 198, 184);
+  --color-4-light: rgb(228, 232, 244);
+  --color-5-light: rgb(72, 82, 61);
+  --color-text-light: rgb(181, 181, 181);
+  --color-1-dark: rgb(38, 50, 56);
+  --color-2-dark: rgb(18, 25, 29);
+  --color-2-alpha-dark: rgba(18, 25, 29, 0.3);
+  --color-3-dark: rgb(101, 43, 120);
+  --color-4-dark: rgb(56, 74, 83);
+  --color-5-dark: rgb(17, 17, 17);
   --color-text-dark: rgb(72, 82, 61);
-  --color-text-light: rgb(255, 255, 255);
+  --color-1: var(--color-1-dark);
+  --color-2: var(--color-2-dark);
+  --color-2-alpha: var(--color-2-alpha-dark);
+  --color-3: var(--color-3-dark);
+  --color-4: var(--color-4-dark);
+  --color-5: var(--color-5-dark);
+  --color-text: var(--color-text-light);
 }
 
 :root {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0%;
+  background-color: var(--color-1);
+  color: var(--color-text);
+}
+
 .logo {
   max-height: 15vh;
+  width: 20vw;
 }
 .logo > img {
   width: auto;
@@ -23,9 +43,9 @@
      object-fit: contain;
 }
 
-body {
-  margin: 0%;
-  background-color: var(--color-1);
+.company_name {
+  width: 80vw;
+  text-align: center;
 }
 
 header {
@@ -37,61 +57,9 @@ header {
   box-shadow: 5px 0 5px var(--color-5);
 }
 
-.logo {
-  width: 20vw;
-}
-
-.company_name {
-  width: 80vw;
-  text-align: center;
-}
-
 .container {
   display: flex;
   justify-content: center;
-}
-
-.left_column {
-  top: 0;
-  position: sticky;
-  height: 100vh;
-  background-color: var(--color-2);
-
-}
-
-.float_right {
-  top: 0;
-  right: 0;
-  position: sticky;
-}
-
-.checkboxes {
-  margin: 2%;
-  padding: 1%;
-  min-width: 0vw;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-2-alpha);
-  border-radius: 10px;
-  transition: all 1s ease;
-}
-
-#overlay {
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  padding: 20px;
-  transform: translate(-50%, 0);
-  z-index: 100;
-  background-color: var(--color-3);
-  border-radius: 10px;
 }
 
 nav {
@@ -110,16 +78,12 @@ main {
   overflow-x: hidden;
 }
 
-.dataset {
-  padding: 1%;
-}
-
 .dataset_table {
   border-collapse: collapse;
 }
 
 .dataset_table td, .dataset_table th {
-  border: 1px solid var(--color-3);
+  border: 1px solid var(--color-4);
   padding: 8px;
 }
 
@@ -149,21 +113,8 @@ main {
   border: 1px solid var(--color-3);
 }
 
-.hidden {
-  display: none;
-}
-
-.hide_anim {
-  width: 0;
-  height: 0;
-  padding: 0;
-}
-.hide_anim > * {
-  display: none;
-}
-
-.toggle_hide:hover {
-  cursor: pointer;
+.dataset {
+  padding: 1%;
 }
 
 form {
@@ -272,4 +223,65 @@ input[type=submit]:hover {
 
 .dataset_tab {
   display: none;
+}
+
+.left_column {
+  top: 0;
+  position: sticky;
+  height: 100vh;
+  background-color: var(--color-2);
+}
+
+.float_right {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: 0;
+  position: sticky;
+}
+
+.checkboxes {
+  margin: 2%;
+  padding: 1%;
+  min-width: 0vw;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-2-alpha);
+  border-radius: 10px;
+  transition: all 1s ease;
+}
+
+#overlay {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, 0);
+  z-index: 100;
+  background-color: var(--color-3);
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.hide_anim {
+  width: 0;
+  height: 0;
+  padding: 0;
+}
+.hide_anim > * {
+  display: none;
+}
+
+.toggle_hide:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=report.css.map */

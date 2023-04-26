@@ -3,7 +3,7 @@
   }
   
 .dataset_table td, .dataset_table th {
-    border: 1px solid var(--color-3);
+    border: 1px solid var(--color-4);
     padding: 8px;
   }
   
@@ -26,5 +26,9 @@
     box-shadow: 3px 3px 3px var(--color-3);
     border-radius: 10px;
     border: 1px solid var(--color-3);
+}
+
+.dataset {
+  padding: 1%;
 }
 
