@@ -42,6 +42,9 @@
           "type": "link",
           "header": "link"
 
+        },
+        "AboutMe": {
+          "display": "html"
         }
       }
       },
@@ -65,10 +68,10 @@
       "include": ["query","main","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
-          "extention" : "html"
+          "extension" : "html"
       },
-      "template": "serverHTML_tabs",
-      "type" : "serverHtml"
+      "template": "2columns",
+      "type" : "hbs"
     },
     "arg": {
       "include" : ["args","query"],
@@ -77,10 +80,9 @@
         "dataset": "args",
         "extention" : "html"
       },
-      "type2": "hbs",
-      "template": "serverHTML",
-      "type" : "serverHtml",
-      "page": "argtest"
+      "type": "hbs",
+      "template": "2columns"
+
     }
   }
 }
