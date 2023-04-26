@@ -64,6 +64,7 @@
     - flatten
     - json 
     - concatenate
+    - hbs?
     - url / link
     - predefined calculation (percentage, sum, ...)
     - js function (value,columnName,row,dataset,report)=>{ }   vm.script
@@ -200,7 +201,7 @@
     - input different types (argform)
     
 ## handlebars
-- express-handlebars vs express-hbs vs hbs?
+- geen express-handlebars maar direct handlebars
 - dynamic partials  https://handlebarsjs.com/guide/partials.html#dynamic-partials 
 - express-handlebars https://www.npmjs.com/package/express-handlebars
 - advanced example  https://github.com/express-handlebars/express-handlebars/blob/master/examples/advanced/server.js
@@ -215,7 +216,7 @@
 - keep sources, config
 - find report syntax
 - set up report
-
+- namespaces
 
 ## reportsyntax
 - JSON

@@ -1,0 +1,70 @@
+{
+  "name": "stack List",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","session"],
+
+  "datasets":[
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "table",
+      "source" : "copy",
+      "from": "query",
+      "position" : "main",
+      "columns": {
+        "tagContains": {
+          "type" : "format",
+          "default": "",
+          "format" : "%<{{tag}}>%"
+        }
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "",
+      "type": "table",
+      "source" : "StackExchange",
+      "style" : "collapseable",
+      "query" : "select * from posts where Tags like {{args.tagContains}} limit {{paging.limit}} offset {{paging.offset}}",
+      "query1" : "select * from posts where Tags like '%sample%' limit 10",
+      "show" : "*",
+      "show2" : "Score,Body,Score,Id",
+      "columns": {
+        "Body": {
+          "type" : "default",
+          "order": 145,
+          "style": "hidden"
+        }
+      }
+      }
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include2": ["query","args","paging","main","log"],
+      "include": ["query","args","paging","server","main","log"],
+      "table": ["log","args","paging","main","server"],
+      "argForm": "query",
+      "template": "serverHTML",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : "main",
+      "type": "hbs",
+      "page": "argtest"
+    },
+    "ds": {
+      "include" : ["main"],
+      "template": "div",
+      "type" : "serverHtml",
+      "page": "argtest"
+    }
+
+  }
+}
