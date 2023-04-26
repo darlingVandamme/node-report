@@ -1,0 +1,12 @@
+<form  method="get" >
+{{#each displayData}}
+        {{#each this.data}}
+            <div class='formField {{this.style}}'>
+                <label>{{this.column}}</label>
+
+                <input type='text' name='{{this.column}}' value='{{this.value}}' />
+            </div>
+        {{/each}}
+{{/each}}
+    <input type='submit' >
+</form>

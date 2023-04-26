@@ -1,0 +1,9 @@
+<div class='dataset_div'>
+{{#each displayData}}
+    <div class="dataset_row" data-rowNr="{{this.rowNr}}">
+        {{#each this.data}}
+            <div class="{{this.style}}"><span class="header">{{this.column}}</span> {{this.value}}</div>
+        {{/each}}
+    </div>
+{{/each}}
+</div>

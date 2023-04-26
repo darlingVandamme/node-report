@@ -56,7 +56,7 @@
     },
     {
       "name" : "server",
-      "position" : "tabs",
+      "position" : "main",
       "type" : "row",
       "show": "*"
     },
@@ -64,7 +64,7 @@
       "name" : "paging",
       "show": "*",
       "type" : "row",
-      "position" : "tabs",
+      "position" : "main",
       "source": "paging"
     },
     {

@@ -62,12 +62,11 @@
     const report = {
         name: "{{name}}",
         moment: "{{moment}}",
-        momentString: "{{momentString}}",
         profile: "{{profile}}",
         url: "{{{url}}}",
         style: "{{style}}",
-        datasets:[
-            {{#each datasets}}
+        data:[
+            {{#each data}}
                 {
                     name:"{{this.name}}",
                     columns: {},
