@@ -1,15 +1,26 @@
 :root {
-  --color-1: #EDF2F7;
-  --color-2: #8FA2CA;
-  --color-3: #B5C6B8;
-  --color-4: #E4E8F4;
-  --color-5: #48523D;
-  --color-text-dark: #48523D;
-  --color-text-light: #ffffff;
+  --color-1: rgb(237, 242, 247);
+  --color-2: rgb(143, 162, 202);
+  --color-2-alpha: rgba(143, 162, 202, 0.3);
+  --color-3: rgb(181, 198, 184);
+  --color-4: rgb(228, 232, 244);
+  --color-5: rgb(72, 82, 61);
+  --color-text-dark: rgb(72, 82, 61);
+  --color-text-light: rgb(255, 255, 255);
 }
 
 :root {
   box-sizing: border-box;
+}
+
+.logo {
+  max-height: 15vh;
+}
+.logo > img {
+  width: auto;
+  max-height: 15vh;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 body {
@@ -44,6 +55,8 @@ header {
   top: 0;
   position: sticky;
   height: 100vh;
+  background-color: var(--color-2);
+
 }
 
 .float_right {
@@ -65,9 +78,20 @@ header {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-2);
+  background-color: var(--color-2-alpha);
   border-radius: 10px;
   transition: all 1s ease;
+}
+
+#overlay {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, 0);
+  z-index: 100;
+  background-color: var(--color-3);
+  border-radius: 10px;
 }
 
 nav {
@@ -75,17 +99,19 @@ nav {
   text-align: center;
   z-index: 2;
   height: 100vh;
-  background-color: var(--color-2);
   box-shadow: 0px 5px 5px var(--color-5);
   overflow: hidden;
   transition: all 1s ease;
 }
 
 main {
-  margin: 2%;
   flex-basis: 80vw;
   flex-grow: 1;
   overflow-x: hidden;
+}
+
+.dataset {
+  padding: 1%;
 }
 
 .dataset_table {
@@ -142,7 +168,6 @@ main {
 
 form {
   width: 20vw;
-  margin: 5%;
   text-align: start;
   overflow: hidden;
 }
@@ -198,6 +223,22 @@ input[type=submit]:hover {
   position: absolute;
   right: 0;
   z-index: 100;
+  rotate: 180deg;
+}
+
+.xmark {
+  margin: 0%;
+  min-width: 0vw;
+  text-align: end;
+  position: relative;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  background-image: url("/icons/xmark-solid.svg");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .icon {
@@ -209,5 +250,26 @@ input[type=submit]:hover {
 }
 
 .toggled.icon {
-  background-image: url("/icons/bars-solid.svg");
+  background-image: url("/icons/arrow-right-solid.svg");
+}
+
+.tabs {
+  display: flex;
+  justify-content: start;
+  background-color: var(--color-3);
+}
+
+.tab {
+  padding: 0.5%;
+  font-weight: 700;
+  color: var(--color-text-light);
+  cursor: pointer;
+}
+.tab:hover {
+  background-color: var(--color-4);
+  color: var(--color-text-dark);
+}
+
+.dataset_tab {
+  display: none;
 }/*# sourceMappingURL=report.css.map */

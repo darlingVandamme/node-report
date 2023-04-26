@@ -11,7 +11,7 @@
       "type" :  "table",
       "source" : "copy",
       "from": "query",
-      "position" : ",main",
+      "position" : "main",
       "columns": {
         "tagContains": {
           "type" : "format",
@@ -51,7 +51,7 @@
       "include": ["query","args","paging","server","main","log"],
       "table": ["log","args","paging","main","server"],
       "argForm": "query",
-      "template": "serverHTML",
+      "template": "serverHTML_tabs",
       "type" : "serverHtml"
     },
     "arg": {

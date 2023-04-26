@@ -30,9 +30,11 @@
       "name" : "log",
       "hideable" : "true",
       "show": ["level","timestamp","msg","info"],
+      "position" : "tabs",
       "columns": {
         "info": {
-          "display": "json"
+          "display": "json",
+          "style": "hidden"
         }
       }
     },
@@ -54,6 +56,7 @@
     },
     {
       "name" : "server",
+      "position" : "tabs",
       "type" : "row",
       "show": "*"
     },
@@ -61,7 +64,14 @@
       "name" : "paging",
       "show": "*",
       "type" : "row",
+      "position" : "tabs",
       "source": "paging"
+    },
+    {
+      "name" : "query",
+      "type" : "form",
+      "position" : "nav",
+      "show": "*"
     }
   ],
 

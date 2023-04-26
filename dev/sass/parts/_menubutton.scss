@@ -14,6 +14,22 @@
     position: absolute;
     right: 0;
     z-index: 100;
+    rotate: 180deg;
+  }
+
+  .xmark {
+    margin: 0%;
+    min-width: 0vw;
+    text-align: end;
+    position: relative;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background-image: url('/icons/xmark-solid.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 30px;
+    height: 30px;
   }
 
 .icon {
@@ -25,5 +41,5 @@
 }
 
 .toggled.icon {
-    background-image: url('/icons/bars-solid.svg');
+    background-image: url('/icons/arrow-right-solid.svg');
 }

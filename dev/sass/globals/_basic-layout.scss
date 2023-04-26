@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+.logo {
+    max-height: 15vh;
+    & > img {
+        width: auto;
+        max-height: 15vh;
+        object-fit: contain;
+    }
+}
+
 body {
     margin: 0%;
     background-color: var(--color-1);
@@ -34,6 +43,8 @@ header {
     top: 0;
     position: sticky;
     height: 100vh;
+    background-color: var(--color-2);
+
 
 }
 
@@ -54,9 +65,20 @@ header {
     z-index: 100;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-2);
+    background-color: var(--color-2-alpha);
     border-radius: 10px;
     transition: all 1s ease;
+}
+
+#overlay {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, 0);
+    z-index: 100;
+    background-color: var(--color-3);
+    border-radius: 10px;
 }
 
 nav {
@@ -64,15 +86,18 @@ nav {
     text-align: center;
     z-index: 2;
     height: 100vh;
-    background-color: var(--color-2);
     box-shadow: 0px 5px 5px var(--color-5);
     overflow: hidden;
     transition: all 1s ease;
 }
 
+
 main {
-    margin: 2%;
     flex-basis: 80vw;
     flex-grow: 1;
     overflow-x: hidden;
+}
+
+.dataset {
+    padding: 1%;
 }

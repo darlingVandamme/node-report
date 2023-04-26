@@ -21,6 +21,7 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="left_column">
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
@@ -42,16 +43,25 @@
     </div>
 
     <main>
-        <div class="tabs">
-            {{#each datasets}}
-                {{> tabs}}
-            {{/each}}
-        </div>
         {{#each datasets}}
             {{#if this.position.main}}
                 {{> serverDS}}
             {{/if}}
         {{/each}}
+        <div class="tabs">
+            {{#each datasets}}
+                {{#if this.position.tabs}}
+                    {{> tabs}}
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="tab_tables">
+            {{#each datasets}}
+                {{#if this.position.tabs}}
+                    {{> serverDStabs}}
+                {{/if}}
+            {{/each}}
+        </div>
     </main>
 </div>
 

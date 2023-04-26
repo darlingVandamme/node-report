@@ -39,3 +39,22 @@
 - show / hide
 - tab switching
 - (later) react rendering
+
+
+## icoon pijltje
+
+## hover display
+
+## sass cleanup
+
+## testing other databases
+
+## row by row colors in table
+
+## tapped layout
+
+## paging
+
+## graphs
+    - d3
+    - tables
