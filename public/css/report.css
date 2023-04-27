@@ -6,6 +6,8 @@
   --color-4-light: rgb(228, 232, 244);
   --color-5-light: rgb(72, 82, 61);
   --color-text-light: rgb(181, 181, 181);
+  --xmark-light: url("/icons/xmark-solid.svg");
+  --arrow-light: url("/icons/arrow-right-solid.svg");
   --color-1-dark: rgb(38, 50, 56);
   --color-2-dark: rgb(18, 25, 29);
   --color-2-alpha-dark: rgba(18, 25, 29, 0.3);
@@ -13,13 +15,17 @@
   --color-4-dark: rgb(56, 74, 83);
   --color-5-dark: rgb(17, 17, 17);
   --color-text-dark: rgb(72, 82, 61);
-  --color-1: var(--color-1-dark);
-  --color-2: var(--color-2-dark);
-  --color-2-alpha: var(--color-2-alpha-dark);
-  --color-3: var(--color-3-dark);
-  --color-4: var(--color-4-dark);
-  --color-5: var(--color-5-dark);
-  --color-text: var(--color-text-light);
+  --xmark-dark: url("/icons/xmark-solid-light.svg");
+  --arrow-dark: url("/icons/arrow-right-solid-light.svg");
+  --color-1: var(--color-1-light);
+  --color-2: var(--color-2-light);
+  --color-2-alpha: var(--color-2-alpha-light);
+  --color-3: var(--color-3-light);
+  --color-4: var(--color-4-light);
+  --color-5: var(--color-5-light);
+  --color-text: var(--color-text-dark);
+  --xmark: var(--xmark-light);
+  --arrow: var(--arrow-light);
 }
 
 :root {
@@ -108,7 +114,7 @@ main {
   width: fit-content;
   max-width: 99%;
   overflow-x: auto;
-  box-shadow: 3px 3px 3px var(--color-3);
+  box-shadow: 3px 3px 3px var(--color-5);
   border-radius: 10px;
   border: 1px solid var(--color-3);
 }
@@ -146,7 +152,7 @@ input[type=text], select {
 input[type=submit] {
   width: 90%;
   background-color: var(--color-3);
-  color: var(--color-text-dark);
+  color: var(--color-text);
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -185,7 +191,7 @@ input[type=submit]:hover {
   right: 0;
   top: 0;
   z-index: 100;
-  background-image: url("/icons/xmark-solid.svg");
+  background-image: var(--xmark);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   width: 30px;
@@ -193,7 +199,7 @@ input[type=submit]:hover {
 }
 
 .icon {
-  background-image: url("/icons/xmark-solid.svg");
+  background-image: var(--xmark);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   width: 30px;
@@ -201,7 +207,7 @@ input[type=submit]:hover {
 }
 
 .toggled.icon {
-  background-image: url("/icons/arrow-right-solid.svg");
+  background-image: var(--arrow);
 }
 
 .tabs {

@@ -61,6 +61,12 @@
 
 ## dark mode
 
+## card layout
+image
+title
+subtitle
+link
+
 ## graphs
     - d3
     - tables
