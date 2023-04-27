@@ -25,7 +25,7 @@
     right: 0;
     top: 0;
     z-index: 100;
-    background-image: url('/icons/xmark-solid.svg');
+    background-image: var(--xmark);
     background-repeat: no-repeat;
     background-size: 20px 20px;
     width: 30px;
@@ -33,7 +33,7 @@
   }
 
 .icon {
-    background-image: url('/icons/xmark-solid.svg');
+    background-image: var(--xmark);
     background-repeat: no-repeat;
     background-size: 20px 20px;
     width: 30px;
@@ -41,5 +41,5 @@
 }
 
 .toggled.icon {
-    background-image: url('/icons/arrow-right-solid.svg');
+    background-image: var(--arrow);
 }

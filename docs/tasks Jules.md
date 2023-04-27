@@ -42,18 +42,30 @@
 
 
 ## icoon pijltje
+++
 
-## hover display
+## overlay display
+++
 
 ## sass cleanup
+++
+
+## tapped layout
+++
 
 ## testing other databases
 
 ## row by row colors in table
 
-## tapped layout
-
 ## paging
+
+## dark mode
+
+## card layout
+image
+title
+subtitle
+link
 
 ## graphs
     - d3

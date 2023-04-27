@@ -33,12 +33,38 @@ function tabs(event) {
     })
 }
 
+function darkMode(event) {
+    let root = document.documentElement;
+    let checked = document.getElementById("dark_mode").checked;
+    if (checked) {
+        root.style.setProperty("--color-1", "var(--color-1-dark)");
+        root.style.setProperty("--color-2", "var(--color-2-dark)");
+        root.style.setProperty("--color-2-alpha", "var(--color-2-alpha-dark)");
+        root.style.setProperty("--color-3", "var(--color-3-dark)");
+        root.style.setProperty("--color-4", "var(--color-4-dark)");
+        root.style.setProperty("--color-5", "var(--color-5-dark)");
+        root.style.setProperty("--color-text", "var(--color-text-light)");
+        root.style.setProperty("--xmark", "var(--xmark-dark)");
+        root.style.setProperty("--arrow", "var(--arrow-dark)");  
+    } else {
+        root.style.setProperty("--color-1", "var(--color-1-light)");
+        root.style.setProperty("--color-2", "var(--color-2-light)");
+        root.style.setProperty("--color-2-alpha", "var(--color-2-alpha-light)");
+        root.style.setProperty("--color-3", "var(--color-3-light)");
+        root.style.setProperty("--color-4", "var(--color-4-light)");
+        root.style.setProperty("--color-5", "var(--color-5-light)");
+        root.style.setProperty("--color-text", "var(--color-text-dark)");
+        root.style.setProperty("--xmark", "var(--xmark-light)");
+        root.style.setProperty("--arrow", "var(--arrow-light)");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle))
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelectorAll('input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle))
+    document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle))
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -47,4 +73,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs))
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    document.getElementById("dark_mode").addEventListener('click', darkMode)
 });
