@@ -32,6 +32,10 @@
                     {{> serverDSnav}}
                 {{/if}}
             {{/each}}
+            <div class="dark_mode">
+                <input type="checkbox" id="dark_mode">
+                <label for="dark_mode"> dark mode </label>
+            </div>
         </nav>
     </div>
 
@@ -52,7 +56,7 @@
             {{#each datasets}}
                 {{#if this.position.tabs}}
                     <div id="button_{{this.name}}" class="tab" data-target="dataset_{{this.name}}" data-level="0" data-toggleclass="hidden">
-                        {{this.name}}
+                        {{this.name}} 
                     </div>
                 {{/if}}
             {{/each}}
@@ -60,7 +64,7 @@
         <div class="tab_tables">
             {{#each datasets}}
                 {{#if this.position.tabs}}
-                    {{> serverDS}}
+                    {{> serverDStabs}}
                 {{/if}}
             {{/each}}
         </div>
