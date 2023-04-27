@@ -14,13 +14,11 @@
         "id": {
           "header" : "Geef hier userId in",
           "template" : "number",
-          "max" : 20,
+          "max" : 2000,
           "required" : true
         }
       }
     },
-
-
     {
       "name" : "args",
       "show": "*",

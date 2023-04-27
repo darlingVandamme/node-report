@@ -36,6 +36,10 @@
           "type" : "default",
           "order": 145,
           "style": "hidden"
+        },
+        "id2":{
+           "type" : "copy",
+            "sourceColumn": "Id"
         }
       }
       }
