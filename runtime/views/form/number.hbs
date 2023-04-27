@@ -1,0 +1,9 @@
+<div class='formField {{this.style}}'>
+
+<label>{{this.columnOptions.header}}</label>
+<input type="number"  name='{{this.column}}' value='{{this.value}}'
+    {{#if columnOptions.required}}required{{/if}}
+    {{#if columnOptions.max}}max="{{columnOptions.max}}"{{/if}}
+/>
+
+</div>

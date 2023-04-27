@@ -58,7 +58,11 @@
     + display (date, number ...)
     + style   class style (css)
     - hide?
-    + order (default: 100,110,120,130) 
+    + order (default: 100,110,120,130)
+    - required (form)
+    - template (default = displayvalue)
+     
+     
 - copy column
 - calculated columns
     - flatten
