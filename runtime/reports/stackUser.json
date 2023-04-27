@@ -70,7 +70,7 @@
           "dataset": "args",
           "extension" : "html"
       },
-      "template": "2columns",
+      "template": "general",
       "type" : "hbs"
     },
     "arg": {
@@ -81,7 +81,7 @@
         "extention" : "html"
       },
       "type": "hbs",
-      "template": "2columns"
+      "template": "general"
 
     }
   }

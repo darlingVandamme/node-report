@@ -51,14 +51,16 @@
         <div class="tabs">
             {{#each datasets}}
                 {{#if this.position.tabs}}
-                    {{> tabs}}
+                    <div id="button_{{this.name}}" class="tab" data-target="dataset_{{this.name}}" data-level="0" data-toggleclass="hidden">
+                        {{this.name}}
+                    </div>
                 {{/if}}
             {{/each}}
         </div>
         <div class="tab_tables">
             {{#each datasets}}
                 {{#if this.position.tabs}}
-                    {{> serverDStabs}}
+                    {{> serverDS}}
                 {{/if}}
             {{/each}}
         </div>

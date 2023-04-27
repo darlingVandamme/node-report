@@ -41,8 +41,8 @@
       "include": ["query","main","log"],
       "table": ["log","main"],
       "argForm": "query",
-      "template": "serverHTML",
-      "type" : "serverHtml"
+      "template": "general",
+      "type" : "hbs"
     },
     "arg": {
       "include" : "main",

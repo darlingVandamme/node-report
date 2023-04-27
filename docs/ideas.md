@@ -159,6 +159,7 @@
 - content disposition  attachment download
 - email / save to file
 - excel
+- JSON (custom stringify  (date))
 
 
 ## HTML output
