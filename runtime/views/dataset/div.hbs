@@ -1,4 +1,5 @@
-<div class='dataset_div'>
+{{#with dataset}}
+    <div class='dataset_div'>
 {{#each displayData}}
     <div class="dataset_row" data-rowNr="{{this.rowNr}}">
         {{#each this.data}}
@@ -7,3 +8,5 @@
     </div>
 {{/each}}
 </div>
+
+{{/with}}
