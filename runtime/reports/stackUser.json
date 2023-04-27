@@ -6,6 +6,22 @@
 
   "datasets":[
     {
+      "name" : "query",
+      "show": "*",
+      "type" :  "form",
+      "position" : "nav",
+      "columns": {
+        "id": {
+          "header" : "Geef hier userId in",
+          "template" : "number",
+          "max" : 20,
+          "required" : true
+        }
+      }
+    },
+
+
+    {
       "name" : "args",
       "show": "*",
       "type" :  "table",
@@ -45,6 +61,10 @@
         },
         "AboutMe": {
           "display": "html"
+        },
+        "url": {
+          "type": "format",
+          "format": "test test "
         }
       }
       },
@@ -71,7 +91,8 @@
           "extension" : "html"
       },
       "template": "tabs",
-      "type" : "hbs"
+      "type" : "hbs",
+      "reload" : true
     },
     "arg": {
       "include" : ["args","query"],
