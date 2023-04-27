@@ -64,7 +64,7 @@
         },
         "url": {
           "type": "format",
-          "format": "test test "
+          "format": "/report/stackUser.html?id={{Id}}&paging.limit=20"
         }
       }
       },
