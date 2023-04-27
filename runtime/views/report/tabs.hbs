@@ -21,6 +21,7 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="left_column">
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
@@ -47,6 +48,22 @@
                 {{> serverDS}}
             {{/if}}
         {{/each}}
+        <div class="tabs">
+            {{#each datasets}}
+                {{#if this.position.tabs}}
+                    <div id="button_{{this.name}}" class="tab" data-target="dataset_{{this.name}}" data-level="0" data-toggleclass="hidden">
+                        {{this.name}}
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="tab_tables">
+            {{#each datasets}}
+                {{#if this.position.tabs}}
+                    {{> serverDS}}
+                {{/if}}
+            {{/each}}
+        </div>
     </main>
 </div>
 
@@ -62,11 +79,12 @@
     const report = {
         name: "{{name}}",
         moment: "{{moment}}",
+        momentString: "{{momentString}}",
         profile: "{{profile}}",
         url: "{{{url}}}",
         style: "{{style}}",
-        data:[
-            {{#each data}}
+        datasets:[
+            {{#each datasets}}
                 {
                     name:"{{this.name}}",
                     columns: {},

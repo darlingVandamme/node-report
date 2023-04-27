@@ -95,8 +95,8 @@
       "include": ["query","table","log"],
       "table": ["log","table"],
       "argForm": "query",
-      "template": "serverHTML",
-      "type" : "serverHtml"
+      "template": "general",
+      "type" : "hbs"
     },
     "arg": {
       "include" : "table",

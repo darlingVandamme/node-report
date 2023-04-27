@@ -51,8 +51,8 @@
       "include": ["query","args","paging","server","main","log"],
       "table": ["log","args","paging","main","server"],
       "argForm": "query",
-      "template": "serverHTML_tabs",
-      "type" : "serverHtml"
+      "template": "tabs",
+      "type" : "hbs"
     },
     "arg": {
       "include" : "main",
@@ -62,7 +62,7 @@
     "ds": {
       "include" : ["main"],
       "template": "div",
-      "type" : "serverHtml",
+      "type" : "hbs",
       "page": "argtest"
     }
 
