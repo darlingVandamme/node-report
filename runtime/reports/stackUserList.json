@@ -1,0 +1,119 @@
+{
+  "name": "stack User",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "table",
+      "source" : "copy",
+      "from" : "query",
+      "position" : "tabs",
+      "columns": {
+        "name": {
+            "type": "format",
+            "format": "%{{name}}%"
+
+        }
+      }
+    },
+
+  {
+    "name" : "Cards",
+    "description" : "",
+    "type" : "cards",
+    "source" : "StackExchange",
+    "style" : "zebra",
+    "query" : "select DisplayName name, users.* from users where DisplayName like {{args.name}}",
+    "show" : "name,AboutMe,Id,ProfileImageUrl,url",
+    "columns": {
+      "LastAccessDate": {
+        "display": "date",
+        "header": "Last Access",
+        "year1": "numeric",
+        "month1": "long"
+      },
+      "Details": {
+        "type": "link",
+        "header": "link"
+
+      },
+      "AboutMe": {
+        "display": "html"
+      },
+      "url" : {
+        "type"  :"format",
+        "format" : "http://localhost:3000/report/stackUser.html?id={{Id}}"
+      }
+    }
+    },
+    {
+      "name" : "main",
+      "description" : "",
+      "type" : "table",
+      "source" : "StackExchange",
+      "style" : "zebra",
+      "query" : "select DisplayName name, users.* from users where DisplayName like {{args.name}}",
+      "show" : "*",
+      "columns": {
+        "LastAccessDate": {
+          "display": "date",
+          "header": "Last Access",
+          "year1": "numeric",
+          "month1": "long"
+        },
+        "Details": {
+          "type": "link",
+          "header": "link"
+
+        },
+        "AboutMe": {
+          "display": "html"
+        },
+        "url" : {
+          "type"  :"format",
+          "format" : "http://localhost:3000/report/stackUser.html?id={{Id}}"
+        }
+      }
+      },
+    {
+      "name" : "posts",
+      "description" : "",
+      "position": "tabs",
+      "source" : "StackExchange",
+      "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
+      "show" : "*"
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","Cards","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","Cards","main","args","posts","server","log"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "general",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "target" : "html",
+      "argForm": {
+        "dataset": "args",
+        "extention" : "html"
+      },
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

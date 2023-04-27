@@ -1,3 +1,4 @@
+<div class="table">
 <table  class='dataset_table'>
     <thead>
     <tr>{{#each columns}}
@@ -9,9 +10,10 @@
     {{#each displayData}}
         <tr data-rowNr="{{this.rowNr}}">
             {{#each this.data}}
-                <td class="{{this.style}}">{{this.display}}</td>
+                <td class="{{this.style}}">{{this.value}}</td>
             {{/each}}
         </tr>
     {{/each}}
     </tbody>
 </table>
+</div>
