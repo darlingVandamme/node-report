@@ -3,15 +3,15 @@
 <table  class='dataset_table'>
     <thead>
     <tr>{{#each columns}}
-        <th class='{{this.style}}'>{{@key}}</th>
+        <th class='{{this.class}}'>{{@key}}</th>
     {{/each}}
     </tr>
     </thead>
     <tbody>
     {{#each displayData}}
-        <tr data-rowNr="{{this.rowNr}} ">
+        <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each this.data}}
-                <td class="{{this.style}}">{{this.display}}</td>
+                <td class="{{this.class}}">{{this.display}}</td>
             {{/each}}
         </tr>
     {{/each}}

@@ -10,7 +10,7 @@
       "show": "*",
       "columns": {
         "name": {
-          "style" : "underline",
+          "class" : "underline",
           "default": "geert"
         },
         "limit": {
@@ -24,7 +24,7 @@
       "name" : "main",
       "description" : "This data shows you some list of bacteria and stuff",
       "type" : "rfam",
-      "style" : "zebra",
+      "class" : "zebra",
       "sources": ["query","session"],
       "query" : "select * from family limit {{query.limit}}",
       "show" : "*"

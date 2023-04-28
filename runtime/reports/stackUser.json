@@ -10,6 +10,7 @@
       "show": "*",
       "type" :  "form",
       "position" : "nav",
+      "require" : ["lookup_test"],
       "columns": {
         "id": {
           "header" : "Geef hier userId in",
@@ -19,7 +20,7 @@
         },
         "level": {
           "template": "select",
-          "lookup": "lookup.test"
+          "lookup": "lookup_test"
         }
       }
     },
@@ -41,7 +42,7 @@
     },
 
     {
-      "name" : "lookup.test",
+      "name" : "lookup_test",
       "show": "*",
       "type" :  "table",
       "source" : "include",
@@ -50,7 +51,8 @@
         {"key": 1, "value": "een", "display": "een" },
         {"key": 2, "value": "twee", "display": "twee" },
         {"key": 3, "value": "drie", "display": "drie" },
-        {"key": 4, "value": "vier", "display": "vier" }
+        {"key": 4, "value": "vier", "display": "vier" },
+        {"key": 5, "value": "vijf", "display": "vijf" }
       ]
     },
 
@@ -60,7 +62,7 @@
       "description" : "",
       "type" : "table",
       "source" : "StackExchange",
-      "style" : "zebra",
+      "class" : "zebra",
       "query" : "select * from users where id = {{args.id}}",
       "show" : "*",
       "columns": {
@@ -110,7 +112,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server","log","lookup.test"],
+      "include": ["query","main","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"

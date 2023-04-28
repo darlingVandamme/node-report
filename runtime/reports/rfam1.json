@@ -19,7 +19,7 @@
       "show": "*",
       "columns": {
         "tax_string": {
-          "style" : "underline",
+          "class" : "underline",
           "default": ""
         },
         "limit": {
@@ -45,7 +45,7 @@
       "name" : "table",
       "description" : "This data shows you some list of bacteria and stuff",
       "type" : "rfam",
-      "style" : "zebra",
+      "class" : "zebra",
       "sources": ["query","session"],
       "query1" : "select tax_string , count(*) as aantal from taxonomy group by tax_string order by aantal desc limit 50",
       "query2" : "select  CURRENT_TIMESTAMP, tax_string,ncbi_id,tree_display_name, align_display_name, species from taxonomy where tax_string like {{query.tax_string}}  limit 20",
@@ -57,14 +57,14 @@
         "tax_string": {
           "type": "",
           "header": "Taxonomy",
-          "style": "col_bold",
+          "class": "col_bold",
           "order" : 20
 
         },
         "link": {
           "type": "format",
           "header": "Details",
-          "style": "col_bold",
+          "class": "col_bold",
           "order" : 20,
           "format" : "<a href='details.html?id={{ncbi_id}}'>{{tree_display_name}}</a>",
           "escape": false
@@ -73,7 +73,7 @@
         "species": {
           "type": "",
           "header": "Taxonomy",
-          "style": "col_bold",
+          "class": "col_bold",
           "order" : 200
         },
         "name": {
