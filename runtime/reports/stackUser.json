@@ -36,6 +36,20 @@
       }
     },
 
+    {
+      "name" : "lookup.test",
+      "show": "*",
+      "type" :  "table",
+      "source" : "include",
+      "position" : "main",
+      "data" : [
+        {"key": 1, "value": "een", "display": "een" },
+        {"key": 2, "value": "twee", "display": "twee" },
+        {"key": 3, "value": "drie", "display": "drie" },
+        {"key": 4, "value": "vier", "display": "vier" }
+      ]
+    },
+
 
     {
       "name" : "main",
@@ -63,6 +77,15 @@
         "url": {
           "type": "format",
           "format": "/report/stackUser.html?id={{Id}}&paging.limit=20"
+        },
+        "imgUrl": {
+          "type": "hbs",
+          "format": "<img src='{{ProfileImageUrl}}'/>"
+        },
+        "img": {
+          "type": "hbs",
+          "display" : "html",
+          "format": "<img src='{{ProfileImageUrl}}'/>"
         }
       }
       },

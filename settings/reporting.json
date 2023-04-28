@@ -15,6 +15,13 @@
       }
     },
     {
+      "name": "include",
+      "type": "include",
+      "options": {
+      }
+    },
+
+    {
       "name": "testFiles",
       "type": "file",
       "options": {

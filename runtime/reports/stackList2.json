@@ -47,7 +47,7 @@
         },
         "id4":{
           "type" : "hbs",
-          "format" : " Test{{Score}} {{Id}}"
+          "format" : " Test{{Score}} {{Id}} {{id2}}"
         }
 
       }
