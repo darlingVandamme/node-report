@@ -18,9 +18,6 @@ app.engine('.hbs', hbs.engine );
 app.use(express.static(path.join(root, 'public')));
 
 let reports = new ReportEngine("/settings/reporting.json")
-// link hbs.engine in reporting?
-//reports.setTemplateEngine(hbs)
-// or use a separate hbs engine?
 // correct way???  check node-gallery
 app.use((req,res,next)=>reports.init(req,res,next));
 app.get("/report/:name.:type",(req,res,next)=>reports.express(req,res,next))

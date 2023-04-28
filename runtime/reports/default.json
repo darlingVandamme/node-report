@@ -34,13 +34,13 @@
       "columns": {
         "info": {
           "display": "json",
-          "style": "hidden"
+          "style2": "hidden"
         }
       }
     },
     {
       "name" : "error",
-      "style": "",
+      "class": "",
       "show": ["level","timestamp","msg","info"],
       "columns": {
         "info": {
