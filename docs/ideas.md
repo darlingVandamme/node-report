@@ -46,9 +46,9 @@
 - server side 
 - client side
 - simple equal
+- between
 - combined equal
 - f()
-
   
 ## Columns
 - per dataset, columns geeft aan welke columns getoond worden (en welke volgorde)

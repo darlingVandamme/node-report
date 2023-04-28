@@ -10,6 +10,7 @@
       "show": "*",
       "type" :  "form",
       "position" : "nav",
+      "require" : ["lookup_test"],
       "columns": {
         "id": {
           "header" : "Geef hier userId in",
@@ -19,7 +20,7 @@
         },
         "level": {
           "template": "select",
-          "lookup": "lookup.test"
+          "lookup": "lookup_test"
         }
       }
     },
@@ -41,7 +42,7 @@
     },
 
     {
-      "name" : "lookup.test",
+      "name" : "lookup_test",
       "show": "*",
       "type" :  "table",
       "source" : "include",
@@ -111,7 +112,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server","log","lookup.test"],
+      "include": ["query","main","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"

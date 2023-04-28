@@ -34,7 +34,7 @@
       "columns": {
         "info": {
           "display": "json",
-          "style": "hidden"
+          "style2": "hidden"
         }
       }
     },

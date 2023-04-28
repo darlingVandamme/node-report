@@ -9,7 +9,7 @@
     </thead>
     <tbody>
     {{#each displayData}}
-        <tr data-rowNr="{{this.rowNr}} ">
+        <tr data-rowNr="{{this.rowNr}}" {{#if ../options.styleColumn}}class="{{styleColumn this.data ../options.styleColumn}}"{{/if}}>
             {{#each this.data}}
                 <td class="{{this.style}}">{{this.display}}</td>
             {{/each}}
