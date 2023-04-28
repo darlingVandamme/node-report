@@ -14,7 +14,7 @@
         "id": {
           "header" : "Geef hier userId in",
           "template" : "number",
-          "max" : 20,
+          "max" : 10000,
           "required" : true
         }
       }
