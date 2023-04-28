@@ -27,7 +27,7 @@
     "type" : "cards",
     "source" : "StackExchange",
     "style" : "zebra",
-    "query" : "select DisplayName name, users.* from users where DisplayName like {{args.name}}",
+    "query" : "select * from users where DisplayName like {{args.name}}",
     "show" : "name,AboutMe,Id,ProfileImageUrl,url",
     "columns": {
       "LastAccessDate": {
@@ -39,7 +39,10 @@
       "Details": {
         "type": "link",
         "header": "link"
-
+      },
+      "name" : {
+        "type" : "copy",
+        "sourceColumn": "DisplayName"
       },
       "AboutMe": {
         "display": "html"
@@ -96,7 +99,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","Cards","main","args","posts","server","log"],
+      "include": ["query","Cards","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"

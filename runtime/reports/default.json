@@ -66,12 +66,6 @@
       "type" : "row",
       "position" : "main",
       "source": "paging"
-    },
-    {
-      "name" : "query",
-      "type" : "form",
-      "position" : "nav",
-      "show": "*"
     }
   ],
 
