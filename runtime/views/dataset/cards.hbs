@@ -1,0 +1,20 @@
+{{#with dataset}}
+<div class='dataset_cards'>
+{{#each displayData}}
+    <div class="card">
+        <a href="{{this.data.url.value}}">
+            <img src="{{this.data.ProfileImageUrl.value}}" alt="profile">
+            <div class="card_name">
+                name: {{this.data.name.display}}
+            </div>
+            <div class="card_id">id: {{this.data.Id.display}}</div>
+            
+            <div class="card_aboutme">
+                About me: 
+                <div class="about_me_text">{{this.data.AboutMe.display}}</div>
+            </div>
+        </a>
+    </div>
+{{/each}}
+</div>
+{{/with}}
