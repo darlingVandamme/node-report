@@ -50,7 +50,8 @@
         {"key": 1, "value": "een", "display": "een" },
         {"key": 2, "value": "twee", "display": "twee" },
         {"key": 3, "value": "drie", "display": "drie" },
-        {"key": 4, "value": "vier", "display": "vier" }
+        {"key": 4, "value": "vier", "display": "vier" },
+        {"key": 5, "value": "vijf", "display": "vijf" }
       ]
     },
 
