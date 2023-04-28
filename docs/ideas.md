@@ -63,12 +63,12 @@
     - template (default = displayvalue)
      
      
-- copy column
++ copy column
 - calculated columns
     - flatten
     - json 
-    - concatenate
-    - hbs?
+    + concatenate
+    + hbs?
     - url / link
     - predefined calculation (percentage, sum, ...)
     - js function (value,columnName,row,dataset,report)=>{ }   vm.script

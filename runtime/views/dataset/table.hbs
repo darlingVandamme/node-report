@@ -11,7 +11,11 @@
     {{#each displayData}}
         <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each this.data}}
-                <td class="{{this.class}}">{{this.display}}</td>
+                {{#if this.options.template}}
+                    {{element this @root.dataset}}
+                {{else}}
+                    <td class="{{this.class}}">{{this.display}}</td>
+                {{/if}}
             {{/each}}
         </tr>
     {{/each}}
