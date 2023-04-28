@@ -16,6 +16,10 @@
           "template" : "number",
           "max" : 2000,
           "required" : true
+        },
+        "level": {
+          "template": "select",
+          "lookup": "lookup.test"
         }
       }
     },
@@ -106,7 +110,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server","log"],
+      "include": ["query","main","args","posts","server","log","lookup.test"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"
