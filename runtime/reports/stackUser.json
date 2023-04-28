@@ -62,7 +62,7 @@
       "description" : "",
       "type" : "table",
       "source" : "StackExchange",
-      "style" : "zebra",
+      "class" : "zebra",
       "query" : "select * from users where id = {{args.id}}",
       "show" : "*",
       "columns": {

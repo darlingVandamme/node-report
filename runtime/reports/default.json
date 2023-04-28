@@ -40,7 +40,7 @@
     },
     {
       "name" : "error",
-      "style": "",
+      "class": "",
       "show": ["level","timestamp","msg","info"],
       "columns": {
         "info": {

@@ -10,7 +10,7 @@
       "show": "*",
       "columns": {
         "tag": {
-          "style" : "underline",
+          "class" : "underline",
           "default": ""
         }
       }
@@ -19,7 +19,7 @@
     {
       "name" : "main",
       "description" : "",
-      "style" : "zebra",
+      "class" : "zebra",
       "source" : "StackExchange",
       "query" : "select * from tags where TagName like {{query.tag}} limit {{paging.limit}}",
       "show" : "*",

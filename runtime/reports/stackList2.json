@@ -26,7 +26,7 @@
       "description" : "",
       "type": "table",
       "source" : "StackExchange",
-      "style" : "collapseable",
+      "class" : "collapseable",
       "query" : "select * from posts where Tags like {{args.tagContains}} limit {{paging.limit}} offset {{paging.offset}}",
       "query1" : "select * from posts where Tags like '%sample%' limit 10",
       "show" : "*",
@@ -35,7 +35,7 @@
         "Body": {
           "type" : "default",
           "order": 145,
-          "style": "hidden"
+          "class": "hidden"
         },
         "id2":{
            "type" : "copy",
