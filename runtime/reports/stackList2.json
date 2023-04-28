@@ -36,7 +36,20 @@
           "type" : "default",
           "order": 145,
           "style": "hidden"
+        },
+        "id2":{
+           "type" : "copy",
+            "sourceColumn": "Id"
+        },
+        "id3":{
+          "type" : "format",
+          "format" : " Test test {{Id}}"
+        },
+        "id4":{
+          "type" : "hbs",
+          "format" : " Test{{Score}} {{Id}} {{id2}}"
         }
+
       }
       }
   ],
