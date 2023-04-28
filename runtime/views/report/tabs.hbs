@@ -1,7 +1,7 @@
 <header>
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
-    <div>{{momentString}} Prof: {{profile}}ms  </div>
+    <div>{{date moment}} Prof: {{profile}}ms  </div>
 
     {{#each datasets}}
         {{#if this.position.header}}
