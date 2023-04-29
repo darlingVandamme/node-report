@@ -74,8 +74,8 @@
         },
         "Details": {
           "type": "link",
-          "header": "link"
-
+          "header": "link",
+          "template": "aLink"
         },
         "AboutMe": {
           "display": "html"
@@ -123,11 +123,7 @@
     },
     "arg": {
       "include" : ["args","query"],
-      "target" : "html",
-      "argForm": {
-        "dataset": "args",
-        "extention" : "html"
-      },
+      "extension" : "html",
       "type": "hbs",
       "template": "general"
 

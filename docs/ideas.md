@@ -165,7 +165,6 @@
 - excel
 - JSON (custom stringify  (date))
 
-
 ## HTML output
 - single dataset
 - <main> </main>

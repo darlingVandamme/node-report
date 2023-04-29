@@ -3,7 +3,7 @@
 <table  class='dataset_table'>
     <thead>
     <tr>{{#each columns}}
-        <th class='{{this.class}}'>{{@key}}</th>
+        <th class='{{this.class}}' data-colName="{{@key}}">{{this.header}}</th>
     {{/each}}
     </tr>
     </thead>
