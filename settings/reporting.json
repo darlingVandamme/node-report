@@ -58,6 +58,19 @@
 
       }
     },
+    {
+      "name": "Titanic",
+      "type": "mysql",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "ctu_titanic",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
+
+      }
+    },
 
     {
       "name": "bq",

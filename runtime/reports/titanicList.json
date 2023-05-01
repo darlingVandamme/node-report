@@ -1,0 +1,70 @@
+{
+  "name": "stack User",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "table",
+      "source" : "copy",
+      "from" : "query",
+      "position" : "tabs",
+      "columns": {
+        "class": {
+            "type": "format",
+            "format": "%{{class}}%"
+        },
+        "age": {
+          "type": "format",
+          "format": "%{{age}}%"
+        },
+        "sex": {
+          "type": "format",
+          "format": "%{{sex}}%"
+      }
+      }
+    },
+
+  {
+    "name" : "Cards",
+    "description" : "",
+    "type" : "table",
+    "source" : "Titanic",
+    "style" : "zebra",
+    "query" : "select * from data where class like {{args.class}}",
+    "show" : "*",
+    "columns": {
+    }
+    }
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","Cards","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","Cards","args","server","log"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "general",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "target" : "html",
+      "argForm": {
+        "dataset": "args",
+        "extention" : "html"
+      },
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}
