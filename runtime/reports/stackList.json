@@ -41,6 +41,7 @@
 
         "accept": {
           "type" : "hbs",
+          "template" : "td",
           "format" : "{{#if AcceptedAnswerId}}accepted{{/if}}"
         },
         "Body": {
