@@ -33,7 +33,19 @@
       "columns": {
 
         }
+      },
+    {
+      "name" : "total",
+      "description" : "",
+      "type" : "table",
+      "source" : "copy",
+      "from": "main",
+      "class" : "zebra",
+      "show" : "*",
+      "columns": {
+
       }
+    }
 
   ],
 
@@ -43,7 +55,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","server","log"],
+      "include": ["query","main","total","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"
