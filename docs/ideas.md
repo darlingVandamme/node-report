@@ -46,7 +46,7 @@
 ## aggregation
 - reduce (and map and filter ....)
 - https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/ 
-- stats object? 
+- stats object?  Accumulator 
 - correlations?
 - min - max 
 - median, percentile, rank...
@@ -60,10 +60,7 @@
     - rowNr
     - runningSum
     - rank
-    - percentage
-    
-     
-
+    - percentage         
 
 
 ## filter

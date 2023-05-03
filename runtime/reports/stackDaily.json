@@ -31,7 +31,10 @@
       "queryFile" : "stackDaily.sql",
       "show" : "*",
       "columns": {
-
+        "rank": {
+          "type": "rank",
+          "reference" : "posts"
+        }
         }
       },
     {
