@@ -20,6 +20,12 @@
       "options": {
       }
     },
+    {
+      "name": "aggregate",
+      "type": "aggregate",
+      "options": {
+      }
+    },
 
     {
       "name": "testFiles",

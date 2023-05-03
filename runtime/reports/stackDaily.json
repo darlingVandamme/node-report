@@ -38,7 +38,7 @@
       "name" : "total",
       "description" : "",
       "type" : "table",
-      "source" : "copy",
+      "source" : "aggregate",
       "from": "main",
       "class" : "zebra",
       "show" : "*",

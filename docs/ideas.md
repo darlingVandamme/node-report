@@ -42,6 +42,30 @@
 - load several batches?  (required params multiple values?)
 - filter dataset 
  
+ 
+## aggregation
+- reduce (and map and filter ....)
+- https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/ 
+- stats object? 
+- correlations?
+- min - max 
+- median, percentile, rank...
+
+## computed columns
+- client side computed columns ... 
+- same row - same dataset - global
+- hbs / combine / concatenate (eg. a href and img)
+- predefined vs function
+- predefined
+    - rowNr
+    - runningSum
+    - rank
+    - percentage
+    
+     
+
+
+
 ## filter
 - server side 
 - client side
