@@ -109,7 +109,7 @@
     },
     "arg": {
       "include" : ["args","query"],
-      "target" : "html",
+      "extension" : "html",
       "argForm": {
         "dataset": "args",
         "extention" : "html"

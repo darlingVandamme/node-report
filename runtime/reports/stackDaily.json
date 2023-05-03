@@ -1,0 +1,74 @@
+{
+  "name": "stack Monthly",
+  "description": "Test report for Mysql stackexchange daily statistics. QueryFile test ",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "type" :  "form",
+      "position" : "nav",
+      "columns": {
+        "startDate": {
+          "template" : "date",
+          "required" : true
+        },
+        "endDate": {
+          "template" : "date",
+          "required" : true
+        }
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "",
+      "type" : "table",
+      "source" : "StackExchange",
+      "class" : "zebra",
+      "queryFile" : "stackDaily.sql",
+      "show" : "*",
+      "columns": {
+
+        }
+      },
+    {
+      "name" : "total",
+      "description" : "",
+      "type" : "table",
+      "source" : "copy",
+      "from": "main",
+      "class" : "zebra",
+      "show" : "*",
+      "columns": {
+
+      }
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","total","log"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "general",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "extension" : "html",
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

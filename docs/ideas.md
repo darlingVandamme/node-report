@@ -63,12 +63,12 @@
     - template (default = displayvalue)
      
      
-- copy column
++ copy column
 - calculated columns
     - flatten
     - json 
-    - concatenate
-    - hbs?
+    + concatenate
+    + hbs?
     - url / link
     - predefined calculation (percentage, sum, ...)
     - js function (value,columnName,row,dataset,report)=>{ }   vm.script
@@ -164,7 +164,6 @@
 - email / save to file
 - excel
 - JSON (custom stringify  (date))
-
 
 ## HTML output
 - single dataset
@@ -396,6 +395,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Postgres  RNA https://rnacentral.org/help/public-database
  - MariaDB   https://relational.fit.cvut.cz/search
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
+ - Bigquery https://cloud.google.com/bigquery/public-data
  
  
  
