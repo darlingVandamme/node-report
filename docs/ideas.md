@@ -57,10 +57,10 @@
 - hbs / combine / concatenate (eg. a href and img)
 - predefined vs function
 - predefined
-    - rowNr
+    + rowNr
     - runningSum
-    - rank
-    - percentage         
+    + rank
+    + percentage         
 - function
     Context:
                 row : row,
