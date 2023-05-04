@@ -31,11 +31,28 @@
       "queryFile" : "stackDaily.sql",
       "show" : "*",
       "columns": {
+        "rowNr": {
+          "type": "rowNr",
+          "offset": 1
+        },
         "rank": {
           "type": "rank",
           "reference" : "posts"
+        },
+        "rank2": {
+          "type": "function",
+          "function" : "data.views - data.posts "
+        },
+        "rank3": {
+          "type": "hbs",
+          "format": "test {{posts}} en {{rank}}"
+        },
+        "rank4": {
+          "type": "format",
+          "format": "test {{posts}} en {{rank}}"
         }
-        }
+
+      }
       },
     {
       "name" : "total",
