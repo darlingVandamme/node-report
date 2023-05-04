@@ -61,7 +61,7 @@
     },
     "html": {
       "include2": ["query","args","paging","main","log"],
-      "include": ["query","args","paging","server","main","log"],
+      "include": ["query","main","log"],
       "table": ["log","args","paging","main","server"],
       "argForm": "query",
       "template": "general",

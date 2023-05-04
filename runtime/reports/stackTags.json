@@ -21,11 +21,12 @@
       "description" : "",
       "class" : "zebra",
       "source" : "StackExchange",
-      "query" : "select * from tags where TagName like {{query.tag}} limit {{paging.limit}}",
+      "query" : "select * from tags where TagName like {{query.tag}} limit {{paging.limit}} offset {{paging.offset}}",
       "show" : "*",
       "columns": {
         "TagName": {
           "type": "format",
+          "display" : "html",
           "format" : "<a href='stackList.html?tag={{TagName}}'>{{TagName}}</a>"
         }
       }
@@ -39,7 +40,6 @@
     },
     "html": {
       "include": ["query","main","log"],
-      "table": ["log","main"],
       "argForm": "query",
       "template": "general",
       "type" : "hbs"
