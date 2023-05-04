@@ -39,9 +39,17 @@
           "type": "rank",
           "reference" : "posts"
         },
+        "rankMin": {
+          "type": "function",
+          "function" : "row.getValue('rank') "
+        },
         "rank2": {
           "type": "function",
           "function" : "data.views - data.posts "
+        },
+        "rankPerc": {
+          "type": "totalPercentage",
+          "reference" : "rank"
         },
         "rank3": {
           "type": "hbs",
