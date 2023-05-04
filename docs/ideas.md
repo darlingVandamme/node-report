@@ -179,6 +179,7 @@
 - output to express res (hbs?) / file / email / http POST / db insert ...
 - server side rendering / client side rendering (same codebase)
 - jsx? (react?)
+- includes
 
 - html: Whole page, report div, dataset div, anchors 
 - content disposition  attachment download
