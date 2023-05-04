@@ -20,6 +20,12 @@
       "options": {
       }
     },
+    {
+      "name": "aggregate",
+      "type": "aggregate",
+      "options": {
+      }
+    },
 
     {
       "name": "testFiles",
@@ -69,6 +75,18 @@
         "user": "guest",
         "password": "relational"
 
+      }
+    },
+    {
+      "name": "world",
+      "type": "mysql",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "world",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
       }
     },
 

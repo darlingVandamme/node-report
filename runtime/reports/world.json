@@ -1,0 +1,68 @@
+{
+  "name": "stack User",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "table",
+      "source" : "copy",
+      "from" : "query",
+      "position" : "tabs",
+      "columns": {
+        "country": {
+            "type": "format",
+            "format": "%{{name}}%"
+
+        }
+      }
+    },
+
+  {
+    "name" : "Cards",
+    "description" : "",
+    "type" : "cards_world",
+    "source" : "world",
+    "class" : "zebra",
+    "query" : "select * from users where country like {{args.country}} ",
+    "show" : "*",
+    "columns": {      
+      "name" : {
+        "type" : "copy",
+        "sourceColumn": "Name"
+      }
+    }
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","Cards","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","Cards","args","server","log"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "general",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "target" : "html",
+      "argForm": {
+        "dataset": "args",
+        "extention" : "html"
+      },
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

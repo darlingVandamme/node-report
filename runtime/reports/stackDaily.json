@@ -31,14 +31,17 @@
       "queryFile" : "stackDaily.sql",
       "show" : "*",
       "columns": {
-
+        "rank": {
+          "type": "rank",
+          "reference" : "posts"
+        }
         }
       },
     {
       "name" : "total",
       "description" : "",
       "type" : "table",
-      "source" : "copy",
+      "source" : "aggregate",
       "from": "main",
       "class" : "zebra",
       "show" : "*",
