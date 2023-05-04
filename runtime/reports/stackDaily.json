@@ -45,11 +45,11 @@
         },
         "rank3": {
           "type": "hbs",
-          "format": "test {{posts}} en {{rank}}"
+          "format": "test {{posts}} en {{d}} en {{rank}}"
         },
         "rank4": {
           "type": "format",
-          "format": "test {{posts}} en {{rank}}"
+          "format": "test {{posts}} en {{d}} en {{rank}}"
         }
 
       }
