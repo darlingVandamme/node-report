@@ -61,7 +61,14 @@
     - runningSum
     - rank
     - percentage         
-
+- function
+    Context:
+                row : row,
+                data : row.getData("raw"),
+                dataset:this.ds,
+                report:this.report
+- script  idem as function but read from file
+                
 
 ## filter
 - server side 
