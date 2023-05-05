@@ -29,6 +29,11 @@
       "source" : "StackExchange",
       "class" : "zebra",
       "queryFile" : "stackDaily.sql",
+      "actions":{
+        "scripts": "",
+        "click": "showHiddenColumns",
+        "hover": "highlight"
+      },
       "show" : "*",
       "columns": {
         "rowNr": {
@@ -73,6 +78,21 @@
       "columns": {
 
       }
+    },
+    {
+      "name": "graph",
+      "description": "",
+      "type": "lineGraph",
+      "source": "copy",
+      "from": "main",
+      "class": "zebra",
+      "show": "*",
+      "graph" : ["posts"],
+      "columns": {
+        "posts": {
+          "color": "blue"
+        }
+      }
     }
 
   ],
@@ -83,7 +103,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","total","log"],
+      "include": ["query","main","graph","total","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"

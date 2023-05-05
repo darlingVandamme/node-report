@@ -15,12 +15,30 @@ function classToggle(event) {
     event.target.classList.toggle("toggled");
 }
 
-function tableOverlay(event) {
-    let row = event.target.closest('tr');
-    let body = row.querySelector('.hidden').innerHTML;
+function showOverlay(body){
     document.querySelectorAll('.table_info').forEach(div => div.innerHTML = body);
     document.querySelectorAll('#overlay').forEach(div => div.classList.toggle('hidden'));
+    // todo hide by click on document
 }
+
+function fetchOverlay(url){
+    fetch(url).then(resp=>{return resp.text()}).then(body=>{showOverlay(body)})
+}
+
+function showHidden(dsName){
+    let body = document.querySelector("#dataset_"+dsName).innerHTML
+    showOverlay(body)
+}
+
+
+// click & hover functions
+function showHiddenColumns(event) {
+    let row = event.target.closest('tr');
+    let body = row.querySelector('.hidden').innerHTML;
+    showOverlay(body)
+}
+
+
 
 function tabs(event) {
     let selectedTab = event.target.dataset.target;
