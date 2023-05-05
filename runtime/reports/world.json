@@ -5,21 +5,22 @@
   "require": ["query","server"],
 
   "datasets":[
-    {
-      "name" : "args",
-      "show": "*",
-      "type" :  "table",
-      "source" : "copy",
-      "from" : "query",
-      "position" : "tabs",
-      "columns": {
-        "country": {
-            "type": "format",
-            "format": "%{{name}}%"
-
-        }
+  {
+    "name" : "query",
+    "show": "*",
+    "type" :  "form",
+    "position" : "nav",
+    "columns": {
+      "country" : {
+        
+            },
+      "countrycontains": {
+        "template" : "hidden",
+        "type": "format",
+        "format": "%{{country}}%"
       }
-    },
+    }
+  },
 
   {
     "name" : "Cards",
@@ -27,13 +28,14 @@
     "type" : "cards_world",
     "source" : "world",
     "class" : "zebra",
-    "query" : "select * from users where country like {{args.country}} ",
+    "queryFile" : "country.sql",
     "show" : "*",
-    "columns": {      
-      "name" : {
-        "type" : "copy",
-        "sourceColumn": "Name"
+    "columns" : {
+      "url" : {
+        "type"  :"format",
+        "format" : "http://localhost:3000/report/worldCities.html?code={{Code}}"
       }
+
     }
     }
 

@@ -1,0 +1,88 @@
+{
+  "name": "stack User",
+  "description": "Test report for Mysql stackexchange",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "type" :  "form",
+      "position" : "nav",
+      "columns": {
+        "code": {
+          "header" : "Geef hier de landcode in",
+          "template" : "text"
+        },
+        "city": {
+          "header" : "Geef hier de stad in",
+          "template": "text",
+          "type": "format",
+          "format": "%{{city}}%"
+        }
+      }
+    },
+    {
+      "name" : "args",
+      "show": "*",
+      "type" :  "table",
+      "source" : "copy",
+      "from" : "query",
+      "position" : "tabs",
+      "columns": {
+        "id": {
+          "type": "parseInt",
+          "input" : {
+            "type": "number"
+          }
+        }
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "",
+      "type" : "table",
+      "source" : "world",
+      "class" : "zebra",
+      "query" : "select * from City where CountryCode = {{query.code}}",
+      "show" : "*",
+      "columns": {
+      }
+      },
+    {
+      "name" : "posts",
+      "description" : "",
+      "position": "tabs",
+      "source" : "StackExchange",
+      "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
+      "show" : "*"
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","args","posts","server","log"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "tabs",
+      "type" : "hbs",
+      "reload" : true
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "extension" : "html",
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}
