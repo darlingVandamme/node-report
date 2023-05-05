@@ -16,10 +16,34 @@ function classToggle(event) {
 }
 
 function showOverlay(body){
+    document.removeEventListener("click",clickClosePopup)
+
     document.querySelectorAll('.table_info').forEach(div => div.innerHTML = body);
-    document.querySelectorAll('#overlay').forEach(div => div.classList.toggle('hidden'));
+    document.querySelectorAll('#overlay').forEach(div => div.style.display="block");
     // todo hide by click on document
+    setTimeout(()=> {
+        document.addEventListener("click", clickClosePopup);
+    },200)
 }
+
+function closeOverlay(){
+    document.querySelectorAll("#overlay").forEach(
+        p => {
+            p.style.display="none"
+        }
+    )
+    document.removeEventListener("click",clickClosePopup)
+}
+
+function clickClosePopup(e) {
+    const isClosest = e.target.closest("#overlay");
+    // console.log(" click "+isClosest)
+    if (!isClosest) {
+        closeOverlay()
+    }
+}
+
+
 
 function fetchOverlay(url){
     fetch(url).then(resp=>{return resp.text()}).then(body=>{showOverlay(body)})
@@ -37,7 +61,6 @@ function showHiddenColumns(event) {
     let body = row.querySelector('.hidden').innerHTML;
     showOverlay(body)
 }
-
 
 
 function tabs(event) {
@@ -77,9 +100,9 @@ function darkMode(event) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", (event) => {
+/*document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle))
-});
+});*/
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle))

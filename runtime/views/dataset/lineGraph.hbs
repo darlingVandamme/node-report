@@ -7,7 +7,10 @@
         <path d="M0 100
     {{#each displayData}}
         {{#graph this}}
+L{{coord.x1}} 100
+L{{coord.x1}} {{coord.y2}}
 L{{coord.x2}} {{coord.y2}}
+L{{coord.x2}} 100
         {{/graph}}
     {{/each}}L100,100 Z"/>
 </svg>

@@ -46,14 +46,14 @@
         },
         "rankMin": {
           "type": "function",
-          "function" : "row.getValue('rank') "
+          "function" : "row.getValue('rank') +3 "
         },
         "rank2": {
           "type": "function",
           "function" : "data.views - data.posts "
         },
         "rankPerc": {
-          "type": "totalPercentage",
+          "type": "maxPercentage",
           "reference" : "rank"
         },
         "rank3": {
