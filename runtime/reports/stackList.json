@@ -11,7 +11,7 @@
       "type" :  "table",
       "source" : "copy",
       "from": "query",
-      "position" : "main",
+      "position" : "hidden",
       "columns": {
         "tagContains": {
           "type" : "format",
