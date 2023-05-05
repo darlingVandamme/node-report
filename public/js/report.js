@@ -17,8 +17,13 @@ function classToggle(event) {
 
 function showOverlay(body){
     document.querySelectorAll('.table_info').forEach(div => div.innerHTML = body);
-    document.querySelectorAll('#overlay').forEach(div => div.classList.toggle('hidden'));
-    // todo hide by click on document
+    document.querySelectorAll('#overlay').forEach(div => div.style.display = 'block');
+    document.addEventListener('click', (event) => {
+        var overlay = document.getElementById('overlay');
+        if (!overlay.contains(event.target)) {
+            overlay.style.display = 'none';
+        }
+    });
 }
 
 function fetchOverlay(url){
@@ -28,6 +33,11 @@ function fetchOverlay(url){
 function showHidden(dsName){
     let body = document.querySelector("#dataset_"+dsName).innerHTML
     showOverlay(body)
+}
+
+function overlayHide(event){
+    let target = event.target.dataset.target;
+    document.querySelectorAll(target).forEach(overlay => overlay.style.display = 'none');
 }
 
 
@@ -78,21 +88,10 @@ function darkMode(event) {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle))
-});
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle))
-});
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelectorAll('tbody>tr').forEach(row => row.addEventListener('click', tableOverlay))
-});
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs))
-});
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    document.getElementById("dark_mode").addEventListener('click', darkMode)
+    document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle));
+    document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle));
+    document.querySelectorAll('tbody>tr').forEach(row => row.addEventListener('click', showHiddenColumns));
+    document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs));
+    document.getElementById("dark_mode").addEventListener('click', darkMode);
+    document.querySelectorAll('.overlay_hide').forEach(x => x.addEventListener('click', overlayHide));
 });
