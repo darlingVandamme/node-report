@@ -1,0 +1,14 @@
+{{#with dataset}}
+    <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white" stroke="green" stroke-width="5">
+        <line x1="0" y1="100" x2="0" y2="0" />
+        <line x1="0" y1="100" x2="100" y2="100" />
+    </g>
+        <path d="M0 100
+    {{#each displayData}}
+        {{#graph this}}
+L{{coord.x2}} {{coord.y2}}
+        {{/graph}}
+    {{/each}}L100,100 Z"/>
+</svg>
+{{/with}}
