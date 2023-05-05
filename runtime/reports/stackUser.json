@@ -75,6 +75,7 @@
         "Details": {
           "type": "link",
           "header": "link",
+          "relative": true,
           "template": "aLink"
         },
         "AboutMe": {

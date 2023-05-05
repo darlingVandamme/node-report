@@ -31,14 +31,42 @@
       "queryFile" : "stackDaily.sql",
       "show" : "*",
       "columns": {
-
+        "rowNr": {
+          "type": "rowNr",
+          "offset": 1
+        },
+        "rank": {
+          "type": "rank",
+          "reference" : "posts"
+        },
+        "rankMin": {
+          "type": "function",
+          "function" : "row.getValue('rank') "
+        },
+        "rank2": {
+          "type": "function",
+          "function" : "data.views - data.posts "
+        },
+        "rankPerc": {
+          "type": "totalPercentage",
+          "reference" : "rank"
+        },
+        "rank3": {
+          "type": "hbs",
+          "format": "test {{posts}} en {{d}} en {{rank}}"
+        },
+        "rank4": {
+          "type": "format",
+          "format": "test {{posts}} en {{d}} en {{rank}}"
         }
+
+      }
       },
     {
       "name" : "total",
       "description" : "",
       "type" : "table",
-      "source" : "copy",
+      "source" : "aggregate",
       "from": "main",
       "class" : "zebra",
       "show" : "*",

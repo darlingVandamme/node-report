@@ -33,6 +33,7 @@
                 <input type="checkbox" id="dark_mode">
                 <label for="dark_mode"> dark mode </label>
             </div>
+            {{paging}}
         </nav>
     </div>
 
@@ -67,14 +68,12 @@
         profile: "{{profile}}",
         url: "{{{url}}}",
         style: "{{style}}",
-        data:[
+        data:{
             {{#each data}}
-                {
-                    name:"{{this.name}}",
-                    columns: {},
-                    data: [ {{{this.JSONData}}}]
-                },
+            "{{this.name}}":
+                {{{jsData this.name}}}
+                ,
             {{/each}}
-                ]
+            }
     }
     </script>

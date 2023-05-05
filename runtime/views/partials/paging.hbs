@@ -1,0 +1,5 @@
+<div class="paging">
+    <a href="{{first.url}}">{{first.name}}</a>
+    {{#each pages}}<a href="{{this.url}}">{{this.name}}</a> {{/each}}
+    {{#if last}}<a href="{{last.url}}">{{last.name}}</a> {{/if}}
+</div>
