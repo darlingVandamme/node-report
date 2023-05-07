@@ -87,8 +87,16 @@
       "from": "main",
       "class": "zebra",
       "show": "*",
-      "graph" : ["posts"],
+      "graph" : {
+        "width": 500,
+        "height": 200,
+        "margin": 20,
+        "dimensions":["posts"]
+      },
       "columns": {
+        "d": {
+          "display": "date"
+        },
         "posts": {
           "color": "blue"
         }
