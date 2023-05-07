@@ -80,6 +80,17 @@
       }
     },
     {
+      "name": "copy",
+      "description": "",
+      "type": "table",
+      "source": "copy",
+      "copyColumns" : ["d","rank"],
+      "from": "main",
+      "class": "zebra",
+      "show": "*"
+    },
+
+    {
       "name": "graph",
       "description": "",
       "type": "lineGraph",
@@ -111,7 +122,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","graph","total","log"],
+      "include": ["query","main","copy","graph","total","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"
