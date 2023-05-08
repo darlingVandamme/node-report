@@ -19,9 +19,7 @@
     transition: all .5s ease;
     cursor: pointer;
     &:hover {
-        box-shadow: 5px 5px 5px var(--color-5);
-        width: 22vw;
-        height: 62vh;
+        box-shadow: 7px 7px 7px var(--color-5);
     }
     & h2 {
         padding: 0;

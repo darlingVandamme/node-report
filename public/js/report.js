@@ -105,6 +105,17 @@ function darkMode(event) {
     }
 }
 
+function scroll() {
+    const header = document.getElementById("header");
+
+    if (window.pageYOffset > 1) {
+        header.classList.add("fixed");
+    } else {
+        header.classList.remove("fixed");
+    }
+}
+
+window.onscroll = function() {scroll()};
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle));
     document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle));

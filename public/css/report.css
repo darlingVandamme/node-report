@@ -39,27 +39,38 @@ body {
 }
 
 .logo {
-  max-height: 15vh;
+  max-height: 10vh;
   width: 20vw;
 }
 .logo > img {
   width: auto;
-  max-height: 15vh;
+  max-height: 10vh;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.company_name {
+.report_name {
+  height: 10vh;
   width: 80vw;
   text-align: center;
 }
 
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  height: 10vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-2);
+  background-color: var(--color-1);
+  z-index: 10;
+  transition: 0.5s all;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  box-shadow: 0px 0px 5px 0px var(--color-5);
 }
 
 .container {
@@ -70,8 +81,6 @@ header {
 nav {
   width: 25vw;
   text-align: center;
-  z-index: 2;
-  height: 100vh;
   overflow: hidden;
   transition: all 1s ease;
 }
@@ -143,9 +152,7 @@ main {
   cursor: pointer;
 }
 .card:hover {
-  box-shadow: 5px 5px 5px var(--color-5);
-  width: 22vw;
-  height: 62vh;
+  box-shadow: 7px 7px 7px var(--color-5);
 }
 .card h2 {
   padding: 0;
@@ -177,7 +184,7 @@ main {
 
 form {
   width: 20vw;
-  text-align: start;
+  text-align: center;
   overflow: hidden;
 }
 
@@ -284,10 +291,11 @@ input[type=submit]:hover {
 }
 
 .left_column {
-  top: 0;
+  top: 10vh;
   position: sticky;
-  height: 100vh;
-  background-color: var(--color-2);
+  height: 90vh;
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 .float_right {
