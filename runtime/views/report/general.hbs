@@ -2,11 +2,7 @@
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
     <div>{{date moment}} Prof: {{profile}}ms  </div>
-    {{#each datasets}}
-        {{#if this.position.header}}
-            {{> serverDS}}
-        {{/if}}
-    {{/each}}
+    {{position "header" @root}}
 </header>
 
 <div class="float_right">
@@ -65,10 +61,5 @@
 
 </script>
 <script language="JavaScript">
-
-        {{#each datasets}}
-            {{#if this.position.function}}
-                {{{this.html}}}
-            {{/if}}
-        {{/each}}
+        {{position "function" @root}}
 </script>

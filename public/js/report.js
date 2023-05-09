@@ -71,6 +71,22 @@ function clickClosePopup(e) {
 }
 
 
+async function fetchDataset(url) {
+    let resp = await fetch(url)
+    if (resp.ok) {
+        let html = await resp.text()
+        // todo split javascript portion
+        // integrate new dataset script into report
+        // split the response
+        // let b = new Blob([script])
+        // let url = URL.createObjectURL(b)
+        // createElement("script")
+        // set source url
+        // document.addElement
+        return html
+    }
+}
+
 
 function fetchOverlay(url){
     fetch(url).then(resp=>{return resp.text()}).then(body=>{showOverlay(body)})
