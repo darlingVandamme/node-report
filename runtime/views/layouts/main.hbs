@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="/css/custom.css" >
     <script src="/js/report.js"></script>
     {{#each @root.include.scripts}}{{{this}}}{{/each}}
+    <script language="JavaScript">
+        {{#each include.javascript }} {{{this}}}{{/each}}
+    </script>
+    <style>
+        {{#each include.css }} {{{this}}}{{/each}}
+    </style>
 </head>
 <body>
 {{{body}}}

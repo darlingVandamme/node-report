@@ -80,6 +80,16 @@
       }
     },
     {
+      "name" : "clock",
+      "description" : "",
+      "type" : "clock",
+      "position": "nav",
+      "from": "main",
+      "class" : "zebra",
+      "show" : "*"
+
+    },
+    {
       "name": "copy",
       "description": "",
       "type": "table",
@@ -122,10 +132,10 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","copy","graph","total","log"],
+      "include": ["query","clock","main","copy","graph","total","log"],
       "argForm": {
           "dataset": "args",
-          "extension" : "html"
+          "extension": "html"
       },
       "template": "general",
       "type" : "hbs"

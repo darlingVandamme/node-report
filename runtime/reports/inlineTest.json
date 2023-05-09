@@ -1,0 +1,47 @@
+{
+  "name": "inlineTest",
+  "description": "Testing",
+  "require": ["query"],
+  "datasets": [
+    {
+      "name" : "clock",
+      "description" : "",
+      "type" : "clock",
+      "position": "header"
+    }
+
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "main",
+        "log"
+      ],
+      "type": "json"
+    },
+    "html": {
+      "include": [
+        "query",
+        "clock",
+        "log",
+        "main"
+      ],
+      "argForm": {
+        "dataset": "args",
+        "extension": "html"
+      },
+      "template": "general",
+      "type": "hbs"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

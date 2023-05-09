@@ -1,0 +1,12 @@
+{{#with dataset}}
+<div {{datasetID this.name}}>
+    {{#include "javascript" this.name @root/report}}
+        setInterval(updateClock,1000)
+        function updateClock(){
+            let time = new Date().toLocaleTimeString()
+            document.querySelector("#dataset_{{this.name}} .clock").innerText=time
+        }
+    {{/include}}
+<span class="clock"></span>
+</div>
+{{/with}}
