@@ -9,29 +9,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
         addEventListener("mouseover",showGraph)
 })
 
-
 function showGraph(evt){
-    let row = evt.target.closest("tr").dataset.rownr
-    if (typeof row == "undefined") return
-    console.log("row "+row)
-    let month = report.data["months"].data[row].month
-    let year = report.data["months"].data[row].year
-    console.log(year+" "+month)
-    let data = report.data["main"].data.filter((d)=>{return (d.d.getMonth() == (month-1) && d.d.getFullYear() == year)})
-    // let graph = Plot.line(data, {x: "d", y: "posts"}).plot({y: {grid: true}})
-    let graph = Plot.plot({
-        marks: [
-                ()=>{let style =  document.createElement("style")
-                     style.appendChild(document.createTextNode(' .info { stroke: "red"} '))
-                     return style
-                    },
-                Plot.line(data, {x: "d", y: "posts"}),
-                Plot.circle(data, {x: "d", y: "posts",stroke:"red",r:2})
-       ],
-        y: {grid: true}
-    })
-    const div = document.querySelector("#dataset_detail");
-    div.innerHTML = ""
-    div.append(graph)
+    if (evt.target.closest("tr")){
+        let row = evt.target.closest("tr").dataset.rownr
+        if (typeof row == "undefined") return
+        console.log("row "+row)
+        let month = report.data["months"].data[row].month
+        let year = report.data["months"].data[row].year
+        console.log(year+" "+month)
+        let data = report.data["main"].data.filter((d)=>{return (d.d.getMonth() == (month-1) && d.d.getFullYear() == year)})
+        // let graph = Plot.line(data, {x: "d", y: "posts"}).plot({y: {grid: true}})
+        let graph = Plot.plot({
+            marks: [
+                    ()=>{let style =  document.createElement("style")
+                         style.appendChild(document.createTextNode(' .info { stroke: "red"} '))
+                         return style
+                        },
+                    Plot.line(data, {x: "d", y: "posts"}),
+                    Plot.circle(data, {x: "d", y: "posts",stroke:"red",r:2})
+           ],
+            y: {grid: true}
+        })
+        const div = document.querySelector("#dataset_detail");
+        div.innerHTML = ""
+        div.append(graph)
+    }
 }
 {{/with}}

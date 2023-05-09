@@ -1,5 +1,8 @@
 {{#with dataset}}
-<div class="table">
+    <h2>{{this.name}}</h2>
+    <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+
+    <div class="table">
 <table  class='dataset_table'>
     <thead>
     <tr>{{#each columns}}
