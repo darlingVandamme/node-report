@@ -1,4 +1,6 @@
 {{#with dataset}}
+<div {{datasetID this.name}}>
+
     <h2>{{this.name}}</h2>
     <div>{{this.description}} ({{this.loadTime}} ms  {{rows}} rows)</div>
 
@@ -24,5 +26,6 @@
     {{/each}}
     </tbody>
 </table>
+</div>
 </div>
 {{/with}}

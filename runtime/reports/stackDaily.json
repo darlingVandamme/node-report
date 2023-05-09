@@ -93,7 +93,7 @@
     {
       "name": "graph",
       "description": "",
-      "type": "lineGraph",
+      "type": "div",
       "source": "copy",
       "from": "main",
       "class": "zebra",
