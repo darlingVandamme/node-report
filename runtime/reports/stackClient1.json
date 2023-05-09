@@ -54,7 +54,7 @@
       "source" : "StackExchange",
       "class" : "zebra",
       "show" : "*",
-      "query": "select month(CreaionDate) month , count(*) as posts, cast(sum(viewCount) as integer) as views from posts\nwhere CreaionDate between {{query.startDate}} and {{query.endDate}} group by month",
+      "query": "select year(CreaionDate) year, month(CreaionDate) month , count(*) as posts, cast(sum(viewCount) as integer) as views from posts\nwhere CreaionDate between {{query.startDate}} and {{query.endDate}} group by year, month",
       "columns": {
 
       }
