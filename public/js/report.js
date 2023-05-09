@@ -1,3 +1,30 @@
+// Data and report related functions
+
+//  find data from DOM element
+function getDatasetName(element){
+    let id = element.closest(".dataset").getAttribute("id")
+    if (id && id.startsWith("dataset_") ){
+        return id.substr(8)
+    }
+}
+
+function getRowNr(element){
+    let parent = element.closest("[data-rownr]")
+    if (parent) {
+        return parseInt(element.closest("[data-rownr]").dataset.rownr)
+    }
+}
+
+function getData(element){
+    let dsName = getDatasetName(element)
+    let rowNr = getRowNr(element)
+    if (dsName){
+        return report.data[dsName].data[rowNr]
+    }
+}
+
+
+
 function classToggle(event) {
     let target = event.target.dataset.target || "*"
     let level = parseInt(event.target.dataset.level) || 0
