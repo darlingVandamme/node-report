@@ -8,8 +8,37 @@
       "description" : "",
       "type" : "clock",
       "position": "header"
-    }
+    },
 
+    {
+      "name": "main",
+      "type": "table",
+      "position": "main",
+      "source": "inline",
+      "data": [
+        {"key": 1, "value": "een", "display": "een" },
+        {"key": 2, "value": "twee", "display": "twee" },
+        {"key": 3, "value": "drie", "display": "drie" },
+        {"key": 4, "value": "vier", "display": "vier" },
+        {"key": 5, "value": "vijf", "display": "vijf" }
+      ],
+      "columns": {
+        "select": {
+          "template": "checkbox",
+          "header": "Select",
+          "type": "select",
+          "source": "select1"
+        },
+        "select1": {
+          "hidden": true,
+          "template": "checkbox",
+          "type": "function",
+          "function": "data.key > 3"
+        }
+      }
+
+
+    }
   ],
   "output": {
     "json": {

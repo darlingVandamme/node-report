@@ -23,7 +23,18 @@ function getData(element){
     }
 }
 
-
+function datacheckbox(event){
+    const dataset = event.target.dataset.dataset
+    const column = event.target.dataset.column
+    const rownr = parseInt(event.target.dataset.rownr) // getRowNr(event.target)
+    console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
+    let d = report.data[dataset].data[rownr]
+    if (d){
+        d[column] = event.target.checked
+        // change displayValue???
+    }
+    // recalculate
+}
 
 function classToggle(event) {
     let target = event.target.dataset.target || "*"
@@ -104,11 +115,11 @@ function overlayHide(event){
 
 
 // click & hover functions
-/*function showHiddenColumns(event) {
+function showHiddenColumns(event) {
     let row = event.target.closest('tr');
     let body = row.querySelector('.hidden').innerHTML;
     showOverlay(body)
-}*/
+}
 
 
 function tabs(event) {

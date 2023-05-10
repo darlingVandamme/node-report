@@ -17,7 +17,7 @@
         <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each this.data}}
                 {{#if this.options.template}}
-                    {{element this @root.dataset}}
+                    <td class="{{this.class}}">{{element this @root.dataset}}</td>
                 {{else}}
                     <td class="{{this.class}}">{{this.display}}</td>
                 {{/if}}

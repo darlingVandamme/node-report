@@ -98,30 +98,6 @@
       "from": "main",
       "class": "zebra",
       "show": "*"
-    },
-
-    {
-      "name": "graph",
-      "description": "",
-      "type": "div",
-      "source": "copy",
-      "from": "main",
-      "class": "zebra",
-      "show": "*",
-      "graph" : {
-        "width": 500,
-        "height": 200,
-        "margin": 20,
-        "dimensions":["posts"]
-      },
-      "columns": {
-        "d": {
-          "display": "date"
-        },
-        "posts": {
-          "color": "blue"
-        }
-      }
     }
 
   ],
@@ -132,7 +108,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","clock","main","copy","graph","total","log"],
+      "include": ["query","clock","main","copy","total","log"],
       "argForm": {
           "dataset": "args",
           "extension": "html"
