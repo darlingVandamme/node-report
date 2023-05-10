@@ -1,0 +1,76 @@
+{
+  "name": "inlineTest",
+  "description": "Testing",
+  "require": ["query"],
+  "datasets": [
+    {
+      "name" : "clock",
+      "description" : "",
+      "type" : "clock",
+      "position": "header"
+    },
+
+    {
+      "name": "main",
+      "type": "table",
+      "position": "main",
+      "source": "inline",
+      "data": [
+        {"key": 1, "value": "een", "display": "een" },
+        {"key": 2, "value": "twee", "display": "twee" },
+        {"key": 3, "value": "drie", "display": "drie" },
+        {"key": 4, "value": "vier", "display": "vier" },
+        {"key": 5, "value": "vijf", "display": "vijf" }
+      ],
+      "columns": {
+        "select": {
+          "template": "checkbox",
+          "header": "Select",
+          "type": "select",
+          "source": "select1"
+        },
+        "select1": {
+          "hidden": true,
+          "template": "checkbox",
+          "type": "function",
+          "function": "data.key > 3"
+        }
+      }
+
+
+    }
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "main",
+        "log"
+      ],
+      "type": "json"
+    },
+    "html": {
+      "include": [
+        "query",
+        "clock",
+        "log",
+        "main"
+      ],
+      "argForm": {
+        "dataset": "args",
+        "extension": "html"
+      },
+      "template": "general",
+      "type": "hbs"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

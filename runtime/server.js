@@ -32,6 +32,10 @@ app.get("/", (req,res)=>{
     res.render("index", { user:{name:"Jules"}  })
 })
 
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+})
 app.listen(3000,() => {
     console.log(`App listening on port 3000!`);
 })

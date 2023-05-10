@@ -1,7 +1,12 @@
-    {{#each datasets}}
+    {{#each data}}
         <div id="dataset_{{this.name}}" class="{{this.options.style}}  data-src="{{this.url}}">
-        <h2>{{this.name}}</h2>
-    <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
             {{{this.html}}}
         </div>
     {{/each}}
+<script language="JavaScript">
+    let datasets = {
+        {{#each data}}
+            "{{this.name}}": {{{jsData this.name}}} {{#unless @last}}, {{/unless}}
+        {{/each}}
+    }
+</script>

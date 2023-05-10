@@ -4,6 +4,7 @@
     {
       "name": "copy",
       "type": "copy",
+      "source": "./channels/CopyChannel.js",
       "options": {
 
       }
@@ -11,18 +12,21 @@
     {
       "name": "paging",
       "type": "paging",
+      "source": "./channels/PagingChannel.js",
       "options": {
       }
     },
     {
-      "name": "include",
-      "type": "include",
+      "name": "inline",
+      "type": "inline",
+      "source": "./channels/InlineChannel.js",
       "options": {
       }
     },
     {
       "name": "aggregate",
       "type": "aggregate",
+      "source": "./channels/AggregateChannel.js",
       "options": {
       }
     },
@@ -35,14 +39,9 @@
       }
     },
     {
-      "name": "inline",
-      "type": "inline",
-      "options": {
-      }
-    },
-    {
       "name": "rfam",
       "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
       "options": {
         "help": "https://docs.rfam.org/en/latest/database.html",
         "host": "mysql-rfam-public.ebi.ac.uk",
@@ -54,6 +53,7 @@
     {
       "name": "StackExchange",
       "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
       "options": {
         "help": "https://relational.fit.cvut.cz/dataset/Stats",
         "host": "relational.fit.cvut.cz",
@@ -67,6 +67,7 @@
     {
       "name": "Titanic",
       "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
       "options": {
         "help": "https://relational.fit.cvut.cz/dataset/Stats",
         "host": "relational.fit.cvut.cz",
@@ -80,6 +81,7 @@
     {
       "name": "world",
       "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
       "options": {
         "help": "https://relational.fit.cvut.cz/dataset/Stats",
         "host": "relational.fit.cvut.cz",
@@ -93,32 +95,11 @@
     {
       "name": "bq",
       "type": "bigQuery",
+      "source": "./channels/MysqlChannel.js",
       "options": {
         "keyFilename": "./settings/GCP_auth.json",
         "projectId": "nth-subset-276608",
         "root": "./test/reports"
-      }
-    },
-    {
-      "name": "ttt",
-      "type": "mongo",
-      "options": {
-        "connectURI": "mongodb://172.30.0.124:27017/?replicaSet=store01&readPreference=secondaryPreferred&connectTimeoutMS=10000",
-        "db": "text2tree",
-        "options": {
-          "root": "./test/reports"
-        }
-      }
-    },
-    {
-      "name": "mongo",
-      "type": "mongo",
-      "options": {
-        "connectURI": "mongodb://127.0.0.1:27017/",
-        "db": "reports",
-        "options": {
-          "root": "./test/reports"
-        }
       }
     }
   ]

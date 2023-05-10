@@ -1,3 +1,41 @@
+// Data and report related functions
+
+//  find data from DOM element
+function getDatasetName(element){
+    let id = element.closest(".dataset").getAttribute("id")
+    if (id && id.startsWith("dataset_") ){
+        return id.substr(8)
+    }
+}
+
+function getRowNr(element){
+    let parent = element.closest("[data-rownr]")
+    if (parent) {
+        return parseInt(element.closest("[data-rownr]").dataset.rownr)
+    }
+}
+
+function getData(element){
+    let dsName = getDatasetName(element)
+    let rowNr = getRowNr(element)
+    if (dsName){
+        return report.data[dsName].data[rowNr]
+    }
+}
+
+function datacheckbox(event){
+    const dataset = event.target.dataset.dataset
+    const column = event.target.dataset.column
+    const rownr = parseInt(event.target.dataset.rownr) // getRowNr(event.target)
+    console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
+    let d = report.data[dataset].data[rownr]
+    if (d){
+        d[column] = event.target.checked
+        // change displayValue???
+    }
+    // recalculate
+}
+
 function classToggle(event) {
     let target = event.target.dataset.target || "*"
     let level = parseInt(event.target.dataset.level) || 0
@@ -44,6 +82,22 @@ function clickClosePopup(e) {
 }
 
 
+async function fetchDataset(url) {
+    let resp = await fetch(url)
+    if (resp.ok) {
+        let html = await resp.text()
+        // todo split javascript portion
+        // integrate new dataset script into report
+        // split the response
+        // let b = new Blob([script])
+        // let url = URL.createObjectURL(b)
+        // createElement("script")
+        // set source url
+        // document.addElement
+        return html
+    }
+}
+
 
 function fetchOverlay(url){
     fetch(url).then(resp=>{return resp.text()}).then(body=>{showOverlay(body)})
@@ -61,11 +115,11 @@ function overlayHide(event){
 
 
 // click & hover functions
-/*function showHiddenColumns(event) {
+function showHiddenColumns(event) {
     let row = event.target.closest('tr');
     let body = row.querySelector('.hidden').innerHTML;
     showOverlay(body)
-}*/
+}
 
 
 function tabs(event) {

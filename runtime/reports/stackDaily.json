@@ -80,6 +80,16 @@
       }
     },
     {
+      "name" : "clock",
+      "description" : "",
+      "type" : "clock",
+      "position": "nav",
+      "from": "main",
+      "class" : "zebra",
+      "show" : "*"
+
+    },
+    {
       "name": "copy",
       "description": "",
       "type": "table",
@@ -88,30 +98,6 @@
       "from": "main",
       "class": "zebra",
       "show": "*"
-    },
-
-    {
-      "name": "graph",
-      "description": "",
-      "type": "lineGraph",
-      "source": "copy",
-      "from": "main",
-      "class": "zebra",
-      "show": "*",
-      "graph" : {
-        "width": 500,
-        "height": 200,
-        "margin": 20,
-        "dimensions":["posts"]
-      },
-      "columns": {
-        "d": {
-          "display": "date"
-        },
-        "posts": {
-          "color": "blue"
-        }
-      }
     }
 
   ],
@@ -122,10 +108,10 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","copy","graph","total","log"],
+      "include": ["query","clock","main","copy","total","log"],
       "argForm": {
           "dataset": "args",
-          "extension" : "html"
+          "extension": "html"
       },
       "template": "general",
       "type" : "hbs"

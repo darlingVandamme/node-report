@@ -45,7 +45,7 @@
       "name" : "lookup_test",
       "show": "*",
       "type" :  "table",
-      "source" : "include",
+      "source" : "inline",
       "position" : "main",
       "data" : [
         {"key": 1, "value": "een", "display": "een" },
