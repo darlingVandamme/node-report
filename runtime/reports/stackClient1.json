@@ -1,0 +1,110 @@
+{
+  "name": "stack Monthly",
+  "description": "Test report for Mysql stackexchange Client side functionality test ",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "type" :  "form",
+      "position" : "nav",
+      "columns": {
+        "startDate": {
+          "template" : "date",
+          "required" : true
+        },
+        "endDate": {
+          "template" : "date",
+          "required" : true
+        }
+      }
+    },
+    {
+      "name" : "block",
+      "show": "",
+      "type" :  "container",
+      "position" : "main",
+      "columns": {
+      }
+    },
+    {
+      "name": "main",
+      "description": "",
+      "type": "table",
+      "source": "StackExchange",
+      "class": "zebra",
+      "position": "hidden",
+      "queryFile": "stackDaily.sql",
+      "actions": {
+        "scripts": "",
+        "click": "showHiddenColumns",
+        "hover": "highlight"
+      },
+      "show": "*",
+      "columns": {
+      }
+    },
+    {
+      "name" : "months",
+      "description" : "",
+      "type" : "table",
+      "position" : "block",
+      "source" : "StackExchange",
+      "class" : "zebra",
+      "show" : "*",
+      "query": "select year(CreaionDate) year, month(CreaionDate) month , count(*) as posts, cast(sum(viewCount) as integer) as views from posts\nwhere CreaionDate between {{query.startDate}} and {{query.endDate}} group by year, month",
+      "columns": {
+
+      }
+    },
+    {
+      "name" : "detail",
+      "description" : "",
+      "type" : "div",
+      "position": "block",
+      "class" : "zebra",
+      "show" : "*",
+      "columns": {
+
+      }
+    },
+    {
+      "name" : "click",
+      "description" : "",
+      "type" : "f_clickTest",
+      "position" : "function",
+      "source" : "months",
+      "show" : "*",
+      "columns": {
+
+      }
+    }
+
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","block","months","detail","click","log","main"],
+      "argForm": {
+          "dataset": "args",
+          "extension" : "html"
+      },
+      "template": "general",
+      "type" : "hbs"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "extension" : "html",
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

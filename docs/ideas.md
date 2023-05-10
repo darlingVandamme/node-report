@@ -180,7 +180,7 @@
 - handlebars
 - HTML / csv / JSON / excel/ pdf 
 - debug output / all datasets (development)
-- Graphs (client / server)
+- Graphs (client / server)  https://observablehq.com/plot/
 - dynamic load //  reload single dataset 
 - dashboard layouts
 - output to express res (hbs?) / file / email / http POST / db insert ...
@@ -239,6 +239,13 @@
 - express-handlebars https://www.npmjs.com/package/express-handlebars
 - advanced example  https://github.com/express-handlebars/express-handlebars/blob/master/examples/advanced/server.js
 - expose templates to client side!
+
+## graph
+
+- Eerst test met zelf gegenereerde grafieken
+- Toch eerder Plot gebruiken
+- Hover effecten  https://stackoverflow.com/questions/74454315/how-to-highlight-a-line-when-mouse-over-it-in-observable-plot-using-javascript
+- https://observablehq.com/d/2e1daf099a7aaaea
 
 
 ## testing
@@ -356,7 +363,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
     - collapse
     - hide / show
     - ellipse
-    
+- hbs generating css ???    
 
 ## Client side javascript
 - React render table
@@ -368,11 +375,16 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - dataset sorting!
 - widgets (show hide buttons, sorting, filtering, popups... )
 - reload seconds / polling  vs  continuous update socket.io
-+ data- attributes per dataset table (for reloading) 
++ data- attributes per dataset table (for reloading)
+- custom js file includes
+- Function location ( Handlebars generating js)
+- Recalculate event
+-  
  
 ## dir channel
 - file data (file, extension, size ,)
 - file content data?  (read report Json (description)  )
+- Security
 
 ## bucket channel
 - AWS
@@ -425,6 +437,6 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - MariaDB   https://relational.fit.cvut.cz/search
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
  - Bigquery https://cloud.google.com/bigquery/public-data
- 
+ - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
  
  

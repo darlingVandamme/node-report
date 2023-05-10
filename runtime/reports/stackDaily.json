@@ -84,7 +84,7 @@
       "description": "",
       "type": "table",
       "source": "copy",
-      "copyColumns" : ["d","rank"],
+      "copyColumns" : ["d","rank","rank3"],
       "from": "main",
       "class": "zebra",
       "show": "*"

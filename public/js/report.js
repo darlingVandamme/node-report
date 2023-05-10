@@ -61,11 +61,11 @@ function overlayHide(event){
 
 
 // click & hover functions
-function showHiddenColumns(event) {
+/*function showHiddenColumns(event) {
     let row = event.target.closest('tr');
     let body = row.querySelector('.hidden').innerHTML;
     showOverlay(body)
-}
+}*/
 
 
 function tabs(event) {
