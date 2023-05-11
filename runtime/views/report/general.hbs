@@ -2,7 +2,7 @@
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
     <div>{{date moment}} Prof: {{profile}}ms  </div>
-    {{position "header" @root}}
+    {{position "header"}}
 </header>
 
 <div class="float_right">
@@ -20,7 +20,7 @@
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav>
-            {{position "nav" @root}}
+            {{position "nav" }}
             <div class="dark_mode">
                 <input type="checkbox" id="dark_mode">
                 <label for="dark_mode"> dark mode </label>
@@ -37,12 +37,12 @@
     </div>
 
     <main>
-        {{position "main" @root }}
+        {{position "main"  }}
     </main>
 </div>
 
 <div class="hidden" >
-    {{position "hidden" @root}}
+    {{position "hidden"}}
 </div>
 
 <script language="JavaScript">
@@ -61,5 +61,5 @@
 
 </script>
 <script language="JavaScript">
-        {{position "function" @root}}
+        {{position "function"}}
 </script>
