@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         addEventListener("mouseover",showGraph)
 })
 
-
 function showGraph(evt){
     let clickedData = getData(evt.target)
     if (clickedData){
@@ -23,7 +22,7 @@ function showGraph(evt){
                          return style
                         },
                     Plot.line(data, {x: "d", y: "posts"}),
-                    Plot.circle(data, {x: "d", y: "posts",stroke:"red",r:2})
+                    Plot.circle(data, {x: "d", y: "posts",stroke:"red",r:2,class:"info" })
            ],
             y: {grid: true}
         })

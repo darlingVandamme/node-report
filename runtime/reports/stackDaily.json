@@ -83,7 +83,7 @@
       "name" : "clock",
       "description" : "",
       "type" : "clock",
-      "position": "nav",
+      "position": "header",
       "from": "main",
       "class" : "zebra",
       "show" : "*"

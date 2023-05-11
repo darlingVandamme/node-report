@@ -9,18 +9,37 @@
       "type" : "clock",
       "position": "header"
     },
-
     {
       "name": "main",
       "type": "table",
       "position": "main",
       "source": "inline",
       "data": [
-        {"key": 1, "value": "een", "display": "een" },
-        {"key": 2, "value": "twee", "display": "twee" },
-        {"key": 3, "value": "drie", "display": "drie" },
-        {"key": 4, "value": "vier", "display": "vier" },
-        {"key": 5, "value": "vijf", "display": "vijf" }
+        {
+          "key": 1,
+          "value": "een",
+          "display": "een"
+        },
+        {
+          "key": 2,
+          "value": "twee",
+          "display": "twee"
+        },
+        {
+          "key": 3,
+          "value": "drie",
+          "display": "drie"
+        },
+        {
+          "key": 4,
+          "value": "vier",
+          "display": "vier"
+        },
+        {
+          "key": 5,
+          "value": "vijf",
+          "display": "vijf"
+        }
       ],
       "columns": {
         "select": {
@@ -31,12 +50,22 @@
         },
         "select1": {
           "hidden": true,
-          "template": "checkbox",
           "type": "function",
-          "function": "data.key > 3"
+          "function": "data.key > 2"
         }
       }
+    },
+    {
+      "name" : "total",
+      "description" : "",
+      "type" : "table",
+      "source" : "aggregate",
+      "from": "main",
+      "class" : "zebra",
+      "show" : "*",
+      "columns": {
 
+      }
 
     }
   ],
@@ -45,16 +74,28 @@
       "include": [
         "query",
         "main",
-        "log"
+        "log",
+        "total"
       ],
       "type": "json"
+    },
+    "js": {
+      "include": [
+        "query",
+        "main",
+        "total"
+      ],
+      "template": "script",
+      "layout" : "",
+      "type": "hbs"
     },
     "html": {
       "include": [
         "query",
         "clock",
         "log",
-        "main"
+        "main",
+        "total"
       ],
       "argForm": {
         "dataset": "args",

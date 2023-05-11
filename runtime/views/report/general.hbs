@@ -37,7 +37,7 @@
     </div>
 
     <main>
-        {{position "main" @root "serverDS"}}
+        {{position "main" @root }}
     </main>
 </div>
 
@@ -54,7 +54,7 @@
         style: "{{style}}",
         data:{
             {{#each data}}
-            "{{this.name}}": {{{jsData this.name}}} {{#unless @last}}, {{/unless}}
+            "{{this.name}}": {{{jsData this.name html=false}}} {{#unless @last}}, {{/unless}}
             {{/each}}
             }
     }

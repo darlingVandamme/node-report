@@ -27,7 +27,7 @@ function datacheckbox(event){
     const dataset = event.target.dataset.dataset
     const column = event.target.dataset.column
     const rownr = parseInt(event.target.dataset.rownr) // getRowNr(event.target)
-    console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
+    // console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
     let d = report.data[dataset].data[rownr]
     if (d){
         d[column] = event.target.checked

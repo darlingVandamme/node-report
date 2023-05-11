@@ -1,0 +1,12 @@
+const report = {
+name: "{{name}}",
+moment: "{{moment}}",
+profile: "{{profile}}",
+url: "{{{url}}}",
+style: "{{style}}",
+data:{
+{{#each data}}
+    "{{this.name}}": {{{jsData this.name html=true}}} {{#unless @last}}, {{/unless}}
+{{/each}}
+}
+}
