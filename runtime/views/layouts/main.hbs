@@ -1,12 +1,13 @@
 {{#with report}}
 <html >
 <head>
+
 <title>{{name}}</title>
     <link rel="stylesheet" href="/css/report.css" >
     <link rel="stylesheet" href="/css/custom.css" >
     <script src="/js/report.js"></script>
     {{#each include.scripts}}{{{this}}}{{/each}}
-    <script language="JavaScript">
+    <script language="JavaScript" type="module">
         {{#each include.javascript }} {{{this}}}{{/each}}
     </script>
     <style>
