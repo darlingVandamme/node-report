@@ -86,7 +86,6 @@
     },
     "js": {
       "include": [
-        "query",
         "main",
         "total"
       ],

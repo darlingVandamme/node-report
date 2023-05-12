@@ -41,6 +41,7 @@ function reloadReport( extension){
         }
     }
     // add timing to force reload?
+    url.searchParams.set("report.forceReload", Date.now())
     const relative = url.pathname+url.search
     console.log(relative)
     import(relative).then(mod=>{
