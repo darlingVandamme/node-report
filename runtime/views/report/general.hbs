@@ -1,8 +1,9 @@
+{{#with report}}
 <header class="header" id="header">
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
     <div>{{date moment}} Prof: {{profile}}ms  </div>
-    {{position "header" @root}}
+    {{position "header"}}
 </header>
 
 <div class="float_right">
@@ -20,7 +21,7 @@
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav>
-            {{position "nav" @root}}
+            {{position "nav" }}
             <div class="dark_mode">
                 <input type="checkbox" id="dark_mode">
                 <label for="dark_mode"> dark mode </label>
@@ -37,12 +38,12 @@
     </div>
 
     <main>
-        {{position "main" @root "serverDS"}}
+        {{position "main"  }}
     </main>
 </div>
 
 <div class="hidden" >
-    {{position "hidden" @root}}
+    {{position "hidden"}}
 </div>
 
 <script language="JavaScript">
@@ -54,12 +55,13 @@
         style: "{{style}}",
         data:{
             {{#each data}}
-            "{{this.name}}": {{{jsData this.name}}} {{#unless @last}}, {{/unless}}
+            "{{this.name}}": {{{jsData this.name html=false}}} {{#unless @last}}, {{/unless}}
             {{/each}}
             }
     }
 
 </script>
-<script language="JavaScript">
-        {{position "function" @root}}
+<script language="JavaScript" type="module">
+        {{position "function"}}
 </script>
+{{/with}}

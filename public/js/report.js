@@ -23,11 +23,48 @@ function getData(element){
     }
 }
 
+function getDatasetElement(name){
+    return document.querySelector("#dataset_"+name)
+}
+
+function reloadReport( extension){
+//     import reload  from "/report/inlineTest.js"
+    const url = new URL(report.url)
+    // select dataset
+    // change extension ??
+    if (extension) {
+        if (url.pathname.indexOf(".") > 0) {
+            // search for  last .
+            url.pathname = url.pathname.replace(/\.([^.]*$)/, "." + extension)
+        } else {
+            url.pathname = url.pathname + "." + extension
+        }
+    }
+    // add timing to force reload?
+    url.searchParams.set("report.forceReload", Date.now())
+    const relative = url.pathname+url.search
+    console.log(relative)
+    import(relative).then(mod=>{
+        console.log(mod.report.name + " "+mod.report.data.length)
+        //console.log(JSON.stringify(mod.report))
+        Object.keys(mod.report.data).forEach(name=>{
+            let d = mod.report.data[name]
+            if (d.html){
+                getDatasetElement(d.name).innerHTML = d.html // or createElemant?
+            }
+            report.data[d.name] = d
+        })
+    }).catch(error=>{
+        console.log(error)
+    })
+
+}
+
 function datacheckbox(event){
     const dataset = event.target.dataset.dataset
     const column = event.target.dataset.column
     const rownr = parseInt(event.target.dataset.rownr) // getRowNr(event.target)
-    console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
+    // console.log("selected "+dataset+" "+column+" "+rownr+ " "+event.target.checked)
     let d = report.data[dataset].data[rownr]
     if (d){
         d[column] = event.target.checked
@@ -176,4 +213,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('tbody>tr').forEach(row => row.addEventListener('click', showHiddenColumns));
     document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs));
     document.getElementById("dark_mode").addEventListener('click', darkMode);
+    console.log("report loaded "+report.name)
 });

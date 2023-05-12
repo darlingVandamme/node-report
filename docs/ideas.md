@@ -85,10 +85,10 @@
     - type  string(default), date, numbers  (how conversions?) 
     + display (date, number ...)
     + style   class style (css)
-    - hide?
+    + hidden
     + order (default: 100,110,120,130)
-    - required (form)
-    - template (default = displayvalue)
+    + required (form)
+    + template (default = displayvalue)
      
      
 + copy column
@@ -133,7 +133,7 @@
     - datecounter
     - date names (last year,...)
     - random
-    - copy dataset
+    + copy dataset
     - filter rows / columns
     - transpose
     - crosstab !!!
@@ -245,6 +245,7 @@
 - Eerst test met zelf gegenereerde grafieken
 - Toch eerder Plot gebruiken
 - Hover effecten  https://stackoverflow.com/questions/74454315/how-to-highlight-a-line-when-mouse-over-it-in-observable-plot-using-javascript
+- https://observablehq.com/@mkfreeman/plot-tooltip
 - https://observablehq.com/d/2e1daf099a7aaaea
 
 
@@ -409,6 +410,12 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - Query as array
 - slow queries log
 - total query time / total # queries
+
+## Dynamic queries
+
+- dynamic SQL, but also mongo find and mongo pipelines compatible
+
+
 
 ## Mongo Channel
 - vm script
