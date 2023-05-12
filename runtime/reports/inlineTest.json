@@ -52,6 +52,11 @@
           "hidden": true,
           "type": "function",
           "function": "data.key > 2"
+        },
+        "moment": {
+          "order": 1000,
+          "type": "function",
+          "function": "Date.now()"
         }
       }
     },
@@ -87,6 +92,7 @@
       ],
       "template": "script",
       "layout" : "",
+      "mime": "text/javascript",
       "type": "hbs"
     },
     "html": {

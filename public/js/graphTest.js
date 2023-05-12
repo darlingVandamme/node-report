@@ -15,7 +15,7 @@ function showGraph(evt){
             ],
             y: {grid: true}
         })
-        const div = document.querySelector("#dataset_detail");
+        const div = document.querySelector("#dataset_detail .dataset_div");
         div.replaceChild(graph,div.firstChild )
     }
 }
