@@ -7,35 +7,21 @@
   "datasets":[
     {
       "name" : "query",
-      "show": "*",
+      "show": "",
       "type" :  "form",
       "position" : "nav",
       "columns": {
         "code": {
+          "hidden":true,
           "header" : "Geef hier de landcode in",
           "template" : "text"
         },
-        "city": {
+        "city2": {
+          "hidden":true,
           "header" : "Geef hier de stad in",
           "template": "text",
           "type": "format",
           "format": "%{{city}}%"
-        }
-      }
-    },
-    {
-      "name" : "args",
-      "show": "*",
-      "type" :  "table",
-      "source" : "copy",
-      "from" : "query",
-      "position" : "tabs",
-      "columns": {
-        "id": {
-          "type": "parseInt",
-          "input" : {
-            "type": "number"
-          }
         }
       }
     },
@@ -46,18 +32,13 @@
       "type" : "table",
       "source" : "world",
       "class" : "zebra",
-      "query" : "select * from City where CountryCode = {{query.code}}",
+      "query" : ["select * from City where 1=1 ",
+        { "condition": "available", "key":"query.code", "query": " and CountryCode = {{query.code}} "},
+        { "condition": "available", "key":"query.city", "query": " and Name like {{query.city2}} "}
+      ],
       "show" : "*",
       "columns": {
       }
-      },
-    {
-      "name" : "posts",
-      "description" : "",
-      "position": "tabs",
-      "source" : "StackExchange",
-      "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
-      "show" : "*"
     }
 
   ],
@@ -68,12 +49,12 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server","log"],
+      "include": ["query","main","server","log"],
       "argForm": {
-          "dataset": "args",
+          "dataset": "query",
           "extension" : "html"
       },
-      "template": "tabs",
+      "template": "general",
       "type" : "hbs",
       "reload" : true
     },
