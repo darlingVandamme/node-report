@@ -31,6 +31,7 @@
       "description" : "",
       "type" : "table",
       "source" : "world",
+      "paging" : true,
       "class" : "zebra",
       "query" : ["select * from City where 1=1 ",
         { "condition": "available", "key":"query.code", "query": " and CountryCode = {{query.code}} "},
@@ -49,7 +50,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","server","log"],
+      "include": ["main","server","log"],
       "argForm": {
           "dataset": "query",
           "extension" : "html"
