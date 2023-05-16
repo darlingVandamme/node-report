@@ -28,7 +28,7 @@
     "type" : "cards_world",
     "source" : "world",
     "class" : "zebra",
-    "queryFile" : "country.sql",
+    "query" : {"file":"country.sql"},
     "show" : "*",
     "columns" : {
       "url" : {

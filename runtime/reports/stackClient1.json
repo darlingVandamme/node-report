@@ -36,7 +36,7 @@
       "source": "StackExchange",
       "class": "zebra",
       "position": "hidden",
-      "queryFile": "stackDaily.sql",
+      "query": { "file": "stackDaily.sql"},
       "actions": {
         "scripts": "",
         "click": "showHiddenColumns",
