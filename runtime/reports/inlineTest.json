@@ -56,7 +56,14 @@
         "moment": {
           "order": 1000,
           "type": "function",
-          "function": "Date.now()"
+          "function": "Date.now() /1000 "
+
+        },
+        "random": {
+          "order": 1010,
+          "type": "function",
+          "function": "Math.floor(Math.random()*20) "
+
         }
       }
     },

@@ -27,8 +27,9 @@ function getDatasetElement(name){
     return document.querySelector("#dataset_"+name)
 }
 
-function reloadReport( extension){
+function reloadReport( extension, dataset){
 //     import reload  from "/report/inlineTest.js"
+    // or multiple datasets?
     const url = new URL(report.url)
     // select dataset
     // change extension ??
@@ -42,6 +43,7 @@ function reloadReport( extension){
     }
     // add timing to force reload?
     url.searchParams.set("report.forceReload", Date.now())
+    if (dataset) {url.searchParams.set("report.dataset", dataset)}
     const relative = url.pathname+url.search
     console.log(relative)
     import(relative).then(mod=>{
@@ -50,7 +52,7 @@ function reloadReport( extension){
         Object.keys(mod.report.data).forEach(name=>{
             let d = mod.report.data[name]
             if (d.html){
-                getDatasetElement(d.name).innerHTML = d.html // or createElemant?
+                getDatasetElement(d.name).outerHTML = d.html // or replaceElement createElemant?
             }
             report.data[d.name] = d
         })
