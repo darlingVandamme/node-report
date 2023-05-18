@@ -10,6 +10,7 @@ function showGraph(evt){
                     style.appendChild(document.createTextNode(' .info { stroke: "red"} '))
                     return style
                 },
+                Plot.ruleY([0]),
                 Plot.line(data, {x: "d", y: "posts"}),
                 Plot.circle(data, {x: "d", y: "posts",stroke:"red",r:2,class:"info" })
             ],

@@ -1,5 +1,5 @@
 {
-  "name": "report",
+  "name": "@darling_be/report",
   "version": "0.0.1",
   "description": "Reporting engine",
   "main": "index.js",
@@ -7,6 +7,11 @@
   "directories": {
     "doc": "docs"
   },
+  "files": [
+    "lib",
+    "public",
+    "settings"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon runtime/server.js"

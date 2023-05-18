@@ -20,14 +20,14 @@ class Report {
     }
 
     getLink(options){
-        // // console.log("URL :" +this.url)
+        // console.log("URL :" +this.url)
         // remove report. settings?
         // other base ???
         return new Link(this.req.url, this.req.base, options)
     }
 
     require(source){
-        //// console.log(typeof source)
+        // console.log(typeof source)
         if (Array.isArray(source )){
             source.forEach(s=>{
                 this.require(s)
@@ -46,7 +46,7 @@ class Report {
                 ds.required = true
                 this.loadList.push(source)
 
-                let channel = this.engine.getChannel(ds.options.source)
+                let channel = this.engine.getChannel(ds.options.channel)
                 // console.log("search source type "+ds.options.source)
                 // console.log("sources "+JSON.stringify(this.engine.channels))
 
@@ -68,10 +68,7 @@ class Report {
     }
 
     init(outputName,options){
-        // check report def?
-        // lookup channels / connections
-        //
-        //// console.log("name "+this.def.name)
+        // console.log("name "+this.def.name)
         // todo Better output selection
         this.def?.datasets.forEach(dsDef =>{
             let name = dsDef.name
@@ -93,7 +90,7 @@ class Report {
             this.debug("override include",options.include)
             this.output.include = options.include
         }
-        //
+
         //if (!this.output.layout) this.output.layout = options.layout
         if (options.dataset){
             this.debug("override dataset",options.dataset)
@@ -102,7 +99,6 @@ class Report {
             } else {
                 this.output.include = [options.dataset]
             }
-            // change template?
             // this.debug("change template ",this.output.template)
             // todo configure
             this.output.layout = ""
@@ -158,7 +154,6 @@ class Report {
                         return Promise.resolve()
                     }
                 })
-                //p.push( ds.done)
             }
         })
 
@@ -182,6 +177,7 @@ class Report {
                 // ds.options.position
                 // ds.options.type
                 if (!col.template) {
+                    // change
                     if (ds.options.type == "form") {
                         if (col.name.startsWith("report.")){
                             col.template = "hidden"
@@ -200,6 +196,7 @@ class Report {
     }
 
     getValue(key){
+        // rowNr??
         let s = key.split(".")
         if (s.length>1) {
             let ds = this.getDataset(s[0])

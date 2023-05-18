@@ -2,7 +2,7 @@ import express from 'express'
 import { create } from 'express-handlebars';
 import path from "path"
 import { fileURLToPath } from 'url';
-import { ReportEngine } from '../lib/reportEngine.js';
+import { ReportEngine } from '@darling_be/report';
 
 const app = express()
 const hbs = create({extname: '.hbs'});
@@ -11,13 +11,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root =  process.cwd()
 console.log(process.cwd())
+console.log(import.meta)
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine('.hbs', hbs.engine );
-app.use(express.static(path.join(root, 'public')));
+app.use("/reporting",express.static(path.join(root, './packages/reporting/public')));
 
-let reports = new ReportEngine("/settings/reporting.json")
+let reports = new ReportEngine("runtime/settings/reporting.json")
 // correct way???  check node-gallery
 app.use((req,res,next)=>reports.init(req,res,next));
 app.get("/report/:name.:type",(req,res,next)=>reports.express(req,res,next))

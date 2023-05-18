@@ -4,16 +4,29 @@
   "require": ["query"],
   "datasets": [
     {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      }
+    },
+
+    {
       "name" : "clock",
       "description" : "",
-      "type" : "clock",
+      "display" :{
+        "template":  "clock"
+      },
       "position": "header"
     },
     {
       "name": "main",
-      "type": "table",
-      "position": "main",
-      "source": "inline",
+      "display" :{
+        "template": "table",
+        "position": "main"
+      },
+      "channel": "inline",
       "data": [
         {
           "key": 1,
@@ -70,10 +83,12 @@
     {
       "name" : "total",
       "description" : "",
-      "type" : "table",
-      "source" : "aggregate",
+      "display":{
+        "template" : "table",
+        "class" : "zebra"
+      },
+      "channel" : "aggregate",
       "from": "main",
-      "class" : "zebra",
       "show" : "*",
       "columns": {
 

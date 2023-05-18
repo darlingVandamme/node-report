@@ -30,7 +30,7 @@
       "name" : "log",
       "hideable" : "true",
       "show": ["level","timestamp","msg","info"],
-      "position" : "hidden",
+      "display":{"position" : "hidden"},
       "columns": {
         "info": {
           "display": "json",
@@ -42,31 +42,29 @@
       "name" : "error",
       "class": "",
       "show": ["level","timestamp","msg","info"],
-      "position" : "hidden",
+      "display":{"position" : "hidden"},
       "columns": {
         "info": {
           "display": "json"
         }
       }
     },
-    {
-      "name" : "query",
-      "type" : "form",
-      "position": "nav",
-      "show": "*"
-    },
+
     {
       "name" : "server",
-      "position" : "hidden",
-      "type" : "row",
+      "display":{"position" : "hidden",
+        "template" : "row"
+      },
       "show": "*"
     },
     {
       "name" : "paging",
       "show": "*",
-      "type" : "row",
-      "position" : "hidden",
-      "source": "paging"
+
+      "display":{"position" : "hidden",
+        "template" : "row"
+      },
+      "channel": "paging"
     }
   ],
 

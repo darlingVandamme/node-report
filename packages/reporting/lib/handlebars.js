@@ -32,6 +32,7 @@ function hbs(options) {
     this.reads = 0
     this.cacheReads = 0
     this.root = options.root
+    this.module = options.module
     this.ext = ".hbs"
     this.encoding = "utf8"
     this.loadTime = 0
@@ -55,7 +56,11 @@ function hbs(options) {
             this.initialized = Promise.all([
                 this.readPartials(path.resolve(path.join(this.root, "partials")), partials),
                 this.readPartials(path.resolve(path.join(this.root, "form")) , formElements),
-                this.readPartials(path.resolve(path.join(this.root, "value")) , elements)
+                this.readPartials(path.resolve(path.join(this.root, "value")) , elements),
+
+                this.readPartials(path.resolve(path.join(this.module, "partials")), partials),
+                this.readPartials(path.resolve(path.join(this.module, "form")) , formElements),
+                this.readPartials(path.resolve(path.join(this.module, "value")) , elements)
             ]).then(()=>{
                 this.loadTime = Date.now()
             })
@@ -88,7 +93,10 @@ function hbs(options) {
         await this.init()
         this.reads++
         let key = subDir+"/"+name
-        let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
+        // todo try root and module
+        // let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
+        let fileName = path.resolve(path.join(this.module, subDir, name + this.ext))
+        console.log("read template "+fileName)
         // if reloadChanged
         let stat = await(fileName)
 
@@ -116,7 +124,7 @@ function hbs(options) {
                     return this.renderTemplate(template,data,report)
                 }
             ).catch(error =>{
-                console.log("found an error! "+error)
+                console.trace("found an error! "+error)
             })
     }
 
@@ -303,7 +311,7 @@ function datasetPositionHelper(report,rtOptions){
         Object.keys(reportResult.data).forEach((dsName)=>{
             let dataset = reportResult.data[dsName]
             // console.log(" dataset Position check " + name +"found "+dataset.name)
-            if (name == dataset.options.position){
+            if (name == dataset.options.display?.position){
                 // console.log(" dataset Position " + name +"found "+dataset.name)
                 if (!dataset.html){
                     // console.log(" dataset Position include " +dataset.name)
@@ -311,7 +319,7 @@ function datasetPositionHelper(report,rtOptions){
                     result += "<div id='placeholder_"+dataset.name+"'> "+dataset.name+"</div>"
                     // dataset.options.recurse=true
 
-                    dataset.options.position = "hidden"
+                    dataset.options.display.position = "hidden"
                     dataset.position.hidden = true
                     //reportResult.data[name].recurse = true
                 } else {

@@ -61,14 +61,14 @@ async function hbs(report, options) {
     let result = report.getResult({datasets: true, display: true})
     result.datasets = result.data
     options.include.forEach(dsName => {
-        if (report.getDataset(dsName).getType() != "container") {
+        if (report.getDataset(dsName).getDisplayType().template != "container") {
             renderDS(dsName, report, result)
         }
     })
     await Promise.all(options.include.map(dsName => {return result.data[dsName].rendering}))
 
     options.include.forEach(dsName => {
-        if (report.getDataset(dsName).getType() == "container") {
+        if (report.getDataset(dsName).getDisplayType().template == "container") {
             renderDS(dsName, report, result)
         }
     })
@@ -95,11 +95,16 @@ function renderDS(dsName, report, result ) {
     let dsResult = result.data[dsName]  //ds.getResult({display:true})
     console.log("render dataset " + JSON.stringify(dsResult, null, 2))
     // console.log("render type for "+dsName+" "+ds.getType())
-    result.data[dsName].rendering = //promise
-        report.hbs.renderFile("dataset", ds.getType(), {dataset: dsResult, report: result}, report).then(html => {
-            dsResult.html = html
-            // also store the generated html in the dataset itself
-            ds.setHtml(html)
-            return dsResult
-        })
+    if (ds.getDisplayType().template) {
+        result.data[dsName].rendering = //promise
+            report.hbs.renderFile("dataset", ds.getDisplayType().template, {
+                dataset: dsResult,
+                report: result
+            }, report).then(html => {
+                dsResult.html = html
+                // also store the generated html in the dataset itself
+                ds.setHtml(html)
+                return dsResult
+            })
+    }
 }
