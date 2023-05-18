@@ -155,9 +155,7 @@ class Query{
             // replaced : replaced
         }
     }
-
     // create object ..
-
 }
 
 
@@ -166,11 +164,16 @@ const replacers = {
         return " ? "
     },
     quote: (paramName, value, index) => {
+        // escape quotes
+        value = value.replaceAll("'","\\'")
         return "'" + value + "'"
     },
     value: (paramName, value, index) => {
         return value
-    }
+    },
+    at: (paramName, value, index) => {
+        return " @"+paramName
+    },
 }
 
 const conditions = {

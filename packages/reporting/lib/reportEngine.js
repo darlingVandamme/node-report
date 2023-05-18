@@ -1,7 +1,6 @@
 import fs from "fs/promises"
 import path from "path"
 import {Report} from "./report.js"
-import { cwd } from 'node:process';
 import {getOutput} from "./output.js"
 import {hbs}  from './handlebars.js';
 import { fileURLToPath } from 'url';
@@ -28,9 +27,8 @@ class ReportEngine {
             module: path.resolve(path.dirname(__filename), "..")
         }
         this.configFile = path.join(this.paths.root, configFile)
-        this.reportPath = path.join(this.paths.root, "./runtime/reports")
         this.paths.config = this.configFile
-        this.paths.reports = this.reportPath
+        this.paths.reports =  path.join(this.paths.root, "./runtime/reports")
 
         console.log(this.paths)
 
@@ -67,7 +65,7 @@ class ReportEngine {
         }
         console.log("init engine ")
         // static dirs
-        req.app.use("/reporting", express.static(path.join(this.paths.root, './packages/reporting/public')));
+        req.app.use("/reporting", express.static(path.join(this.paths.module, './public')));
 
         // read internal config
         this.loading = Promise.all([
@@ -134,7 +132,7 @@ class ReportEngine {
 
     async findReport(name) {
         // todo uitwerken (multiple sources?)
-        let fileName = path.join(this.reportPath, name + ".json")
+        let fileName = path.join(this.paths.report, name + ".json")
         this.logger.log("try report file " + fileName)
         try {
             let content = await fs.readFile(fileName,"utf8")
@@ -142,7 +140,7 @@ class ReportEngine {
             let reportDef = JSON.parse(content)
             console.log(reportDef)
             reportDef.location = {
-                path: this.reportPath,
+                path: this.paths.report,
                 file: fileName
             }
             this.logger.log("read report file " + reportDef)
@@ -303,6 +301,5 @@ class ReportEngine {
             })
     }
 }
-
 
 export {ReportEngine}

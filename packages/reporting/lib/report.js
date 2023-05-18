@@ -51,7 +51,7 @@ class Report {
                 // console.log("sources "+JSON.stringify(this.engine.channels))
 
                 if (channel){
-                    // // console.log("found source type "+ds.options.source + " ")
+                    // console.log("found source type "+ds.options.source + " ")
                     ds.channel = channel
                     ds.connection = channel.connect(ds)
                     this.debug("init dataset channel ",source)
