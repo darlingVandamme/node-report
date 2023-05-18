@@ -20,7 +20,6 @@ class MysqlChannel {
     }
 
     connect(dataset) {
-        //// console.log("connecting Mysql Channel connected" )
         return {
             init: init,
             load: load
@@ -30,7 +29,7 @@ class MysqlChannel {
 
 function init(ds, channel, params){
     ds.report.log("Init MySQL "+channel.name,params)
-    console.log("Init MySQL "+channel.name,params)
+    // console.log("Init MySQL "+channel.name,params)
     let query = new Query(params.query,{
         path: ds.report.path,
         replacer:"prepared", // "quote",

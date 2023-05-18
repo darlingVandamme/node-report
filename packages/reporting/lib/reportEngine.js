@@ -4,6 +4,7 @@ import {Report} from "./report.js"
 import { cwd } from 'node:process';
 import {getOutput} from "./output.js"
 import {hbs}  from './handlebars.js';
+import { fileURLToPath } from 'url';
 
 function createEngine(configFile){
     return new ReportEngine(configFile)
@@ -12,18 +13,30 @@ function createEngine(configFile){
 class ReportEngine{
 
     constructor (configFile) {
+
         this.runtime = {
             startTime: Date.now(),
             errors: 0,
             reports: 0
         }
+        const __filename = fileURLToPath(import.meta.url);
+        this.paths= {
+            lib : path.dirname(__filename),
+            cwd : process.cwd(),
+            root : process.cwd(),
+            module : path.resolve(path.dirname(__filename),"..")
+        }
+        this.configFile = path.join(this.paths.root, configFile)
+        this.reportPath = path.join(this.paths.root, "./runtime/reports")
+        this.paths.config = this.configFile
+        this.paths.reports = this.reportPath
 
-        this.hbs = new hbs({root: "runtime/views"}) // options
-        this.rootPath = cwd()
+        console.log(this.paths)
+
+        this.hbs = new hbs({root: "runtime/views" , "module": path.join(this.paths.module,"views") }) // options
+
         this.channels = {}
-        this.configFile = path.join(this.rootPath, configFile)
 
-        this.reportPath = path.join(this.rootPath, "./runtime/reports")
         this.logger = console
 
         this.isProduction = function () {
@@ -58,7 +71,7 @@ class ReportEngine{
                 let conf = JSON.parse(new String(bytes))
                 this.conf = conf
                 if (conf.root) {
-                    this.reportPath = path.join(this.rootPath, conf.root)
+                    this.reportPath = path.join(this.paths.root, conf.root)
                 }
                 /*  todo handle promises */
                 let promises = []
@@ -101,8 +114,10 @@ class ReportEngine{
         let fileName = path.join(this.reportPath, name + ".json")
         this.logger.log("try report file " + fileName)
         try {
-            let bytes = await fs.readFile(fileName)
-            let reportDef = JSON.parse(new String(bytes))
+            let content = await fs.readFile(fileName,"utf8")
+            // console.log(content)
+            let reportDef = JSON.parse(content)
+            console.log(reportDef)
             reportDef.location = {
                 path: this.reportPath,
                 file: fileName
@@ -111,32 +126,31 @@ class ReportEngine{
             return reportDef
         } catch {
             (error) => {
+                console.error(error)
                 this.logger.error(error)
                 throw error
             }
         }
     }
 
-    getReport(name) {
+    async getReport(name) {
         let report
-        let definition
-        return this.findReport(name).then(def => {
-            definition = def
-            return this.findReport("default")
-        }).then(defaultDef=>{
-            let combined = {...defaultDef, ...definition}
-            // todo better merge???
-            combined.datasets = [...defaultDef.datasets, ...definition.datasets]
-            //outputs ...
-            report = new Report(name, combined, this)
-            report.path = definition.location.path
-            report.debug("start ", combined)
-            // set URL
-            return report
-        }).catch(error=>{
-            console.log("error reading report  "+name)
+        let definition = await this.findReport(name)
+        let defaultDef = await this.findReport("default")
+        console.log(definition)
+        let combined = {...defaultDef, ...definition}
+        // todo better merge???
+        combined.datasets = [...defaultDef.datasets, ...definition.datasets]
+        //outputs ...
+        report = new Report(name, combined, this)
+        report.path = definition.location.path
+        report.debug("start ", combined)
+        // set URL
+        return report
+/*        }).catch(error => {
+            console.log("error reading report  " + name)
             throw error
-        })
+        })*/
     }
 
     express(req,res,next) {

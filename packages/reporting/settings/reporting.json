@@ -1,0 +1,44 @@
+{
+  "root" : "./runtime/reports",
+  "channels": [
+    {
+      "name": "copy",
+      "type": "copy",
+      "source": "./channels/CopyChannel.js",
+      "options": {
+
+      }
+    },
+    {
+      "name": "paging",
+      "type": "paging",
+      "source": "./channels/PagingChannel.js",
+      "options": {
+      }
+    },
+    {
+      "name": "inline",
+      "type": "inline",
+      "source": "./channels/InlineChannel.js",
+      "options": {
+      }
+    },
+    {
+      "name": "aggregate",
+      "type": "aggregate",
+      "source": "./channels/AggregateChannel.js",
+      "options": {
+      }
+    },
+
+    {
+      "name": "testFiles",
+      "type": "file",
+      "options": {
+        "root": "/home/geert/projects/nodeReport/test/data/"
+      }
+    }
+  ]
+}
+
+

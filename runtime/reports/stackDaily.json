@@ -8,8 +8,10 @@
     {
       "name" : "query",
       "show": "*",
-      "type" :  "form",
-      "position" : "nav",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      },
       "columns": {
         "startDate": {
           "template" : "date",
@@ -25,9 +27,12 @@
     {
       "name" : "main",
       "description" : "",
-      "type" : "table",
-      "source" : "StackExchange",
-      "class" : "zebra",
+      "display" : {
+        "template": "table",
+        "position": "main",
+        "class": "zebra"
+      },
+      "channel" : "StackExchange",
       "query": {"file" : "stackDaily.sql"},
       "actions":{
         "scripts": "",
@@ -70,10 +75,13 @@
     {
       "name" : "total",
       "description" : "",
-      "type" : "table",
-      "source" : "aggregate",
+      "display" : {
+        "template": "table",
+        "position": "main",
+        "class": "zebra"
+      },
+      "channel" : "aggregate",
       "from": "main",
-      "class" : "zebra",
       "show" : "*",
       "columns": {
 
@@ -83,7 +91,10 @@
       "name" : "clock",
       "description" : "",
       "type" : "clock",
-      "position": "header",
+      "display" : {
+        "position": "header"
+      },
+
       "from": "main",
       "class" : "zebra",
       "show" : "*"
@@ -92,11 +103,15 @@
     {
       "name": "copy",
       "description": "",
+      "display" : {
+        "template": "table",
+        "position": "main",
+        "class": "zebra"
+      },
       "type": "table",
-      "source": "copy",
+      "channel": "copy",
       "copyColumns" : ["d","rank","rank3"],
       "from": "main",
-      "class": "zebra",
       "show": "*"
     }
 

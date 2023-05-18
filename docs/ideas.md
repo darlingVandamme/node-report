@@ -6,6 +6,14 @@
 - Naming consistency!
 - bookmarkability!!!    
 
+## package name
+- reporting
+- mining?
+- tab
+- data
+- flow
+
+
 ## Logging
 - engine level logging (available as development dataset?)
 + report level logging in dataset
@@ -21,11 +29,11 @@
 - cost, timings & bytes  per user  logging
 
 ## ES6 import
-- dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
++ dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
 - https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
 
 ## Dataset
-- Row - column set of values
++ Row - column set of values
     - singleton
     - array
     - Virtual (copy)
@@ -34,7 +42,7 @@
         - combined
         - f()
 + dependencies? (auto?) require()
-- dataset.channel (connection to datasource channel)
++ dataset.channel (connection to datasource channel)
 + dataset.done  init promise
 + dataset.init
 + dataset.load 
@@ -146,7 +154,7 @@
 ## conditional sources
 - choice between different queries (depending on availability of params)
 - intelligent query creation?  select:"   " , from: "  "....
-
++ Query builder object
 
 ## paging
 - only 1 paging per report
@@ -446,4 +454,6 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Bigquery https://cloud.google.com/bigquery/public-data
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
  
+ ## alternatives
+ - https://kanaries.net/home
  
