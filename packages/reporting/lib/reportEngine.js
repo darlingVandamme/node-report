@@ -5,14 +5,15 @@ import { cwd } from 'node:process';
 import {getOutput} from "./output.js"
 import {hbs}  from './handlebars.js';
 import { fileURLToPath } from 'url';
+import express from 'express'
 
 function createEngine(configFile){
     return new ReportEngine(configFile)
 }
 
-class ReportEngine{
+class ReportEngine {
 
-    constructor (configFile) {
+    constructor(configFile) {
 
         this.runtime = {
             startTime: Date.now(),
@@ -20,11 +21,11 @@ class ReportEngine{
             reports: 0
         }
         const __filename = fileURLToPath(import.meta.url);
-        this.paths= {
-            lib : path.dirname(__filename),
-            cwd : process.cwd(),
-            root : process.cwd(),
-            module : path.resolve(path.dirname(__filename),"..")
+        this.paths = {
+            lib: path.dirname(__filename),
+            cwd: process.cwd(),
+            root: process.cwd(),
+            module: path.resolve(path.dirname(__filename), "..")
         }
         this.configFile = path.join(this.paths.root, configFile)
         this.reportPath = path.join(this.paths.root, "./runtime/reports")
@@ -33,7 +34,7 @@ class ReportEngine{
 
         console.log(this.paths)
 
-        this.hbs = new hbs({root: "runtime/views" , "module": path.join(this.paths.module,"views") }) // options
+        this.hbs = new hbs({root: "runtime/views", "module": path.join(this.paths.module, "views")}) // options
 
         this.channels = {}
 
@@ -58,55 +59,77 @@ class ReportEngine{
         return this.channels[name]
     }
 
-    init(req,res,next){
+    init(req, res, next) {
         // if init loading, wait for promise done
         if (this.loading) {
-            this.loading.then(()=>next())
+            this.loading.then(() => next())
             return this.loading
         }
-        // // console.log("init engine ")
-        // read config
-        this.loading = fs.readFile(this.configFile)
-            .then(bytes => {
-                let conf = JSON.parse(new String(bytes))
+        console.log("init engine ")
+        // static dirs
+        req.app.use("/reporting", express.static(path.join(this.paths.root, './packages/reporting/public')));
+
+        // read internal config
+        this.loading = Promise.all([
+            this.readDefaults(path.join(this.paths.module, "settings/reporting.json")),
+            this.loadConfig(this.configFile)
+        ]).then(r => {
+            // console.log("all setup")
+            next()
+        })
+
+        return this.loading
+    }
+
+    loadConfig(configFile) {
+        return fs.readFile(configFile,"utf8")
+            .then(content => {
+                const conf = JSON.parse(content)
                 this.conf = conf
                 if (conf.root) {
-                    this.reportPath = path.join(this.paths.root, conf.root)
+                    this.paths.report = path.join(this.paths.root, conf.root)
+                    console.log("report path "+this.paths.report)
                 }
-                /*  todo handle promises */
-                let promises = []
-                conf.channels.forEach(channel => {
-                    //// console.log("try channel "+channel.name)
-                    if (channel.source) {
-                        // // console.log("found channel type "+channel.type+" "+channelType.sourceFile)
-                        // dynamic import
-                        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
-                        promises.push( import(channel.source).then( result => {
-                            // // console.log("try new channel "+channel.name )
-                            this.addChannel(channel.name, new result.default(channel))
-                        }))
-                    }
-                })
 
-                this.logger.log("init reporting " + this.configFile)
+                let promises = []
+                promises.push(this.addChannels(conf.channels))
+
+                this.logger.log("init reporting " + configFile)
                 this.setup = true
                 this.setupTimestamp = Date.now
-                this.logger.log("root folder " + this.rootPath)
-                this.logger.log("report folder " + this.reportPath)
-                this.logger.log("Create engine " + this.configFile)
-
-                // read handlebars options and create engine here
-                Promise.all(promises).then(r=>{
-                    // console.log("all setup")
-                    next()
-                })
-
-                //return conf
+                return promises
             })
             .catch(error => {
-                this.logger.error(error, "config file not found " + this.configFile)
+                this.logger.error(error, "config file not found or invalid " + configFile)
+                throw error
             })
-        return this.loading
+   }
+
+
+    readDefaults(fileName){
+        return fs.readFile(fileName,"utf8")
+            .then(content => {
+                let conf = JSON.parse(content)
+                this.addChannels(conf.channels)
+            })
+            .catch(error => {
+                this.logger.error(error, "default config file not found or invalid " + fileName)
+                throw error
+            })
+
+    }
+
+    addChannels(channelConf){
+        return Promise.all(channelConf.map(channel => {
+            if (channel.source) {
+                // dynamic import
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
+                return import(channel.source).then( result => {
+                    // // console.log("try new channel "+channel.name )
+                    this.addChannel(channel.name, new result.default(channel))
+                })
+            }
+        }))
     }
 
     async findReport(name) {

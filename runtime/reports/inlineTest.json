@@ -16,9 +16,9 @@
       "name" : "clock",
       "description" : "",
       "display" :{
-        "template":  "clock"
-      },
-      "position": "header"
+        "template":  "clock",
+        "position": "header"
+      }
     },
     {
       "name": "main",
@@ -85,6 +85,7 @@
       "description" : "",
       "display":{
         "template" : "table",
+        "position": "main",
         "class" : "zebra"
       },
       "channel" : "aggregate",
