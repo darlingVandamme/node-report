@@ -30,8 +30,9 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.0.1",
     "handlebars": "^4.7.7",
+    "path": "^0.12.7",
     "mysql2": "^3.2.0",
-    "path": "^0.12.7"
+    "@google-cloud/bigquery": "^6.2.0"
   },
   "comment": {
     "mysql2": " move to separate mysql package "

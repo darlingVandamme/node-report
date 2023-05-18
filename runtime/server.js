@@ -13,24 +13,29 @@ const root =  process.cwd()
 console.log(process.cwd())
 console.log(import.meta)
 
-app.set('views', path.join(__dirname, 'views'));
+// override report module statics
+app.use("/reporting",express.static(path.join(root, './runtime/public')));
+
+/*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine('.hbs', hbs.engine );
-app.use("/reporting",express.static(path.join(root, './packages/reporting/public')));
+ */
+// app.use("/reporting",express.static(path.join(root, './packages/reporting/public')));
 
-let reports = new ReportEngine("runtime/settings/reporting.json")
-// correct way???  check node-gallery
+
+const reports = new ReportEngine("runtime/settings/reporting.json")
+// correct way???
 app.use((req,res,next)=>reports.init(req,res,next));
+
 app.get("/report/:name.:type",(req,res,next)=>reports.express(req,res,next))
 app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
-
 
 //app.get("report/:report", (req,res) =>{
 //
 // })
 app.get("/", (req,res)=>{
     //res.send("Test reporting engine")
-    res.render("index", { user:{name:"Jules"}  })
+    res.send("Reporting Demo setup ")
 })
 
 app.use(function (err, req, res, next) {

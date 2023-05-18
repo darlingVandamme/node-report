@@ -20,20 +20,17 @@ function getColumnOutput(name){
 
 
 export {getOutput, registerOutput}
-// hardcoded linked to res
-// what about streams, files ?
-// todo change  res  to   {file:fileName, res:res, ...}
 
 registerOutput("json", function(report, options){
     let result = report.getResult() // options???
     //  result.options = options
     // include html??
     return Promise.resolve(JSON.stringify(result))
-} )
+}
+)
 
 
 registerOutput("hbs",  hbs)
-registerOutput("javascript",  js)
 
 registerOutput('serverHtml', hbs ) // name???
 registerOutput('error', error ) // name???
@@ -45,11 +42,6 @@ function error(report, options){
     // console.log("Error "+JSON.stringify(result))
     // alert error ??
     return Promise.resolve(result)
-}
-
-// return js code
-function js (report, options) {
-
 }
 
 

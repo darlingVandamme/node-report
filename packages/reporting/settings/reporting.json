@@ -29,14 +29,6 @@
       "source": "./channels/AggregateChannel.js",
       "options": {
       }
-    },
-
-    {
-      "name": "testFiles",
-      "type": "file",
-      "options": {
-        "root": "/home/geert/projects/nodeReport/test/data/"
-      }
     }
   ]
 }

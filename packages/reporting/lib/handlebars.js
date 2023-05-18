@@ -54,9 +54,9 @@ function hbs(options) {
             return this.initialized
         } else {
             this.initialized = Promise.all([
-                this.readPartials(path.resolve(path.join(this.root, "partials")), partials),
+                /*this.readPartials(path.resolve(path.join(this.root, "partials")), partials),
                 this.readPartials(path.resolve(path.join(this.root, "form")) , formElements),
-                this.readPartials(path.resolve(path.join(this.root, "value")) , elements),
+                this.readPartials(path.resolve(path.join(this.root, "value")) , elements),*/
 
                 this.readPartials(path.resolve(path.join(this.module, "partials")), partials),
                 this.readPartials(path.resolve(path.join(this.module, "form")) , formElements),
