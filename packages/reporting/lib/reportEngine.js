@@ -108,7 +108,7 @@ class ReportEngine {
         return fs.readFile(fileName,"utf8")
             .then(content => {
                 let conf = JSON.parse(content)
-                this.addChannels(conf.channels)
+                return this.addChannels(conf.channels)
             })
             .catch(error => {
                 this.logger.error(error, "default config file not found or invalid " + fileName)
@@ -118,16 +118,18 @@ class ReportEngine {
     }
 
     addChannels(channelConf){
-        return Promise.all(channelConf.map(channel => {
+        return Promise.all (channelConf.map(channel => {
             if (channel.source) {
                 // dynamic import
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
-                return import(channel.source).then( result => {
+                return import(channel.source).then(result => {
                     // // console.log("try new channel "+channel.name )
                     this.addChannel(channel.name, new result.default(channel))
                 })
             }
         }))
+        //console.log("read and init channels "+p.length )
+
     }
 
     async findReport(name) {

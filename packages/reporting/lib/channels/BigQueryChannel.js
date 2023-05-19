@@ -9,7 +9,10 @@ class BigQueryChannel {
         this.options = options.options
         this.name = options.name
         this.stats = new profileStats("BigQuery")
-        // connectionpool
+
+        // todo login as end user
+        // https://cloud.google.com/bigquery/docs/authentication/end-user-installed
+        
         console.log("starting bigQuery "+JSON.stringify(options))
         this.bigquery = new BigQuery({
                 keyFilename: this.options.keyFilename,
@@ -35,7 +38,7 @@ function init(ds, channel, params){
     ds.report.log("Init BigQuery "+channel.name,params)
     let query = new Query(params.query,{
         path: ds.report.path,
-        replacer:"quote", // "quote",
+        replacer:"at", // "quote",
         params:params
     })
     if (params.paging){
