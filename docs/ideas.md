@@ -306,6 +306,12 @@
 - avoid html injection in server side rendering and {{{ }}}
 - auth keys for API use ???
 
+## authentication
+- passport demo
+- bigquery end user auth token
+- API's??
+-  
+
 ## Frameworks
 - express 
 - fastify
@@ -328,6 +334,8 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - hashing / salting?
 - runtime ENV VARS?
 - development vs production 
+- tokens (in session?)
+- API tokens?
 
 ## I18n ?
 - date formatting. client side locale?

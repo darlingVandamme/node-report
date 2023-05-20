@@ -25,7 +25,9 @@ class BigQueryChannel {
         )
     }
 
-    init(ds, connection, params) {
+    async load(ds, connection, params) {
+        console.log("start BigQuery Load")
+        let startTime = this.stats.start()
         ds.report.debug("Init BigQuery " + this.name, params)
         let query = new Query(params.query, {
             path: ds.report.path,
@@ -33,25 +35,16 @@ class BigQueryChannel {
             params: params
         })
         if (params.paging) {
-            ds.report.require("paging")
+            await ds.require("paging")
             query.add(" limit {{paging.limit}} offset {{paging.offset}} ")
         }
         ds.connection.query = query
         ds.connection.location = params.location || "US"
 
         // check if query is available (and valid?
-        let p = query.init()
-            .then(() => {
-                ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
-            })
-        // check if connection is still ok, reconnect
-        return p
-    }
+        await query.init()
+        await ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
 
-    load(ds, connection) {
-        console.log("start BigQuery Load")
-        let startTime = this.stats.start()
-        const query = ds.connection.query
         const context = {
             getValue: (key) => {
                 key = key.replaceAll("_", ".")
@@ -69,6 +62,7 @@ class BigQueryChannel {
             params: query.params
             // dryRun: true,
         };
+
         return this.bigquery.query(opt)
             .then(([rows]) => {
                 console.log("Done Query " + rows.length)

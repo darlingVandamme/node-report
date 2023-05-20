@@ -19,21 +19,13 @@ class PagingChannel {
     ?? start , end , pageSize?
     */
 
-    init(ds, connection) {
-        // // console.log(" init ds mysql "+JSON.stringify(params))
-        // if dataset.queryfile  read file into query
-        // console.log("setup paging Channel "+this.name)
-        // hardcoded to query???
-        ds.require("query")
-        return Promise.resolve()
-    }
-
 
     load(ds, connection) {
         //let source = ds.report.getDataset(params.source)
         // set defaults?
+        let source = ds.require("query")
+
         let data = {}
-        let source = ds.report.getDataset("query")
         data.limit = tryValue(source, "limit")
         data.pageSize = tryValue(source, "pageSize")
         data.offset = tryValue(source, "offset")

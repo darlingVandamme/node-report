@@ -260,8 +260,8 @@ class ReportEngine {
             // report.arguments.addAll(req.query)
             // todo check required params
             //// console.log("query2 "+JSON.stringify(report.getDataset("query").data))
-            return report.load()
-        }).then((result) => {
+            //return report.load()
+        //}).then((result) => {
             //// console.log(JSON.stringify(report))
             // check if exists, fallback to default (first)
             let output = getOutput(report.output.type)

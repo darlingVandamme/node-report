@@ -4,17 +4,9 @@ class AggregateChannel {
         this.name = options.name
     }
 
-    init(ds, connection, params) {
 
-        ds.require(params.from)
-        connection.sourceDS = ds.report.getDataset(params.from)
-        // load all functions??
-        // read functions from file?
-        return Promise.resolve()
-    }
-
-    load(ds, connection) {
-        console.log("SourceDS " + connection.sourceDS.rows())
+    async load(ds, connection, params) {
+        connection.sourceDS = await ds.require(params.from)
         // let data = this.sourceDS.getRow(0).data
         let accumulator = connection.sourceDS.accumulator()
         let columns = accumulator.dimensions
@@ -32,7 +24,6 @@ class AggregateChannel {
         columns.forEach((colName) => {
             ds.getColumn(colName).options.display = "fixed"
         })
-        return Promise.resolve()
     }
 }
 

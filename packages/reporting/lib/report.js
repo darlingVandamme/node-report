@@ -12,11 +12,13 @@ class Report {
         this.engine = engine
         this.datasets = {}
         this.sources = {}  // needed?
-        this.loadList = []
         this.outputName = "main" // main, args, error, log, debug, alt?
         this.output = {}
         this.req = {}
         this.hbs = engine.hbs
+        this.requireList = []
+        this.loadList = []
+
     }
 
     getLink(options){
@@ -26,47 +28,72 @@ class Report {
         return new Link(this.req.url, this.req.base, options)
     }
 
-    require(source){
+    async require(dsName) {
         // console.log(typeof source)
-        if (Array.isArray(source )){
-            source.forEach(s=>{
-                this.require(s)
-            })
+        if (Array.isArray(dsName)) {
+            return Promise.all(dsName.map(s => {
+                return this.require(s)
+            }))
         } else {
             // check comma separated
             //// console.log("search source " + source)
-            let ds = this.datasets[source]
-            // check if not exists => error
-            if (!ds){
+            let ds = this.datasets[dsName]
+            if (!ds) {
                 // autocreate?
                 // // console.log(" require new "+source)
-                ds = this.addDataset(source)
+                ds = this.addDataset(dsName)
             }
-            if (!ds.required) { // if not already required
-                ds.required = true
-                this.loadList.push(source)
 
-                let channel = this.engine.getChannel(ds.options.channel)
+            if (ds.connection.status == "loading") {
+                // error circular dependency
+                // await ???
+                 // return ds
+            }
+            if (ds.connection.status == "done") {
+                return ds //ds.connection.done
+            }
 
-                if (channel){
-                    // console.log("found source type "+ds.options.source + " ")
-                    ds.connection = {
-                        channel:channel
-                    }
-                    this.debug("init dataset channel ",source)
-                    if (channel.init) {
-                        ds.connection.initDone = channel.init(ds, ds.connection, ds.options)
-                    }
+            ds.connection.status = "loading"
+            // check if not exists => error
+            /*            if (!ds.required) { // if not already required
+                            ds.required = true
+                            this.loadList.push(source)
+            */
+            this.requireList.push(dsName)
+            let channel = this.engine.getChannel(ds.options.channel)
+
+            if (ds.options.require) {
+                await ds.require(ds.options.require)
+                // console.log("require dataset"+ds.options.require)
+            }
+            // check ds columns for dependencies
+            // todo await
+            Object.values(ds.columns).forEach((col) => {
+                if (col.init) {
+                    col.init(ds, this)
                 }
-                if (ds.options.require){
-                    ds.require(ds.options.require)
-                    // console.log("require dataset"+ds.options.require)
+            }) // col.init(ds, report/this)
+
+            if (channel) {
+                // console.log("found source type "+ds.options.source + " ")
+                ds.connection.channel = channel
+
+                this.debug("init dataset channel ", dsName)
+                if (channel.init) {
+                    ds.connection.initDone = await channel.init(ds, ds.connection, ds.options)
                 }
-                // check ds columns for dependencies
-                Object.values(ds.columns).forEach((col) =>{ if (col.init){ col.init(ds, this) }}) // col.init(ds, report/this)
+                ds.connection.done = await channel.load(ds, ds.connection, ds.options)
+                ds.connection.status = "done"
+                this.loadList.push(dsName)
+                return ds
+                // return ds.connection.done
+            } else {
+                ds.connection.status = "done"
+                return ds
             }
         }
     }
+
 
     init(outputName,options){
         // console.log("name "+this.def.name)
@@ -101,14 +128,10 @@ class Report {
             // this.output.template = "div"
         }
 
-        this.require(this.output.include)
-
-        return Promise.all(this.loadList.map((name,index) => {
-            if (this.datasets[name].connection)
-                return this.datasets[name].connection.initDone
-        }))
+        return this.require(this.output.include)
     }
 
+    /*
     dependencyPromises(ds) {
         let deps = []
         ds.dependencies.forEach(depName => {
@@ -121,10 +144,10 @@ class Report {
         })
         return deps
     }
-
+*/
     load(){
         //console.log("load datasets "+JSON.stringify(this.loadList))
-        this.debug("loadList ",this.loadList)
+/*        this.debug("loadList ",this.loadList)
         this.dsList = this.loadList.map(name => {return this.getDataset(name)})
         // sort loadList on dependencies
         this.dsList.sort( (a,b) => {if (a.dependencies.includes(b.name)){ return 1 }else{ return -1} })
@@ -162,6 +185,7 @@ class Report {
 /*            .then(()=>{
             this.checkColumns()
         })*/
+        return Promise.resolve()
 
     }
 

@@ -6,16 +6,12 @@ class InlineChannel {
         this.name = options.name
     }
 
-    init(ds, connection, params) {
-        connection.data = params.data
-
-    }
-
-    load(ds, connection) {
-        console.log("loading inline data "+JSON.stringify(connection.data))
-        connection.data?.forEach(row => {
+    load(ds, connection, params) {
+        //console.log("loading inline data "+JSON.stringify(connection.data))
+        params.data?.forEach(row => {
             ds.addRow(row)
         })
+        return Promise.resolve(ds)
     }
 }
 

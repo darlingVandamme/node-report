@@ -11,12 +11,6 @@ class ReportChannel {
         this.stats = new profileStats("Report")
     }
 
-    init(ds, connection,params){
-        ds.report.log("Init Report "+this.name,params)
-        const reportDir = ds.report.path
-        return Promise.resolve()
-    }
-
     load(ds, connection){
         // caching?
         const reportDir = ds.report.path

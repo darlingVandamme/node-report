@@ -113,7 +113,8 @@ class Dataset {
             // todo pattern report or engine dependend??
 
             let params = [...s.matchAll(this.regex)]  // capturing groups https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll
-            params.forEach((found) => {
+            return Promise.all(
+                params.map((found) => {
                 //// console.log("checkRequire param "+found)
                 let param = found[1] // capturing group
                 let pos = param.indexOf(".")
@@ -121,21 +122,24 @@ class Dataset {
                     let ds = param.substr(0, pos)
                     let paramName = param.substr(pos + 1, param.length)
                     this.report.debug("requireCheck ", JSON.stringify({from: this.name, require: ds, param: paramName}))
-                    this.require(ds, paramName)
+                    return this.require(ds, paramName)
                 }
-            })
+            }))
         }
 
      require(name, paramName) {
         if (Array.isArray(name)) {
-            name.forEach(s => {
-                this.require(s)
-            })
+            return Promise.all(
+                name.map(s => {
+                    return this.require(s)
+                })
+            )
         } else {
             if (!this.dependencies.includes(name)) {
                 this.dependencies.push(name)
-                this.report.require(name)
                 this.report.debug("dependency ", JSON.stringify({from: this.name, require: name, param: paramName}))
+
+                return this.report.require(name)
 
                 // console.log("start Dependency "+this.name+" waiting on "+name)
             }

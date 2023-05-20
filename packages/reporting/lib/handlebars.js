@@ -149,6 +149,7 @@ function hbs(options) {
             helpers : {...helpers},
             partials : {...partials}
         }
+        // todo helpermissing  https://handlebarsjs.com/guide/hooks.html#helpermissing
 
         if (report) {// }  add report specific helpers
             rtOptions.helpers["classColumn"] = classColumn(report, rtOptions)
