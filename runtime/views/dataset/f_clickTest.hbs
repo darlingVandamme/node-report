@@ -8,7 +8,7 @@ import {showGraph} from "/reporting/js/graphTest.js"
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector("#dataset_{{options.source}}").
-        addEventListener("mouseover",showGraph)
+        addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_detail .dataset_div" )})
 })
 
 

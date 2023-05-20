@@ -19,74 +19,64 @@ class MysqlChannel {
         }) // console.log("setup Mysql Channel connected" )
     }
 
-    connect(dataset) {
-        return {
-            init: init,
-            load: load
+    init(ds, connection, params){
+        ds.report.log("Init MySQL "+this.name)
+        // console.log("Init MySQL "+channel.name,params)
+        let query = new Query(ds.options.query,{
+            path: ds.report.path,
+            replacer:"prepared", // "quote",
+            params:ds.options
+        })
+        if (params.paging){
+            ds.report.require("paging")
+            query.add(" limit {{paging.limit}} offset {{paging.offset}} ")
         }
-    }
-}
+        connection.query = query
 
-function init(ds, channel, params){
-    ds.report.log("Init MySQL "+channel.name,params)
-    // console.log("Init MySQL "+channel.name,params)
-    let query = new Query(params.query,{
-        path: ds.report.path,
-        replacer:"prepared", // "quote",
-        params:params
-    })
-    if (params.paging){
-        query.add(" limit {{paging.limit}} offset {{paging.offset}} ")
+        // check if query is available (and valid?
+        let p = query.init()
+            .then(()=>{
+                ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
+            })
+        // check if connection is still ok, reconnect
+        return p
     }
-    ds.connection.query = query
 
-    // check if query is available (and valid?
-    let p = query.init()
-        .then(()=>{
-            // todo add paging
-            ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
+
+    load(ds, connection){
+        // (wait on channel.done?)
+        let startTime = this.stats.start()
+        let conn = this.pool
+        // build query
+        const query = connection.query
+
+        const context = {
+            getValue : (key)=>ds.report.getValue(key)
+        }
+        query.build(context)
+
+        ds.report.debug("replace params "+this.name,JSON.stringify({stmt:query.query,ordered:query.ordered}))
+        console.log("replace params "+this.name,JSON.stringify({stmt:query.query,ordered:query.ordered}))
+
+        // return connection.query(params.query).then( ([rows,columns]) =>{
+        return conn.query(query.query, query.ordered).then( ([rows,columns]) =>{
+            // set columns
+            // console.log("info "+columns.info)
+            // console.log("info "+rows.info)
+            // todo register column types
+            let i=0
+            rows.forEach(row=>{
+                // console.log("read row "+i++)
+                ds.addRow(row)
+            })
+        }).catch(error => {
+            ds.report.error("error in MySQL",error)
+            // todo try to reconnect??
+            //throw error
+        }).finally (()=>{
+            this.stats.stop(startTime)
         })
-    // check if connection is still ok, reconnect
-    return p
-}
-
-
-function load(ds, channel, params){
-    // (wait on channel.done?)
-    let connection = channel.pool
-    // build query
-    const query = ds.connection.query
-
-    const context = {
-        getValue : (key)=>ds.report.getValue(key)
     }
-    query.build(context)
-
-
-    // ds.report.log("MySQL query " , params.query)
-    let startTime = channel.stats.start()
-
-    ds.report.debug("replace params "+channel.name,JSON.stringify({stmt:query.query,ordered:query.ordered}))
-    console.log("replace params "+channel.name,JSON.stringify({stmt:query.query,ordered:query.ordered}))
-
-    // return connection.query(params.query).then( ([rows,columns]) =>{
-    return connection.query(query.query, query.ordered).then( ([rows,columns]) =>{
-        // set columns
-        // console.log("info "+columns.info)
-        // console.log("info "+rows.info)
-        // todo register column types
-        let i=0
-        rows.forEach(row=>{
-            // console.log("read row "+i++)
-            ds.addRow(row)
-        })
-        channel.stats.stop(startTime)
-
-    }).catch(error => {
-        ds.report.error("error in MySQL",error)
-        // todo try to reconnect??
-        //throw error
-    })
 }
 
 

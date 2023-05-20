@@ -47,15 +47,16 @@ class Report {
                 this.loadList.push(source)
 
                 let channel = this.engine.getChannel(ds.options.channel)
-                // console.log("search source type "+ds.options.source)
-                // console.log("sources "+JSON.stringify(this.engine.channels))
 
                 if (channel){
                     // console.log("found source type "+ds.options.source + " ")
-                    ds.channel = channel
-                    ds.connection = channel.connect(ds)
+                    ds.connection = {
+                        channel:channel
+                    }
                     this.debug("init dataset channel ",source)
-                    ds.connection.initDone = ds.connection.init(ds,channel, ds.options)
+                    if (channel.init) {
+                        ds.connection.initDone = channel.init(ds, ds.connection, ds.options)
+                    }
                 }
                 if (ds.options.require){
                     ds.require(ds.options.require)
@@ -79,11 +80,6 @@ class Report {
         this.outputName = outputName
         this.output = this.def.output[outputName]
         console.log("output selected "+outputName+" : "+JSON.stringify(this.output))
-        // find needed connections / dependencies
-        // set up general datasets (from conf file
-        // this.require("log")
-        // this.require("error")
-        // this.require("msgs")
         this.debug("select output",outputName)
         // override default include through options
         if (options.include){ // array?
@@ -138,12 +134,13 @@ class Report {
             //console.log("Dependency check "+ds.name+" "+ds.dependencies)
             // todo check circular dependencies??
             let deps = this.dependencyPromises(ds);
-            if (ds.connection.load){
+            const channel = ds.connection.channel
+            if (channel && channel.load){
                 //console.log("Prepare load "+ds.name+" "+deps.length)
                 ds.connection.loading = Promise.all(deps).then((deps)=>{
                     //console.log("Start load "+ds.name+" "+deps.length)
                     ds.startLoad = Date.now()
-                    ds.connection.done = ds.connection.load(ds, ds.channel, ds.options)
+                    ds.connection.done = channel.load(ds, ds.connection )
                     //console.log("Promise set load "+ds.name+" "+deps.length)
                     if (ds.connection && ds.connection.done) {
                         return ds.connection.done.then(() => {

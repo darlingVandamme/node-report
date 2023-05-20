@@ -166,7 +166,7 @@ registerColumn("link" , function (name,options){
     }
 
     this.getValue = function(row,colName){
-        // console.log("get value format column "+this.link)
+        console.log("Link column "+this.options)
         // todo  return object
         /* { link:
              display...

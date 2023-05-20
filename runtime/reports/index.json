@@ -1,6 +1,8 @@
 {
   "name": "index",
   "description": "List of all reports ",
+  "keywords": ["demo","reportChannel","link"],
+
   "require": ["query"],
   "datasets": [
     {

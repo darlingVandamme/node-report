@@ -22,6 +22,7 @@
 - Cost & timing logging per user
 - user quota, short term quota
 - messages? / flash
+- Unique request ID?
 
 ## performance
 - timeout?
@@ -54,10 +55,10 @@
 ## aggregation
 - reduce (and map and filter ....)
 - https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/ 
-- stats object?  Accumulator 
-- correlations?
-- min - max 
-- median, percentile, rank...
++ stats object?  Accumulator 
++ correlations?
++ min - max 
++ median, percentile, rank...
 
 ## computed columns
 - client side computed columns ... 

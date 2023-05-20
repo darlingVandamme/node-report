@@ -1,4 +1,4 @@
-function showGraph(evt){
+function showGraph(evt, position){
     let clickedData = getData(evt.target)
     if (clickedData){
         let month = clickedData.month
@@ -16,7 +16,7 @@ function showGraph(evt){
             ],
             y: {grid: true}
         })
-        const div = document.querySelector("#dataset_detail .dataset_div");
+        const div = document.querySelector(position);
         div.replaceChild(graph,div.firstChild )
     }
 }

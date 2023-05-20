@@ -1,64 +1,56 @@
 
-function PagingChannel(options) {
-    this.options = options.options
-    this.name = options.name //"paging"
-    this.connect = function (dataset) {
-        //// console.log("connecting Mysql Channel connected" )
-        return {
-            init: init,
-            load: load
-        }
+class PagingChannel {
+
+    constructor(options) {
+        this.options = options.options
+        this.name = options.name //"paging"
     }
-}
 
-/* columns :
+    /* columns :
 
-- limit / pageSize
-- offset
-- page
-- from
-- to
-- previousPage
-- nextPage
-- url's
-?? start , end , pageSize?
-*/
+    - limit / pageSize
+    - offset
+    - page
+    - from
+    - to
+    - previousPage
+    - nextPage
+    - url's
+    ?? start , end , pageSize?
+    */
 
-function init(ds, channel, params){
-    // // console.log(" init ds mysql "+JSON.stringify(params))
-    // if dataset.queryfile  read file into query
-    // console.log("setup paging Channel "+this.name)
-    // hardcoded to query???
-    ds.require("query")
-
-    return Promise.resolve()
-}
-
-
-function load(ds, channel, params){
-
-    //let source = ds.report.getDataset(params.source)
-    // set defaults?
-    let data = {
-
+    init(ds, connection) {
+        // // console.log(" init ds mysql "+JSON.stringify(params))
+        // if dataset.queryfile  read file into query
+        // console.log("setup paging Channel "+this.name)
+        // hardcoded to query???
+        ds.require("query")
+        return Promise.resolve()
     }
-    let source = ds.report.getDataset("query")
-    data.limit = tryValue(source,"limit")
-    data.pageSize = tryValue(source,"pageSize")
-    data.offset = tryValue(source,"offset")
-    data.from = tryValue(source,"from")
-    data.to = tryValue(source,"to")
-    data.page = tryValue(source,"page")
-    data.max = tryValue(source,"max")
-    data.maxEstimate = tryValue(source,"maxEstimate")
-    data.link = ds.report.getLink()
-    //// console.log("paging params "+JSON.stringify(data))
-    data = calculate(data)
-    //// console.log("paging params "+JSON.stringify(data))
-    ds.addRow(data)
 
-    //// console.log(JSON.stringify(ds.getRow(0).data))
-    return Promise.resolve()
+
+    load(ds, connection) {
+        //let source = ds.report.getDataset(params.source)
+        // set defaults?
+        let data = {}
+        let source = ds.report.getDataset("query")
+        data.limit = tryValue(source, "limit")
+        data.pageSize = tryValue(source, "pageSize")
+        data.offset = tryValue(source, "offset")
+        data.from = tryValue(source, "from")
+        data.to = tryValue(source, "to")
+        data.page = tryValue(source, "page")
+        data.max = tryValue(source, "max")
+        data.maxEstimate = tryValue(source, "maxEstimate")
+        data.link = ds.report.getLink()
+        //// console.log("paging params "+JSON.stringify(data))
+        data = calculate(data)
+        //// console.log("paging params "+JSON.stringify(data))
+        ds.addRow(data)
+
+        //// console.log(JSON.stringify(ds.getRow(0).data))
+        return Promise.resolve()
+    }
 }
 
 function tryValue(source,name){
