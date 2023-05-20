@@ -54,9 +54,9 @@ function hbs(options) {
             return this.initialized
         } else {
             this.initialized = Promise.all([
-                /*this.readPartials(path.resolve(path.join(this.root, "partials")), partials),
+                this.readPartials(path.resolve(path.join(this.root, "partials")), partials),
                 this.readPartials(path.resolve(path.join(this.root, "form")) , formElements),
-                this.readPartials(path.resolve(path.join(this.root, "value")) , elements),*/
+                this.readPartials(path.resolve(path.join(this.root, "value")) , elements),
 
                 this.readPartials(path.resolve(path.join(this.module, "partials")), partials),
                 this.readPartials(path.resolve(path.join(this.module, "form")) , formElements),
@@ -71,21 +71,24 @@ function hbs(options) {
     // check reload changed files?
     this.readPartials = async function (dir, storage) {
         // multiple directories? recurse?
-        let files = await fs.readdir(dir)
-        for (const file of files) {
-            let ext = path.extname(file)
-            let fileName = path.basename(file, ext)
-            let fullPath = path.join(dir, file)
-            if (ext == this.ext) {
-            let stat = await fs.stat(fullPath)
-            // console.log("load "+fileName + " "+stat.mtimeMs+" "+this.loadTime +" "+(stat.mtimeMs >  this.loadTime))
-            if (stat.mtimeMs >  this.loadTime) {
-                let data = await fs.readFile(fullPath, this.encoding)
-                // console.log("add partial " + fileName)
-                storage[fileName] = hbsInstance.compile(data)
+        try {
+            let files = await fs.readdir(dir)
+            for (const file of files) {
+                let ext = path.extname(file)
+                let fileName = path.basename(file, ext)
+                let fullPath = path.join(dir, file)
+                if (ext == this.ext) {
+                    let stat = await fs.stat(fullPath)
+                    // console.log("load "+fileName + " "+stat.mtimeMs+" "+this.loadTime +" "+(stat.mtimeMs >  this.loadTime))
+                    if (stat.mtimeMs > this.loadTime) {
+                        let data = await fs.readFile(fullPath, this.encoding)
+                        // console.log("add partial " + fileName)
+                        storage[fileName] = hbsInstance.compile(data)
+                    }
                 }
             }
-
+        } catch (error){
+            // console.log(" No partials dir ",error)
         }
     }
 
@@ -93,13 +96,21 @@ function hbs(options) {
         await this.init()
         this.reads++
         let key = subDir+"/"+name
-        // todo try root and module
         // let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
-        let fileName = path.resolve(path.join(this.module, subDir, name + this.ext))
-        console.log("read template "+fileName)
-        // if reloadChanged
-        let stat = await(fileName)
+        let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
 
+        try{
+            await fs.access(fileName)
+        } catch {
+            fileName = path.resolve(path.join(this.module, subDir, name + this.ext))
+        }
+
+        console.log("read template "+fileName)
+        // todo check if exists
+
+        let stat = await fs.stat(fileName)
+
+        // if reloadChanged
         if (templates[key]) {
             if (stat.mtimeMS <= templateTimes[key]) {
                 this.cacheReads++
@@ -138,6 +149,7 @@ function hbs(options) {
             helpers : {...helpers},
             partials : {...partials}
         }
+        // todo helpermissing  https://handlebarsjs.com/guide/hooks.html#helpermissing
 
         if (report) {// }  add report specific helpers
             rtOptions.helpers["classColumn"] = classColumn(report, rtOptions)

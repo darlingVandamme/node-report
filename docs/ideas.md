@@ -22,6 +22,7 @@
 - Cost & timing logging per user
 - user quota, short term quota
 - messages? / flash
+- Unique request ID?
 
 ## performance
 - timeout?
@@ -54,10 +55,10 @@
 ## aggregation
 - reduce (and map and filter ....)
 - https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/ 
-- stats object?  Accumulator 
-- correlations?
-- min - max 
-- median, percentile, rank...
++ stats object?  Accumulator 
++ correlations?
++ min - max 
++ median, percentile, rank...
 
 ## computed columns
 - client side computed columns ... 
@@ -305,6 +306,12 @@
 - avoid html injection in server side rendering and {{{ }}}
 - auth keys for API use ???
 
+## authentication
+- passport demo
+- bigquery end user auth token
+- API's??
+-  
+
 ## Frameworks
 - express 
 - fastify
@@ -327,6 +334,8 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - hashing / salting?
 - runtime ENV VARS?
 - development vs production 
+- tokens (in session?)
+- API tokens?
 
 ## I18n ?
 - date formatting. client side locale?

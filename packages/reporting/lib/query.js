@@ -169,11 +169,14 @@ const replacers = {
         return "'" + value + "'"
     },
     value: (paramName, value, index) => {
+        // todo quotes for strings?
+        // if already quoted?
         return value
     },
     at: (paramName, value, index) => {
         return " @"+paramName
     },
+    // todo quotes depending on typeof
 }
 
 const conditions = {

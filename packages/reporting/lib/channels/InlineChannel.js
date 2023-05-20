@@ -1,29 +1,19 @@
 
-function InlineChannel(options) {
-    // // console.log("setup Mysql Channel " + JSON.stringify(options))
-    this.options = options.options
-    this.name = options.name
+class InlineChannel {
+    constructor(options) {
+        // // console.log("setup Mysql Channel " + JSON.stringify(options))
+        this.options = options.options
+        this.name = options.name
+    }
 
-    this.connect = function (dataset) {
-        //console.log("connecting inline Channel connected" )
-        return {
-            init: init,
-            load: load
-        }
+    load(ds, connection, params) {
+        //console.log("loading inline data "+JSON.stringify(connection.data))
+        params.data?.forEach(row => {
+            ds.addRow(row)
+        })
+        return Promise.resolve(ds)
     }
 }
-
-function init(ds, channel, params){
-    return Promise.resolve()
-}
-
-function load(ds, channel, params){
-    //console.log("loading inline data "+JSON.stringify(params))
-    params.data?.forEach(row =>{
-        ds.addRow(row)
-    })
-}
-
 
 
 export default InlineChannel

@@ -1,0 +1,71 @@
+{
+  "name": "index",
+  "description": "List of all reports ",
+  "keywords": ["demo","reportChannel","link"],
+
+  "require": ["query"],
+  "datasets": [
+    {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      }
+    },
+
+    {
+      "name": "main",
+      "show": "*",
+      "display" :{
+        "template": "table",
+        "position": "main"
+      },
+      "channel": "reports",
+      "columns": {
+          "link": {
+            "type": "hbs",
+            "display": "html",
+            "format": "<a href='{{baseName}}.html' >{{name}}</a>"
+          }
+      }
+    }
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "main",
+        "log"
+      ],
+      "type": "json"
+    },
+    "js": {
+      "include": [
+        "main"
+      ],
+      "template": "script",
+      "layout" : "",
+      "mime": "text/javascript",
+      "type": "hbs"
+    },
+    "html": {
+      "include": [
+        "query",
+        "log",
+        "main"
+      ],
+      "template": "general",
+      "type": "hbs"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

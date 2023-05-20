@@ -2,6 +2,13 @@
   "root" : "./runtime/reports",
   "channels": [
     {
+      "name": "reports",
+      "type": "reports",
+      "source": "./channels/ReportChannel.js",
+      "options": {
+
+      }
+    },{
       "name": "copy",
       "type": "copy",
       "source": "./channels/CopyChannel.js",

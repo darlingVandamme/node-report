@@ -1,37 +1,24 @@
 
-function CopyChannel(options) {
-    this.options = options.options
-    this.name = options.name
-    this.connect = function (dataset) {
-        return {
-            init: init,
-            load: load
-        }
+class CopyChannel {
+    constructor(options) {
+        this.options = options.options
+        this.name = options.name
+    }
+
+
+
+    async load(ds, connection, params) {
+        //let source = ds.report.getDataset(params.source)
+        connection.sourceDS = await ds.report.require(params.from)
+        // connection.sourceDS = ds.report.getDataset(params.from)
+        connection.copyColumns = params.copyColumns
+
+        console.log("SourceDS " + connection.sourceDS.name + connection.sourceDS.rows())
+        connection.sourceDS.getRows().forEach(row => {
+            ds.addRow(row.getData(connection.copyColumns))
+        })
     }
 }
-
-function init(ds, channel, params){
-
-    ds.require(params.from)
-    this.sourceDS = ds.report.getDataset(params.from)
-
-    return Promise.resolve()
-}
-
-
-function load(ds, channel, params){
-
-    //let source = ds.report.getDataset(params.source)
-    console.log("SourceDS "+this.sourceDS.rows())
-    // let data = this.sourceDS.getRow(0).data
-    this.sourceDS.getRows().forEach(row =>{
-        ds.addRow(row.getData(params.copyColumns ))
-    })
-    console.log("copy "+JSON.stringify(params))
-    //ds.report.debug("Copy data ",JSON.stringify(data))
-    // ds.addRow(data)
-}
-
 
 
 export default CopyChannel

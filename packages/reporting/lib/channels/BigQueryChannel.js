@@ -9,8 +9,11 @@ class BigQueryChannel {
         this.options = options.options
         this.name = options.name
         this.stats = new profileStats("BigQuery")
-        // connectionpool
-        console.log("starting bigQuery "+JSON.stringify(options))
+        console.log("starting bigQuery " + JSON.stringify(options))
+        // todo login as end user
+        // https://cloud.google.com/bigquery/docs/authentication/end-user-installed
+
+        // service account
         this.bigquery = new BigQuery({
                 keyFilename: this.options.keyFilename,
                 projectId: this.options.projectId,
@@ -22,75 +25,61 @@ class BigQueryChannel {
         )
     }
 
-    connect(dataset) {
-        console.log("Init BigQuery "+dataset.name)
-        return {
-            init: init,
-            load: load
+    async load(ds, connection, params) {
+        console.log("start BigQuery Load")
+        let startTime = this.stats.start()
+        ds.report.debug("Init BigQuery " + this.name, params)
+        let query = new Query(params.query, {
+            path: ds.report.path,
+            replacer: "at", // "quote",
+            params: params
+        })
+        if (params.paging) {
+            await ds.require("paging")
+            query.add(" limit {{paging.limit}} offset {{paging.offset}} ")
         }
-    }
-}
+        ds.connection.query = query
+        ds.connection.location = params.location || "US"
 
-function init(ds, channel, params){
-    ds.report.log("Init BigQuery "+channel.name,params)
-    let query = new Query(params.query,{
-        path: ds.report.path,
-        replacer:"quote", // "quote",
-        params:params
-    })
-    if (params.paging){
-        query.add(" limit {{paging.limit}} offset {{paging.offset}} ")
-    }
-    ds.connection.query = query
+        // check if query is available (and valid?
+        await query.init()
+        await ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
 
-    // check if query is available (and valid?
-    let p = query.init()
-        .then(()=>{
-            ds.checkRequire(query.strings().join())   // .forEach(s=> ds.checkRequire(s))
-        })
-    // check if connection is still ok, reconnect
-    return p
-}
-
-
-function load(ds, channel, params){
-    console.log("start BigQuery Load")
-    let startTime = channel.stats.start()
-    const query = ds.connection.query
-    const context = {
-        getValue : (key)=>{
-            key = key.replaceAll("_",".")
-            return ds.report.getValue(key)
+        const context = {
+            getValue: (key) => {
+                key = key.replaceAll("_", ".")
+                return ds.report.getValue(key)
+            }
         }
+        query.build(context)
+
+        ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
+        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
+
+        const opt = {
+            query: query.query,
+            location: connection.location,
+            params: query.params
+            // dryRun: true,
+        };
+
+        return this.bigquery.query(opt)
+            .then(([rows]) => {
+                console.log("Done Query " + rows.length)
+                let i = 0
+                rows.forEach(row => {
+                    // console.log("read row " + i++)
+                    ds.addRow(row)
+                })
+            })
+            .catch(error => {
+                ds.report.error("error in Bigquery", error)
+                // todo try to reconnect??
+                //throw error
+            }).finally(()=>{
+                this.stats.stop(startTime)
+            })
     }
-    query.build(context)
-
-    ds.report.debug("replace params "+channel.name,JSON.stringify({stmt:query.query, params:query.params}))
-    console.log("replace params "+channel.name,JSON.stringify({stmt:query.query, params:query.params}))
-
-    const opt = {
-        query: query.query,
-        // Location must match that of the dataset(s) referenced in the query.
-        location: 'US',
-        params: query.params
-
-        // dryRun: true,
-    };
-    return channel.bigquery.query(opt)
-        .then(([rows] ) =>{
-        console.log("Done Query "+rows.length)
-        let i=0
-        rows.forEach(row=>{
-            console.log("read row "+i++)
-            ds.addRow(row)
-        })
-        channel.stats.stop(startTime)
-        })
-        .catch(error => {
-        ds.report.error("error in Bigquery",error)
-        // todo try to reconnect??
-        //throw error
-    })
 }
 
 export default BigQueryChannel
