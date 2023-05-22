@@ -8,14 +8,18 @@
     {
       "name" : "query",
       "show": "*",
-      "type" :  "form",
-      "position" : "nav",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      },
       "columns": {
         "code": {
+          "hidden":true,
           "header" : "Geef hier de landcode in",
           "template" : "text"
         },
-        "city": {
+        "city2": {
+          "hidden":true,
           "header" : "Geef hier de stad in",
           "template": "text",
           "type": "format",
@@ -23,41 +27,26 @@
         }
       }
     },
-    {
-      "name" : "args",
-      "show": "*",
-      "type" :  "table",
-      "source" : "copy",
-      "from" : "query",
-      "position" : "tabs",
-      "columns": {
-        "id": {
-          "type": "parseInt",
-          "input" : {
-            "type": "number"
-          }
-        }
-      }
-    },
 
     {
       "name" : "main",
       "description" : "",
-      "type" : "table",
-      "source" : "world",
-      "class" : "zebra",
-      "query" : "select * from City where CountryCode = {{query.code}}",
+      "display" : {
+        "template": "table",
+        "position": "main",
+        "class" : "zebra"
+      },
+      "channel" : "world",
+      "paging" : true,
+      "query" : ["select * from City where 1=1 ",
+        { "condition": "available", "key":"query.code",
+          "query": { "condition": "array", "key":"query.code", "query": " and CountryCode in ({{query.code}}) ", "else": " and CountryCode = {{query.code}} "},
+          "else": { "condition": "available", "key":"query.city", "query": " and Name like {{query.city2}} ", "else":" and 1=2 " }
+        }
+      ],
       "show" : "*",
       "columns": {
       }
-      },
-    {
-      "name" : "posts",
-      "description" : "",
-      "position": "tabs",
-      "source" : "StackExchange",
-      "query" : "select count(*) as total, min(CreaionDate) as first, max(CreaionDate) as last  from posts where OwnerUserId = {{args.id}}",
-      "show" : "*"
     }
 
   ],
@@ -68,12 +57,12 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","args","posts","server","log"],
+      "include": ["query","main","server","log"],
       "argForm": {
-          "dataset": "args",
+          "dataset": "query",
           "extension" : "html"
       },
-      "template": "tabs",
+      "template": "general",
       "type" : "hbs",
       "reload" : true
     },

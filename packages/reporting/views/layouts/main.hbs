@@ -1,0 +1,23 @@
+{{#with report}}
+<html >
+<head>
+
+<title>{{name}}</title>
+    <link rel="stylesheet" href="/reporting/css/report.css" >
+    <link rel="stylesheet" href="/reporting/css/custom.css" >
+    <script src="/reporting/js/report.js"></script>
+    {{#each include.scripts}}{{{this}}}{{/each}}
+    <script language="JavaScript" type="module">
+        {{#each include.javascript }} {{{this}}}{{/each}}
+    </script>
+    <style>
+        {{#each include.css }} {{{this}}}{{/each}}
+    </style>
+</head>
+<body>
+{{{body}}}
+</body>
+
+</html>
+
+{{/with}}

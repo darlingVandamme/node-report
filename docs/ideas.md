@@ -6,6 +6,14 @@
 - Naming consistency!
 - bookmarkability!!!    
 
+## package name
+- reporting
+- mining?
+- tab
+- data
+- flow
+
+
 ## Logging
 - engine level logging (available as development dataset?)
 + report level logging in dataset
@@ -14,6 +22,7 @@
 - Cost & timing logging per user
 - user quota, short term quota
 - messages? / flash
+- Unique request ID?
 
 ## performance
 - timeout?
@@ -21,11 +30,11 @@
 - cost, timings & bytes  per user  logging
 
 ## ES6 import
-- dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
++ dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
 - https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
 
 ## Dataset
-- Row - column set of values
++ Row - column set of values
     - singleton
     - array
     - Virtual (copy)
@@ -34,7 +43,7 @@
         - combined
         - f()
 + dependencies? (auto?) require()
-- dataset.channel (connection to datasource channel)
++ dataset.channel (connection to datasource channel)
 + dataset.done  init promise
 + dataset.init
 + dataset.load 
@@ -46,10 +55,10 @@
 ## aggregation
 - reduce (and map and filter ....)
 - https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/ 
-- stats object?  Accumulator 
-- correlations?
-- min - max 
-- median, percentile, rank...
++ stats object?  Accumulator 
++ correlations?
++ min - max 
++ median, percentile, rank...
 
 ## computed columns
 - client side computed columns ... 
@@ -85,10 +94,10 @@
     - type  string(default), date, numbers  (how conversions?) 
     + display (date, number ...)
     + style   class style (css)
-    - hide?
+    + hidden
     + order (default: 100,110,120,130)
-    - required (form)
-    - template (default = displayvalue)
+    + required (form)
+    + template (default = displayvalue)
      
      
 + copy column
@@ -133,7 +142,7 @@
     - datecounter
     - date names (last year,...)
     - random
-    - copy dataset
+    + copy dataset
     - filter rows / columns
     - transpose
     - crosstab !!!
@@ -146,7 +155,7 @@
 ## conditional sources
 - choice between different queries (depending on availability of params)
 - intelligent query creation?  select:"   " , from: "  "....
-
++ Query builder object
 
 ## paging
 - only 1 paging per report
@@ -245,6 +254,7 @@
 - Eerst test met zelf gegenereerde grafieken
 - Toch eerder Plot gebruiken
 - Hover effecten  https://stackoverflow.com/questions/74454315/how-to-highlight-a-line-when-mouse-over-it-in-observable-plot-using-javascript
+- https://observablehq.com/@mkfreeman/plot-tooltip
 - https://observablehq.com/d/2e1daf099a7aaaea
 
 
@@ -296,6 +306,12 @@
 - avoid html injection in server side rendering and {{{ }}}
 - auth keys for API use ???
 
+## authentication
+- passport demo
+- bigquery end user auth token
+- API's??
+-  
+
 ## Frameworks
 - express 
 - fastify
@@ -318,6 +334,8 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - hashing / salting?
 - runtime ENV VARS?
 - development vs production 
+- tokens (in session?)
+- API tokens?
 
 ## I18n ?
 - date formatting. client side locale?
@@ -410,6 +428,12 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
 - slow queries log
 - total query time / total # queries
 
+## Dynamic queries
+
+- dynamic SQL, but also mongo find and mongo pipelines compatible
+
+
+
 ## Mongo Channel
 - vm script
 - query as array
@@ -439,4 +463,6 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Bigquery https://cloud.google.com/bigquery/public-data
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
  
+ ## alternatives
+ - https://kanaries.net/home
  

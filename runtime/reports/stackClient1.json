@@ -8,8 +8,10 @@
     {
       "name" : "query",
       "show": "*",
-      "type" :  "form",
-      "position" : "nav",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      },
       "columns": {
         "startDate": {
           "template" : "date",
@@ -24,24 +26,22 @@
     {
       "name" : "block",
       "show": "",
-      "type" :  "container",
-      "position" : "main",
+      "display" : {
+        "template": "container",
+        "position": "main"
+      },
       "columns": {
       }
     },
     {
       "name": "main",
       "description": "",
-      "type": "table",
-      "source": "StackExchange",
-      "class": "zebra",
-      "position": "hidden",
-      "queryFile": "stackDaily.sql",
-      "actions": {
-        "scripts": "",
-        "click": "showHiddenColumns",
-        "hover": "highlight"
+      "channel": "StackExchange",
+      "display" : {
+        "template": "table",
+        "class": "zebra"
       },
+      "query": { "file": "stackDaily.sql"},
       "show": "*",
       "columns": {
       }
@@ -49,10 +49,12 @@
     {
       "name" : "months",
       "description" : "",
-      "type" : "table",
-      "position" : "block",
-      "source" : "StackExchange",
-      "class" : "zebra",
+      "display" : {
+        "template": "table",
+        "position": "block",
+        "class": "zebra"
+      },
+      "channel" : "StackExchange",
       "show" : "*",
       "query": "select year(CreaionDate) year, month(CreaionDate) month , count(*) as posts, cast(sum(viewCount) as integer) as views from posts\nwhere CreaionDate between {{query.startDate}} and {{query.endDate}} group by year, month",
       "columns": {
@@ -62,9 +64,11 @@
     {
       "name" : "detail",
       "description" : "",
-      "type" : "div",
-      "position": "block",
-      "class" : "zebra",
+      "display" : {
+        "template": "div",
+        "position": "block",
+        "class": "zebra"
+      },
       "show" : "*",
       "columns": {
 
@@ -73,13 +77,11 @@
     {
       "name" : "click",
       "description" : "",
-      "type" : "f_clickTest",
-      "position" : "function",
-      "source" : "months",
-      "show" : "*",
-      "columns": {
-
-      }
+      "display" : {
+        "template": "f_clickTest",
+        "position" : "function"
+      },
+      "source" : "months"
     }
 
 

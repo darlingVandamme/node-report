@@ -1,0 +1,145 @@
+{
+  "name": "inlineTest",
+  "description": "Testing",
+  "require": ["query"],
+  "datasets": [
+    {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      }
+    },
+
+    {
+      "name" : "clock",
+      "description" : "",
+      "display" :{
+        "template":  "clock",
+        "position": "header"
+      }
+    },
+    {
+      "name": "main",
+      "display" :{
+        "template": "table",
+        "position": "main"
+      },
+      "channel": "inline",
+      "data": [
+        {
+          "key": 1,
+          "value": "een",
+          "display": "een"
+        },
+        {
+          "key": 2,
+          "value": "twee",
+          "display": "twee"
+        },
+        {
+          "key": 3,
+          "value": "drie",
+          "display": "drie"
+        },
+        {
+          "key": 4,
+          "value": "vier",
+          "display": "vier"
+        },
+        {
+          "key": 5,
+          "value": "vijf",
+          "display": "vijf"
+        }
+      ],
+      "columns": {
+        "select": {
+          "template": "checkbox",
+          "header": "Select",
+          "type": "select",
+          "source": "select1"
+        },
+        "select1": {
+          "hidden": true,
+          "type": "function",
+          "function": "data.key > 2"
+        },
+        "moment": {
+          "order": 1000,
+          "type": "function",
+          "function": "Date.now() /1000 "
+
+        },
+        "random": {
+          "order": 1010,
+          "type": "function",
+          "function": "Math.floor(Math.random()*20) "
+
+        }
+      }
+    },
+    {
+      "name" : "total",
+      "description" : "",
+      "display":{
+        "template" : "table",
+        "position": "main",
+        "class" : "zebra"
+      },
+      "channel" : "aggregate",
+      "from": "main",
+      "show" : "*",
+      "columns": {
+
+      }
+
+    }
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "main",
+        "log",
+        "total"
+      ],
+      "type": "json"
+    },
+    "js": {
+      "include": [
+        "main",
+        "total"
+      ],
+      "template": "script",
+      "layout" : "",
+      "mime": "text/javascript",
+      "type": "hbs"
+    },
+    "html": {
+      "include": [
+        "query",
+        "clock",
+        "log",
+        "main",
+        "total"
+      ],
+      "argForm": {
+        "dataset": "args",
+        "extension": "html"
+      },
+      "template": "general",
+      "type": "hbs"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

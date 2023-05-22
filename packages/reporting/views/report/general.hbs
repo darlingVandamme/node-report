@@ -1,0 +1,67 @@
+{{#with report}}
+<header class="header" id="header">
+    {{> logo}}
+    <h1 class="report_name">{{name}}</h1>
+    <div>{{date moment}} Prof: {{profile}}ms  </div>
+    {{position "header"}}
+</header>
+
+<div class="float_right">
+    <div class="hide_button_right toggle_hide icon toggled" data-target=".checkboxes" data-level="0" data-toggleclass="hide_anim">
+    </div>
+    <div class="checkboxes hide_anim">
+        {{#each datasets}}
+            {{> checkbox}}
+        {{/each}}
+    </div>
+</div>
+
+<div class="container">
+    <div class="left_column">
+        <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
+        </div>
+        <nav>
+            {{position "nav" }}
+            <div class="dark_mode">
+                <input type="checkbox" id="dark_mode">
+                <label for="dark_mode"> dark mode </label>
+            </div>
+            {{paging}}
+        </nav>
+    </div>
+
+    <div id="overlay" class="hidden">
+        <div class="xmark overlay_hide" onclick="closeOverlay()">
+        </div>
+        <div class="table_info">
+        </div>
+    </div>
+
+    <main>
+        {{position "main"  }}
+    </main>
+</div>
+
+<div class="hidden" >
+    {{position "hidden"}}
+</div>
+
+<script language="JavaScript">
+    const report = {
+        name: "{{name}}",
+        moment: "{{moment}}",
+        profile: "{{profile}}",
+        url: "{{{url}}}",
+        style: "{{style}}",
+        data:{
+            {{#each data}}
+            "{{this.name}}": {{{jsData this.name html=false}}} {{#unless @last}}, {{/unless}}
+            {{/each}}
+            }
+    }
+
+</script>
+<script language="JavaScript" type="module">
+        {{position "function"}}
+</script>
+{{/with}}

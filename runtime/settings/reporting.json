@@ -1,0 +1,78 @@
+{
+  "root" : "./runtime/reports",
+  "channels": [
+    {
+      "name": "testFiles",
+      "type": "file",
+      "options": {
+        "root": "/home/geert/projects/nodeReport/test/data/"
+      }
+    },
+    {
+      "name": "rfam",
+      "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
+      "options": {
+        "help": "https://docs.rfam.org/en/latest/database.html",
+        "host": "mysql-rfam-public.ebi.ac.uk",
+        "db": "Rfam",
+        "port": "4497",
+        "user": "rfamro"
+      }
+    },
+    {
+      "name": "StackExchange",
+      "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "stats",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
+
+      }
+    },
+    {
+      "name": "Titanic",
+      "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "ctu_titanic",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
+
+      }
+    },
+    {
+      "name": "world",
+      "type": "mysql",
+      "source": "./channels/MysqlChannel.js",
+      "options": {
+        "help": "https://relational.fit.cvut.cz/dataset/Stats",
+        "host": "relational.fit.cvut.cz",
+        "db": "world",
+        "port": "3306",
+        "user": "guest",
+        "password": "relational"
+      }
+    },
+
+    {
+      "name": "bq",
+      "type": "bigQuery",
+      "source": "./channels/MysqlChannel.js",
+      "options": {
+        "keyFilename": "./settings/GCP_auth.json",
+        "projectId": "nth-subset-276608",
+        "root": "./test/reports"
+      }
+    }
+  ]
+}
+
+
