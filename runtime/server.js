@@ -26,13 +26,13 @@ app.engine('.hbs', hbs.engine );
 const reports = new ReportEngine("runtime/settings/reporting.json")
 // correct way???
 app.use((req,res,next)=>reports.init(req,res,next));
-reports.usage = async (item) => {
+/* reports.usage = async (item) => {
     let m = reports.getChannel("localMongo")
     if (m) {
         let conn = await m.connection
         conn.db("reporting").collection("usage").insertOne(item)
     }
-}
+} */
 
 app.get("/report/:name.:type",(req,res,next)=>reports.express(req,res,next))
 app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
