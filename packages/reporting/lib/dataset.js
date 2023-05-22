@@ -15,7 +15,7 @@ class Dataset {
         this.columnList = []
         this.columns = {}
         this.dependencies = [] // or {} ??
-        this.connection = {}
+        this.connection = {status:"init"}
         // this.connectOptions = {}
         // batches?
         console.log("create dataset " + JSON.stringify(options))

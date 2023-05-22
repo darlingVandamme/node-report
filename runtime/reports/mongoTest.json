@@ -1,0 +1,85 @@
+{
+  "name": "Mongo test ",
+  "description": "Test report for localhost mongo",
+  "version" : "0.0.1",
+  "keywords": [],
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "type" :  "form",
+      "position" : "nav",
+      "require" : ["lookup_test"],
+      "columns" : {
+        "min":{
+          "type": "parseInt",
+          "default" : 0
+        },
+        "likes":{
+          "type": "parseInt",
+          "default" : 0
+        }
+
+      }
+    },
+
+    {
+      "name" : "main",
+      "description" : "",
+      "display":{
+        "template" : "table",
+        "class" : "zebra",
+        "position": "main"
+      },
+      "source" : "localMongo",
+      "paging": true,
+      "query" : "{reportSpent:{$gt: {{query.min}}  } , \"likes.likes\" : {$gt: {{query.likes}}  }}",
+      "db": "adlens",
+      "collection": "pages",
+      "sort": "{reportSpent:1} ",
+      "show" : "*"
+    },
+    {
+      "name" : "summary",
+      "description" : "",
+      "display":{
+        "template" : "table",
+        "class" : "zebra",
+        "position": "main"
+      },
+      "source" : "localMongo",
+      "paging": false,
+      "command" : "aggregate",
+      "query" : {
+        "file": "aggregate.query"
+      },
+      "db": "adlens",
+      "collection": "pages",
+      "show" : "*"
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","summary","main","args","server","log"],
+      "template": "general",
+      "type" : "hbs",
+      "reload" : true
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "extension" : "html",
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

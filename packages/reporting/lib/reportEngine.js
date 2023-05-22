@@ -13,7 +13,6 @@ function createEngine(configFile){
 class ReportEngine {
 
     constructor(configFile) {
-
         this.runtime = {
             startTime: Date.now(),
             errors: 0,
@@ -140,7 +139,7 @@ class ReportEngine {
             let content = await fs.readFile(fileName,"utf8")
             // console.log(content)
             let reportDef = JSON.parse(content)
-            console.log(reportDef)
+            // console.log(reportDef)
             reportDef.location = {
                 path: this.paths.report,
                 file: fileName
@@ -160,7 +159,7 @@ class ReportEngine {
         let report
         let definition = await this.findReport(name)
         let defaultDef = await this.findReport("default")
-        console.log(definition)
+        // console.log(definition)
         let combined = {...defaultDef, ...definition}
         // todo better merge???
         combined.datasets = [...defaultDef.datasets, ...definition.datasets]
@@ -174,6 +173,22 @@ class ReportEngine {
             console.log("error reading report  " + name)
             throw error
         })*/
+    }
+
+    usage(item){
+        // log usage
+        /*{ name:reportName
+            url
+            user
+            startTime
+            stopTime
+            bytes
+            error
+        }
+
+         */
+        console.log(item)
+
     }
 
     express(req,res,next) {
@@ -275,10 +290,21 @@ class ReportEngine {
             // outputOptions.res = res  // send res to allow serverHTML
             output(report, outputOptions).then(html=>{
                 if (outputOptions.mime){
-                    console.log("mime type "+outputOptions.mime)
+                    // console.log("mime type "+outputOptions.mime)
                     res.type(outputOptions.mime)
                 }
                 res.send(html)
+                console.log("requireList ",report.requireList)
+                console.log("loadList ",report.loadList)
+                usage({
+                    name:report.name,
+                    url:req.originalUrl,
+                    user:user,
+                    startTime:report.startTime,
+                    stopTime:Date.now(),
+                    bytes:Buffer.byteLength(html,"utf-8"),
+                    error:{}
+                })
                 // res.status?
                 // res.end() ?
             })
@@ -294,6 +320,15 @@ class ReportEngine {
                     report.error(error.message,JSON.stringify(error))
                     let output = getOutput("error")
                     output(report,res, report.output)
+                    usage({
+                        name:report.name,
+                        url:req.originalUrl,
+                        user:user,
+                        startTime:report.startTime,
+                        stopTime:Date.now(),
+                        bytes: 0, // Buffer.byteLength(html,"utf-8"),
+                        error:{}
+                    })
                 } else {
                     // res.sendStatus(500)
                     next(error)

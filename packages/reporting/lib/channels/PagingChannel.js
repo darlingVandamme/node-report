@@ -20,10 +20,10 @@ class PagingChannel {
     */
 
 
-    load(ds, connection) {
+    async load(ds, connection) {
         //let source = ds.report.getDataset(params.source)
         // set defaults?
-        let source = ds.require("query")
+        let source = await ds.require("query")
 
         let data = {}
         data.limit = tryValue(source, "limit")
