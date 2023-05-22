@@ -296,11 +296,11 @@ class ReportEngine {
                 res.send(html)
                 console.log("requireList ",report.requireList)
                 console.log("loadList ",report.loadList)
-                usage({
+                this.usage({
                     name:report.name,
                     url:req.originalUrl,
-                    user:user,
-                    startTime:report.startTime,
+                    user:req.user,
+                    startTime:report.timestamp,
                     stopTime:Date.now(),
                     bytes:Buffer.byteLength(html,"utf-8"),
                     error:{}
