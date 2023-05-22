@@ -9,26 +9,26 @@ body {
 }
 
 .logo {
-    max-height: 10vh;
-    width: 20vw;
+    height: 100%;
+    width: auto;
     & > img {
         width: auto;
-        max-height: 10vh;
+        height: 100%;
         object-fit: contain;
     }
 }
 
 .report_name {
-    height: 10vh;
     width: 80vw;
     text-align: center;
 }
 
 header {
     top: 0;
-    height: 10vh;
+    height: 5em;
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: var(--color-1);
     z-index: 10;
@@ -36,10 +36,12 @@ header {
     & > h1 {
         padding: 0;
         margin: 0;
+        text-align: center;
     }
 }
 
 .fixed {
+    height: 3em;
     position: sticky;
     top: 0;
     box-shadow: 0px 0px 5px 0px var(--color-5);
@@ -47,7 +49,7 @@ header {
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 nav {

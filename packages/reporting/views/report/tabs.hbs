@@ -1,3 +1,4 @@
+{{#with report}}
 <header class="header" id="header">
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
@@ -27,15 +28,12 @@
         <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav>
-            {{#each datasets}}
-                {{#if this.position.nav}}
-                    {{> serverDSnav}}
-                {{/if}}
-            {{/each}}
+            {{position "nav" }}
             <div class="dark_mode">
                 <input type="checkbox" id="dark_mode">
                 <label for="dark_mode"> dark mode </label>
             </div>
+            {{paging}}
         </nav>
     </div>
 
@@ -47,11 +45,7 @@
     </div>
 
     <main>
-        {{#each datasets}}
-            {{#if this.position.main}}
-                {{> serverDS}}
-            {{/if}}
-        {{/each}}
+        {{position "main"  }}
         <div class="tabs">
             {{#each datasets}}
                 {{#if this.position.tabs}}
@@ -98,3 +92,4 @@
                 ]
     }
     </script>
+    {{/with}}
