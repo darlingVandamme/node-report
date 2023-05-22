@@ -4,7 +4,7 @@ import {Query} from "../query.js"
 
 class MysqlChannel {
 
-    constructor(options) {
+    constructor(options, engine) {
         // // console.log("setup Mysql Channel " + JSON.stringify(options))
         this.options = options.options
         this.name = options.name
@@ -17,13 +17,16 @@ class MysqlChannel {
             password: this.options.password,
             database: this.options.db
         }) // console.log("setup Mysql Channel connected" )
+
+        this.queryPath = engine.paths.query
+
     }
 
     async load(ds, connection, params) {
         let startTime = this.stats.start()
 
         let query = new Query(ds.options.query, {
-            path: ds.report.path,
+            path: this.queryPath,
             replacer: "prepared", // "quote",
             params: ds.options
         })

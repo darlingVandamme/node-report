@@ -5,6 +5,7 @@
     - external github / npm
 - Naming consistency!
 - bookmarkability!!!    
+- versioning
 
 ## package name
 - reporting

@@ -1,5 +1,8 @@
 {
   "root" : "./runtime/reports",
+  "reports" : "./runtime/reports",
+  "query" : "./runtime/query",
+
   "channels": [
     {
       "name": "testFiles",
@@ -71,7 +74,16 @@
         "projectId": "nth-subset-276608",
         "root": "./test/reports"
       }
+    },
+    {
+      "name": "localMongo",
+      "type": "mongodb",
+      "source": "./channels/MongoChannel.js",
+      "options": {
+        "url" : "mongodb://localhost"
+      }
     }
+
   ]
 }
 

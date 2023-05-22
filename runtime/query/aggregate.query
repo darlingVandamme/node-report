@@ -1,0 +1,19 @@
+    [
+        // Stage 1
+        {
+            $match: {
+                // enter query here
+                reportSpent : {$gt: {{query.min}}}
+            }
+        },
+
+        // Stage 2
+        {
+            $group: {
+                _id: "$country",
+                aantal:{$sum:1}
+                //<field1>: { <accumulator1> : <expression1> },
+                //...
+            }
+        }
+    ]

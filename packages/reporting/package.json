@@ -34,7 +34,8 @@
     "mysql2": "^3.2.0",
     "@google-cloud/bigquery": "^6.2.0",
     "google-auth-library": "^8.8.0",
-    "readline-promise": "^1.0.5"
+    "readline-promise": "^1.0.5",
+    "mongodb" : "^5.5.0"
   },
   "comment": {
     "mysql2": " move to separate mysql package "

@@ -13,7 +13,6 @@ function createEngine(configFile){
 class ReportEngine {
 
     constructor(configFile) {
-
         this.runtime = {
             startTime: Date.now(),
             errors: 0,
@@ -28,9 +27,8 @@ class ReportEngine {
         }
         this.configFile = path.join(this.paths.root, configFile)
         this.paths.config = this.configFile
-        this.paths.reports =  path.join(this.paths.root, "./runtime/reports")
-
-        console.log(this.paths)
+        this.paths.reports =  path.join(this.paths.root,  "./runtime/reports")
+        this.paths.query =  path.join(this.paths.root, "./runtime/reports")
 
         this.hbs = new hbs({root: "runtime/views", "module": path.join(this.paths.module, "views")}) // options
 
@@ -72,6 +70,7 @@ class ReportEngine {
             this.readDefaults(path.join(this.paths.module, "settings/reporting.json")),
             this.loadConfig(this.configFile)
         ]).then(r => {
+            console.log(this.paths)
             // console.log("all setup")
             next()
         })
@@ -84,10 +83,11 @@ class ReportEngine {
             .then(content => {
                 const conf = JSON.parse(content)
                 this.conf = conf
-                if (conf.root) {
-                    this.paths.report = path.join(this.paths.root, conf.root)
-                    console.log("report path "+this.paths.report)
+                if (conf.reports) {
+                    this.paths.report = path.join(this.paths.root, conf.reports )
                 }
+
+                this.paths.query =  path.join(this.paths.root, (conf.query || conf.report || "./runtime/reports"))
 
                 let promises = []
                 promises.push(this.addChannels(conf.channels))
@@ -124,7 +124,7 @@ class ReportEngine {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
                 return import(channel.source).then(result => {
                     // // console.log("try new channel "+channel.name )
-                    this.addChannel(channel.name, new result.default(channel))
+                    this.addChannel(channel.name, new result.default(channel, this))
                 })
             }
         }))
@@ -140,7 +140,7 @@ class ReportEngine {
             let content = await fs.readFile(fileName,"utf8")
             // console.log(content)
             let reportDef = JSON.parse(content)
-            console.log(reportDef)
+            // console.log(reportDef)
             reportDef.location = {
                 path: this.paths.report,
                 file: fileName
@@ -160,7 +160,7 @@ class ReportEngine {
         let report
         let definition = await this.findReport(name)
         let defaultDef = await this.findReport("default")
-        console.log(definition)
+        // console.log(definition)
         let combined = {...defaultDef, ...definition}
         // todo better merge???
         combined.datasets = [...defaultDef.datasets, ...definition.datasets]
@@ -174,6 +174,22 @@ class ReportEngine {
             console.log("error reading report  " + name)
             throw error
         })*/
+    }
+
+    usage(item){
+        // log usage
+        /*{ name:reportName
+            url
+            user
+            startTime
+            stopTime
+            bytes
+            error
+        }
+
+         */
+        console.log(item)
+
     }
 
     express(req,res,next) {
@@ -275,10 +291,21 @@ class ReportEngine {
             // outputOptions.res = res  // send res to allow serverHTML
             output(report, outputOptions).then(html=>{
                 if (outputOptions.mime){
-                    console.log("mime type "+outputOptions.mime)
+                    // console.log("mime type "+outputOptions.mime)
                     res.type(outputOptions.mime)
                 }
                 res.send(html)
+                console.log("requireList ",report.requireList)
+                console.log("loadList ",report.loadList)
+                this.usage({
+                    name:report.name,
+                    url:req.originalUrl,
+                    user:req.user,
+                    startTime:report.timestamp,
+                    stopTime:Date.now(),
+                    bytes:Buffer.byteLength(html,"utf-8"),
+                    error:{}
+                })
                 // res.status?
                 // res.end() ?
             })
@@ -294,6 +321,15 @@ class ReportEngine {
                     report.error(error.message,JSON.stringify(error))
                     let output = getOutput("error")
                     output(report,res, report.output)
+                    usage({
+                        name:report.name,
+                        url:req.originalUrl,
+                        user:user,
+                        startTime:report.startTime,
+                        stopTime:Date.now(),
+                        bytes: 0, // Buffer.byteLength(html,"utf-8"),
+                        error:{}
+                    })
                 } else {
                     // res.sendStatus(500)
                     next(error)
