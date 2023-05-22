@@ -27,9 +27,8 @@ class ReportEngine {
         }
         this.configFile = path.join(this.paths.root, configFile)
         this.paths.config = this.configFile
-        this.paths.reports =  path.join(this.paths.root, "./runtime/reports")
-
-        console.log(this.paths)
+        this.paths.reports =  path.join(this.paths.root,  "./runtime/reports")
+        this.paths.query =  path.join(this.paths.root, "./runtime/reports")
 
         this.hbs = new hbs({root: "runtime/views", "module": path.join(this.paths.module, "views")}) // options
 
@@ -71,6 +70,7 @@ class ReportEngine {
             this.readDefaults(path.join(this.paths.module, "settings/reporting.json")),
             this.loadConfig(this.configFile)
         ]).then(r => {
+            console.log(this.paths)
             // console.log("all setup")
             next()
         })
@@ -83,10 +83,11 @@ class ReportEngine {
             .then(content => {
                 const conf = JSON.parse(content)
                 this.conf = conf
-                if (conf.root) {
-                    this.paths.report = path.join(this.paths.root, conf.root)
-                    console.log("report path "+this.paths.report)
+                if (conf.reports) {
+                    this.paths.report = path.join(this.paths.root, conf.reports )
                 }
+
+                this.paths.query =  path.join(this.paths.root, (conf.query || conf.report || "./runtime/reports"))
 
                 let promises = []
                 promises.push(this.addChannels(conf.channels))
@@ -123,7 +124,7 @@ class ReportEngine {
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
                 return import(channel.source).then(result => {
                     // // console.log("try new channel "+channel.name )
-                    this.addChannel(channel.name, new result.default(channel))
+                    this.addChannel(channel.name, new result.default(channel, this))
                 })
             }
         }))

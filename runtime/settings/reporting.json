@@ -1,5 +1,8 @@
 {
   "root" : "./runtime/reports",
+  "reports" : "./runtime/reports",
+  "query" : "./runtime/query",
+
   "channels": [
     {
       "name": "testFiles",

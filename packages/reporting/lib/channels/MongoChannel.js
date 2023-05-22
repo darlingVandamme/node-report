@@ -5,11 +5,12 @@ import vm from 'node:vm'
 
 class MongoChannel{
 
-    constructor(options){
+    constructor(options, engine){
         this.options = options.options
         this.name = options.name
         this.stats = new profileStats("mongo")
-
+        // path in channel options?
+        this.queryPath = engine.paths.query
         const connectionConf ={}
 
         if (options.user){
@@ -25,7 +26,7 @@ class MongoChannel{
     async load(ds, connection, params) {
         let startTime = this.stats.start()
         let query = new Query(ds.options.query, {
-            path: ds.report.path,
+            path: this.queryPath,
             replacer: "object", // "quote",
             params: ds.options
         })
