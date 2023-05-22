@@ -130,6 +130,7 @@ class Query{
     replaceParams( context ){
         // how to handle multiple columns ??  Only first? Several batches?
         let params = {}
+        let flatParams = {}
         let paramsOrdered = []
 
         if (!this.replacer) {
@@ -140,6 +141,7 @@ class Query{
         let replaced = this.queryString.replaceAll(this.regex, (v, paramName) => {
             let value = context.getValue(paramName) //,0
             params[paramName] = value
+            flatParams[paramName.replaceAll(".","_")] = value
             paramsOrdered.push(value)
             return this.replacer(paramName,value,counter++)
         })
@@ -147,11 +149,13 @@ class Query{
         this.query = replaced
         this.params = params
         this.ordered = paramsOrdered
+        this.flatParams = flatParams
 
         return {
             query:replaced,
             params:params,
             ordered:paramsOrdered,
+            flatParams:flatParams
             // replaced : replaced
         }
     }
@@ -175,6 +179,10 @@ const replacers = {
     },
     at: (paramName, value, index) => {
         return " @"+paramName
+    },
+    object: (paramName, value, index) => {
+        return paramName.replaceAll(".","_")
+        //return paramName
     },
     // todo quotes depending on typeof
 }

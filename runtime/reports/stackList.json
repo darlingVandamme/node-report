@@ -8,10 +8,13 @@
     {
       "name" : "args",
       "show": "*",
-      "type" :  "table",
-      "source" : "copy",
+      "display": {
+        "template" :  "table",
+        "position" : "hidden"
+      },
+      "channel" : "copy",
       "from": "query",
-      "position" : "hidden",
+
       "columns": {
         "tagContains": {
           "type" : "format",
@@ -24,11 +27,16 @@
     {
       "name" : "main",
       "description" : "",
-      "type": "table",
-      "source" : "StackExchange",
-      "class" : "collapseable",
-      "styleColumn" : "class",
-      "classColumn" : "class",
+      "display":{
+        "template" : "table",
+        "class" : "collapseable",
+        "position": "main",
+        "styleColumn" : "class",
+        "classColumn" : "class"
+      },
+      "position": "main",
+      "channel" : "StackExchange",
+
       "query" : "select * from posts where Tags like {{args.tagContains}} limit {{paging.limit}} offset {{paging.offset}}",
       "query1" : "select * from posts where Tags like '%sample%' limit 10",
       "show" : "*",
@@ -59,11 +67,9 @@
       "type" : "json"
     },
     "html": {
-      "include2": ["query","args","paging","main","log"],
       "include": ["query","args","paging","server","main","log"],
-      "table": ["log","args","paging","main","server"],
       "argForm": "query",
-      "template": "tabs",
+      "template": "general",
       "type" : "hbs"
     },
     "arg": {
