@@ -38,7 +38,7 @@ class Query{
         }
         this.queryPath = options.path; // path functions
 
-        this.separator =  " " //"\n"
+        this.separator =  "\n " //"\n"
         this.replacer = replacers[options.replacer] // function ?
 
         const pattern = "\{\{([\\w\.]*)\}\}"
@@ -178,7 +178,7 @@ const replacers = {
         return value
     },
     at: (paramName, value, index) => {
-        return " @"+paramName
+        return " @"+paramName.replaceAll(".","_")
     },
     object: (paramName, value, index) => {
         return paramName.replaceAll(".","_")

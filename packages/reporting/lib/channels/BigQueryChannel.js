@@ -53,13 +53,13 @@ class BigQueryChannel {
         }
         query.build(context)
 
-        ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
-        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
+        ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
+        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
 
         const opt = {
             query: query.query,
             location: connection.location,
-            params: query.params
+            params: query.flatParams
             // dryRun: true,
         };
 
@@ -74,6 +74,7 @@ class BigQueryChannel {
             })
             .catch(error => {
                 ds.report.error("error in Bigquery", error)
+                console.error("error in Bigquery", error)
                 // todo try to reconnect??
                 //throw error
             }).finally(()=>{

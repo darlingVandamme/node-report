@@ -60,7 +60,6 @@
     {
       "name" : "paging",
       "show": "*",
-
       "display":{"position" : "hidden",
         "template" : "row"
       },

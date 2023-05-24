@@ -321,10 +321,10 @@ class ReportEngine {
                     report.error(error.message,JSON.stringify(error))
                     let output = getOutput("error")
                     output(report,res, report.output)
-                    usage({
+                    this.usage({
                         name:report.name,
                         url:req.originalUrl,
-                        user:user,
+                        user:req.user,
                         startTime:report.startTime,
                         stopTime:Date.now(),
                         bytes: 0, // Buffer.byteLength(html,"utf-8"),

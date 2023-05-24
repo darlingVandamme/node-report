@@ -97,7 +97,7 @@ class MongoChannel{
                 ds.addRow(await cursor.next())
             }
         } catch(error) {
-            console.log("Mongho error ",error)
+            console.log("Mongo error ",error)
             ds.report.error("error in mongo", error)
             // todo try to reconnect??
             //throw error

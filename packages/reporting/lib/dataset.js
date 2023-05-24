@@ -20,8 +20,6 @@ class Dataset {
         // batches?
         console.log("create dataset " + JSON.stringify(options))
 
-        this.getResult = this.getData
-
         this.readColumns(this.options)
 
         this.pattern = "\{\{([\\w\.]*)\}\}"
@@ -294,9 +292,17 @@ class Dataset {
         }
     }
 
+    getData(columns){
+        let data = []
+        this.getRows().forEach(row => {
+            let rowData = row.getData(columns)
+            data.push(rowData)
+        })
+        return data
+    }
         // andere naam? result?  getResult?  context??
         // handlebars helpers?
-    getData(options = {display: false, json: false, html:false}) {  // filter?
+    getResult(options = {display: false, json: false, html:false}) {  // filter?
         let result = {
             name: this.name,
             description: this.description,

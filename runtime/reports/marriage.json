@@ -1,0 +1,72 @@
+{
+  "name": "marriage",
+  "description": "CSV file demo  https://github.com/fivethirtyeight/data/tree/master/marriage",
+  "keywords": ["demo","CSVChannel","link"],
+
+  "require": ["query","paging"],
+  "datasets": [
+    {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      }
+    },
+
+    {
+      "name": "main",
+      "show": "*",
+      "display" :{
+        "template": "table",
+        "position": "main"
+      },
+      "channel": "csvData",
+      "fileName": "both_sexes.csv",
+      "paging": true,
+      "options": {
+
+      },
+      "columns": {
+
+      }
+    }
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "main",
+        "log"
+      ],
+      "type": "json"
+    },
+    "js": {
+      "include": [
+        "main"
+      ],
+      "template": "script",
+      "layout" : "",
+      "mime": "text/javascript",
+      "type": "hbs"
+    },
+    "html": {
+      "include": [
+        "query",
+        "log",
+        "main"
+      ],
+      "template": "general",
+      "type": "hbs"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

@@ -20,7 +20,7 @@
 + report level logging in dataset
 - log to library (pino?)
 - error handling? (log and error dataset?)
-- Cost & timing logging per user
++ Cost & timing logging per user
 - user quota, short term quota
 - messages? / flash
 - Unique request ID?
@@ -28,7 +28,7 @@
 ## performance
 - timeout?
 - cost quota
-- cost, timings & bytes  per user  logging
++ cost, timings & bytes  per user  logging
 
 ## ES6 import
 + dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
@@ -297,7 +297,8 @@
  
 ## security
 - ENV?
-- secrets 
+- secrets
+https://medium.com/@tony.infisical/the-death-of-the-env-file-6d65bfc6ac5e 
 - roles
 - authentication
 - passwords and keys in private config file
@@ -463,6 +464,8 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
  - Bigquery https://cloud.google.com/bigquery/public-data
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
+ - https://github.com/vega/vega-datasets/blob/next/SOURCES.md#weathercsv
+ - 538 https://github.com/fivethirtyeight/data
  
  ## alternatives
  - https://kanaries.net/home
