@@ -100,7 +100,7 @@ main {
 }
 
 .dataset_table td, .dataset_table th {
-  border: 1px solid var(--color-4);
+  /* border: 3px solid var(--color-3); */
   padding: 8px;
 }
 
@@ -120,12 +120,12 @@ main {
   color: var(--color-text);
 }
 
-.scroll > .table {
+.table {
   width: fit-content;
-  max-width: 99%;
+  max-width: 100%;
   overflow-x: auto;
-  box-shadow: 3px 3px 3px var(--color-5);
-  border-radius: 10px;
+  box-shadow: 1px 1px 1px var(--color-5);
+  border-radius: 3px;
   border: 1px solid var(--color-3);
 }
 
@@ -294,7 +294,7 @@ input[type=submit]:hover {
 }
 
 .left_column {
-  top: 5em;
+  top: 3em;
   position: sticky;
   height: 90vh;
   background-color: var(--color-1);
@@ -356,4 +356,13 @@ input[type=submit]:hover {
 
 .overlay_hide {
   cursor: pointer;
+}
+
+.dataset_div {
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  box-shadow: 3px 3px 3px var(--color-5);
+  border-radius: 5px;
+  border: 2px solid var(--color-3);
 }/*# sourceMappingURL=report.css.map */
