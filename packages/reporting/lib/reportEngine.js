@@ -5,6 +5,7 @@ import {getOutput} from "./output.js"
 import {hbs}  from './handlebars.js';
 import { fileURLToPath } from 'url';
 import express from 'express'
+import {cache} from './cache.js'
 
 function createEngine(configFile){
     return new ReportEngine(configFile)
@@ -27,12 +28,17 @@ class ReportEngine {
         }
         this.configFile = path.join(this.paths.root, configFile)
         this.paths.config = this.configFile
-        this.paths.reports =  path.join(this.paths.root,  "./runtime/reports")
+        this.paths.report =  path.join(this.paths.root,  "./runtime/reports")
         this.paths.query =  path.join(this.paths.root, "./runtime/reports")
-
-        this.hbs = new hbs({root: "runtime/views", "module": path.join(this.paths.module, "views")}) // options
+        console.log(" init reports dir "+this.paths.report)
 
         this.channels = {}
+        this.cache = {
+            tries:0,
+            hits :0,
+            misses:0,
+            caching:null,
+        }
 
         this.logger = console
 
@@ -70,6 +76,9 @@ class ReportEngine {
             this.readDefaults(path.join(this.paths.module, "settings/reporting.json")),
             this.loadConfig(this.configFile)
         ]).then(r => {
+            // todo views folder specify
+            this.hbs = new hbs({root:  path.join(this.paths.root, "views") , "module": path.join(this.paths.module, "views")}) // options
+            this.cache.caching = cache(this.conf.cache)
             console.log(this.paths)
             // console.log("all setup")
             next()
@@ -85,6 +94,8 @@ class ReportEngine {
                 this.conf = conf
                 if (conf.reports) {
                     this.paths.report = path.join(this.paths.root, conf.reports )
+                    console.log(" read reports dir "+this.paths.report)
+
                 }
 
                 this.paths.query =  path.join(this.paths.root, (conf.query || conf.report || "./runtime/reports"))
@@ -101,7 +112,7 @@ class ReportEngine {
                 this.logger.error(error, "config file not found or invalid " + configFile)
                 throw error
             })
-   }
+    }
 
 
     readDefaults(fileName){
@@ -176,8 +187,31 @@ class ReportEngine {
         })*/
     }
 
+    // caching
+    getCache(key,options){
+        console.log("get cache ",key,options)
+        if (this.cache.caching){
+            let val = this.cache.caching.get(key)
+            if (val){
+                // hit
+                return val
+            }
+            // miss
+        }
+    }
+    setCache(key,data,options){
+        console.log("set cache ",key)
+        if (this.cache.caching){
+            this.cache.caching.set(key,data)
+        }
+    }
+
+
+    // usage log
     usage(item){
         // log usage
+        // ip, browser, ....
+        // query, server , ....
         /*{ name:reportName
             url
             user
@@ -186,10 +220,8 @@ class ReportEngine {
             bytes
             error
         }
-
          */
         console.log(item)
-
     }
 
     express(req,res,next) {

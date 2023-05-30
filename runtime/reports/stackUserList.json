@@ -16,7 +16,6 @@
         "name": {
             "type": "format",
             "format": "%{{name}}%"
-
         }
       }
     },
@@ -24,9 +23,12 @@
   {
     "name" : "Cards",
     "description" : "",
-    "type" : "cards",
-    "source" : "StackExchange",
-    "class" : "zebra",
+    "display":{
+      "position": "main",
+      "template" : "cards",
+      "class" : "zebra"
+    },
+    "channel" : "StackExchange",
     "query" : "select * from users where DisplayName like {{args.name}}",
     "show" : "name,AboutMe,Id,ProfileImageUrl,url",
     "columns": {
@@ -56,9 +58,12 @@
     {
       "name" : "main",
       "description" : "",
-      "type" : "table",
-      "source" : "StackExchange",
-      "class" : "zebra",
+      "display":{
+        "position": "main",
+        "template" : "cards",
+        "class" : "zebra"
+      },
+      "channel" : "StackExchange",
       "query" : "select DisplayName name, users.* from users where DisplayName like {{args.name}}",
       "show" : "*",
       "columns": {
@@ -99,7 +104,7 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","Cards","args","posts","server","log"],
+      "include": ["query","main","args","posts","server","log"],
       "argForm": {
           "dataset": "args",
           "extension" : "html"

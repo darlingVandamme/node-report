@@ -136,11 +136,9 @@ class Dataset {
             if (!this.dependencies.includes(name)) {
                 this.dependencies.push(name)
                 this.report.debug("dependency ", JSON.stringify({from: this.name, require: name, param: paramName}))
-
-                return this.report.require(name)
-
                 // console.log("start Dependency "+this.name+" waiting on "+name)
             }
+            return this.report.require(name)
             // todo check paramName as required field!
         }
      }

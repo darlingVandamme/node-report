@@ -4,7 +4,6 @@ import {Link} from "./link.js"
 
 class Report {
 
-
     constructor(name,reportDef,engine) {
         this.name = name
         this.timestamp = Date.now()
@@ -19,9 +18,7 @@ class Report {
         this.requireList = []
         this.loadList = []
         this.version = reportDef.version || ""
-
     }
-
 
     init(outputName,options){
         // todo check version
@@ -85,8 +82,6 @@ class Report {
             }
             //console.log("require2 " + dsName + " " + ds.connection.status)
             if (ds.connection.status == "loading") {
-                // error circular dependency
-                // await ???
                 if (ds.connection.done) {
                     return ds.connection.done.then(() => {
                         return ds
@@ -102,13 +97,14 @@ class Report {
 
             this.requireList.push(dsName)
             ds.connection.done = this.load(ds)
+
             await ds.connection.done
+            return ds
         }
     }
 
     async load(ds) {
         ds.connection.status = "loading"
-
         if (ds.options.require) {
             await ds.require(ds.options.require)
             // console.log("require dataset"+ds.options.require)
@@ -124,17 +120,32 @@ class Report {
         // source deprecated
         let channel = this.engine.getChannel(ds.options.channel || ds.options.source)
         if (channel) {
-            // console.log("found source type "+ds.options.source + " ")
             ds.connection.channel = channel
 
-            this.debug("init dataset channel ", ds.name)
-            if (channel.init) {
-                ds.connection.initDone = await channel.init(ds, ds.connection, ds.options)
+            let cacheKey = this.cacheKey(ds)
+            console.log("cacheKey" , cacheKey)
+            let cachedValue = this.engine.getCache(cacheKey)
+            if (cachedValue) {
+                // https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
+                console.log("got value from cache ",cachedValue)
+
+                // ds.data = cachedValue
+                cachedValue.forEach(r=>{
+                    ds.addRow(r)
+                })
+                ds.connection.status = "done"
+            } else {
+                this.debug("init dataset channel ", ds.name)
+                if (channel.init) {
+                    ds.connection.initDone = await channel.init(ds, ds.connection, ds.options)
+                }
+                // this.done = ...
+                await channel.load(ds, ds.connection, ds.options)
+                ds.connection.status = "done"
+                //console.log("require done " + ds.name)
+                this.engine.setCache(cacheKey, ds.getData("raw") , {})
+                this.loadList.push(ds.name)
             }
-            await channel.load(ds, ds.connection, ds.options)
-            ds.connection.status = "done"
-            //console.log("require done " + ds.name)
-            this.loadList.push(ds.name)
             return ds
             // return ds.connection.done
         } else {
@@ -143,6 +154,19 @@ class Report {
         }
     }
 
+    cacheKey(ds) {
+        let options = {}
+        let key
+        if (ds.options.cache){
+            if (ds.options.cache === "default"){
+                // queryString hash
+                key = [ds.report.name, ds.name /* channel?? */ ].join("/")
+                options.timeout = 1000
+            }
+            // ....
+        }
+        return key
+    }
 
     /*
     dependencyPromises(ds) {

@@ -60,6 +60,7 @@
     {
       "name" : "main",
       "description" : "",
+      "header" : "Main data ",
       "display":{
         "template" : "table",
         "class" : "zebra",

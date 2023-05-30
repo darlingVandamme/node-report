@@ -1,4 +1,4 @@
-import {BigQuery} from '@google-cloud/bigquery';
+import {BigQuery, BigQueryDate} from '@google-cloud/bigquery';
 import {profileStats} from "../profileStats.js";
 import {Query} from "../query.js"
 
@@ -63,12 +63,21 @@ class BigQueryChannel {
             // dryRun: true,
         };
 
-        return this.bigquery.query(opt)
+        const [job] = await this.bigquery.createQueryJob(opt);
+        return job.getQueryResults(opt)
             .then(([rows]) => {
-                console.log("Done Query " + rows.length)
+                console.log("Done Query " , job)
                 let i = 0
                 rows.forEach(row => {
                     // console.log("read row " + i++)
+                    // convert bigquerydate to normal dates
+                    Object.entries(row).forEach(([k,v])=>{
+                        // console.log("convert "+k+" "+v)
+                        if (v instanceof BigQueryDate){
+                            // console.log("convert "+k+" "+v.value)
+                            row[k] = new Date(v.value)
+                        }
+                    })
                     ds.addRow(row)
                 })
             })

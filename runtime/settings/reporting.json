@@ -2,7 +2,9 @@
   "root" : "./runtime/reports",
   "reports" : "./runtime/reports",
   "query" : "./runtime/query",
-
+  "cache": {
+    "type": "memory"
+  },
   "channels": [
     {
       "name": "testFiles",

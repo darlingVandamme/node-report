@@ -147,14 +147,19 @@
     - filter rows / columns
     - transpose
     - crosstab !!!
-    - running sums / totals    
+    - running sums / totals
+    - group by
+- temporary datasets???     
+    - not included in result, but directly consumed by aggregating dataset?
+    - needed? 
+        
 - system
     - process
     - reportengine channels
     - performance & counters        
 
 ## conditional sources
-- choice between different queries (depending on availability of params)
++ choice between different queries (depending on availability of params)
 - intelligent query creation?  select:"   " , from: "  "....
 + Query builder object
 
@@ -174,13 +179,18 @@
 - estimate total number of pages (maxHint)
 
 - endless scroll instead of paging??? load more...
-- server side paging (a href) <> client side paging (reload list of datasets) 
+- server side paging (a href) <> client side paging (reload list of datasets)
+- backend service paging. Store next and previous keys in the paging dataset
+  
 
 ## caching
 - caching on dataset level (dataset cache ID)
 - hash on input parameters (sorted)
 - cache time
 - No cache for user dependent data or time critical
+- mongo / redis / file implementations
+- Memcache / redis  https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
+- https://www.npmjs.com/package/memjs
 
 ## output format
 - String formatting
@@ -257,7 +267,13 @@
 - Hover effecten  https://stackoverflow.com/questions/74454315/how-to-highlight-a-line-when-mouse-over-it-in-observable-plot-using-javascript
 - https://observablehq.com/@mkfreeman/plot-tooltip
 - https://observablehq.com/d/2e1daf099a7aaaea
-
+- Betere tooltip option: https://github.com/observablehq/plot/pull/1304
+- server side svg generation is possible, but not ideal. 
+    - dependency on jsdom
+- client side svg rendering 
+    - allows dynamic client side js
+    - faster load
+    - both client side data (+filter) or server side data fetch is possible    
 
 ## testing
 - ???
@@ -312,7 +328,8 @@ https://medium.com/@tony.infisical/the-death-of-the-env-file-6d65bfc6ac5e
 - passport demo
 - bigquery end user auth token
 - API's??
--  
+- JWT ??
+ 
 
 ## Frameworks
 - express 
@@ -470,3 +487,16 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  ## alternatives
  - https://kanaries.net/home
  
+ ## deploy
+ ### GCS 
+    - app engine  (adlens demo)
+    - headers https://cloud.google.com/appengine/docs/standard/reference/request-headers?tab=node.js#top
+    - cloud run https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-nodejs-service
+    - cloud functions (reporting in global  https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations)
+    - authenticate https://cloud.google.com/nodejs/getting-started/authenticate-users
+    - bigquery (user account login)
+    - cache in memcache or firestore
+    
+### AWS
+    
+### Kubernetes

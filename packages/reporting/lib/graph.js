@@ -7,14 +7,13 @@ import { JSDOM } from  "jsdom";
 function renderPlot(report,options){
 
     const dom = new JSDOM(`<!DOCTYPE html>`);
-
-    let data = report.getDataset("main").getData()
-    let dim = options.dimension
+// console.log(options)
+    let data = report.getDataset(options.include[0]).getData()
     let graph = Plot.plot({
         marks: [
             Plot.ruleY([0]),
-            Plot.line(data, {x: "d", y: dim}),
-            Plot.circle(data, {x: "d", y: dim,stroke:"red",r:2,class:"info" })
+            Plot.line(data, {x: options.x, y: options.y}),
+            Plot.circle(data, {x: options.x, y: options.y, stroke:"red",r:2,class:"info" })
         ],
         y: {grid: true},
         document:dom.window.document

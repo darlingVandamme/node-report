@@ -1,6 +1,6 @@
 {
   "name": "@darling_be/report",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Reporting engine",
   "main": "index.js",
   "type": "module",
@@ -10,7 +10,8 @@
   "files": [
     "lib",
     "public",
-    "settings"
+    "settings",
+    "views"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
