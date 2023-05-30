@@ -20,7 +20,9 @@ class MongoChannel{
         }
         console.log(options)
         this.client = new MongoClient(this.options.url , connectionConf)
-        this.connection = this.client.connect()
+        try {
+            this.connection = this.client.connect()
+        } catch (error) {console.error(error)}
     }
 
     async load(ds, connection, params) {

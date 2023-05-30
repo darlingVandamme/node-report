@@ -74,16 +74,7 @@
         "projectId": "nth-subset-276608",
         "root": "./test/reports"
       }
-    },
-    {
-      "name": "localMongo",
-      "type": "mongodb",
-      "source": "./channels/MongoChannel.js",
-      "options": {
-        "url" : "mongodb://localhost"
-      }
     }
-
   ]
 }
 
