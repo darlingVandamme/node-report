@@ -1,0 +1,30 @@
+table:
+    -geen scheiding tussen colommen
+    -laatste colom data leeg?? -> json file error
+
+main: 
+    -data blocks onder/naast elkaar
+        -bij naast elkaar via flexbox: 
+            -brede tabellen geven overflow -> .dataset max-width geven
+        -bij StackClient1: verspringen wanneer er een grafiek komt -> !!!#dataset_block width 100% geven!!! (voorlopig) (main in hbs)
+    -alternatieven voor general.hbs
+
+form:
+    -styling van form
+    -verschillende types input
+
+cards:
+    -opnieuw werkende krijgen
+
+bigquery:
+    -interessante datasets zoeken voor demo
+
+kleuren:
+    -interessante kleurschemas vinden
+
+general:
+    -scss cleaner
+
+
+
+

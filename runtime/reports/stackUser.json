@@ -75,12 +75,6 @@
           "year1": "numeric",
           "month1": "long"
         },
-        "Details": {
-          "type": "link",
-          "header": "link",
-          "relative": true,
-          "template": "aLink"
-        },
         "AboutMe": {
           "display": "html"
         },
