@@ -79,7 +79,7 @@ async function hbs(report, options) {
     //console.log("using layout "+JSON.stringify(options))
     if (options.layout != "" && options.layout != "none") {
         // check if layout exists ...
-        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result})
+        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result, output:options},report)
     }
     return reportHtml
 }

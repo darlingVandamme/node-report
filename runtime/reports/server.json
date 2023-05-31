@@ -49,7 +49,7 @@
         "headers"
       ],
       "classes": {
-        "header": "hidden",
+        "header": "",
         "left_column": "hidden",
         "nav": "",
         "main": ""
