@@ -52,7 +52,7 @@ async function hbs(report, options) {
     //if (options.reload){
     report.hbs.reload()
     //}
-    let result = report.getResult({datasets: true, display: true})
+    let result = report.getResult({datasets: true, display: true, options:true})
     result.datasets = result.data
     options.include.forEach(dsName => {
         if (report.getDataset(dsName).getDisplayType().template != "container") {

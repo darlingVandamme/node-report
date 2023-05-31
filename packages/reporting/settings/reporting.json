@@ -17,6 +17,14 @@
       }
     },
     {
+      "name": "server",
+      "type": "server",
+      "source": "./channels/ServerChannel.js",
+      "options": {
+      }
+    },
+
+    {
       "name": "request",
       "type": "request",
       "source": "./channels/RequestChannel.js",

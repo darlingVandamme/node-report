@@ -30,6 +30,16 @@
         "template": "row",
         "position": "main"
       }
+    },
+    {
+      "name": "engine",
+      "channel": "server",
+      "data": "engine",
+      "show": "*",
+      "display" :{
+        "template": "row",
+        "position": "main"
+      }
 
     }
   ],
@@ -46,7 +56,8 @@
       "include": [
         "server",
         "query",
-        "headers"
+        "headers",
+        "engine"
       ],
       "classes": {
         "header": "",

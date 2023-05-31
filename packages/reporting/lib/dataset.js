@@ -301,7 +301,7 @@ class Dataset {
     }
         // andere naam? result?  getResult?  context??
         // handlebars helpers?
-    getResult(options = {display: false, json: false, html:false}) {  // filter?
+    getResult(options = {display: false, json: false, html:false, options:false}) {  // filter?
         let result = {
             name: this.name,
             description: this.description,
@@ -312,7 +312,7 @@ class Dataset {
             columns: {},
             position: {},
             url: this.getLink(),
-            options: this.options,
+            //options: this.options,
             data: [],
             class: this.options.class
 
@@ -321,6 +321,7 @@ class Dataset {
             // virtual?
             // context?
         }
+        if (options.options){ result.options= this.options} // include options in hbs rendering, exclude from json output
         if (!this.options.position) {this.options.position="main"}
         result.position[this.getPosition()] = true
         let columnList = this.show()
@@ -381,9 +382,12 @@ class Dataset {
     getHash(){
         let hash = crypto.createHash("SHA256")
         this.getRows().forEach(row => {
+            //console.log("Hash data "+this.name+" "+JSON.stringify(row.getData("raw")))
             hash.update(JSON.stringify(row.getData("raw")))
         })
-        return hash.digest("base64")
+        const digest = hash.digest("base64")
+        // console.log("Hash result "+this.name+" "+digest)
+        return digest
     }
 
     render(options) {
