@@ -72,14 +72,14 @@ async function hbs(report, options) {
         return result.data[dsName].rendering
     }))
 
-    let reportHtml = await report.hbs.renderFile("report", options.template, {report:result},report)
+    let reportHtml = await report.hbs.renderFile("report", options.template, {report:result, output:options},report)
     result.body = reportHtml
     //console.log("using layout "+JSON.stringify(options))
     if (typeof options.layout == "undefined") options.layout = "main"
     //console.log("using layout "+JSON.stringify(options))
     if (options.layout != "" && options.layout != "none") {
         // check if layout exists ...
-        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result})
+        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result, output:options},report)
     }
     return reportHtml
 }

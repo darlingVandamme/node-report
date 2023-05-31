@@ -315,25 +315,9 @@ class ReportEngine {
             //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
         }).then(() => {
-            // argument form
-            // report info
-            // create context
-            // report.arguments.addAll(req.query)
             // todo check required params
-            //// console.log("query2 "+JSON.stringify(report.getDataset("query").data))
-            //return report.load()
-        //}).then((result) => {
-            //// console.log(JSON.stringify(report))
-            // check if exists, fallback to default (first)
             let output = getOutput(report.output.type)
-            //let output = getOutput("serverHtml")
-            //let output = getOutput("json")
-            //// console.log("output options: "+JSON.stringify(report.output))
-
             let outputOptions = report.output
-            // if  (!outputOptions.layout) outputOptions.layout = "main" // default layout???
-            // console.log("output options "+JSON.stringify(report.output))
-            // outputOptions.res = res  // send res to allow serverHTML
             output(report, outputOptions).then(html=>{
                 if (outputOptions.mime){
                     // console.log("mime type "+outputOptions.mime)

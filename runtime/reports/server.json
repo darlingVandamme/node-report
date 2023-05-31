@@ -9,7 +9,7 @@
       "name" : "query",
       "show": "*",
       "display" : {
-        "template": "table",
+        "template": "row",
         "position": "main"
       }
     },
@@ -37,19 +37,26 @@
     "json": {
       "include": [
         "query",
-        "main",
-        "log"
+        "server",
+        "headers"
       ],
       "type": "json"
     },
     "html": {
       "include": [
-        "query",
         "server",
+        "query",
         "headers"
       ],
+      "classes": {
+        "header": "",
+        "left_column": "hidden",
+        "nav": "",
+        "main": ""
+      },
       "template": "general",
-      "type": "hbs"
+      "type": "hbs",
+      "main" : "row"
     },
     "arg": {
       "include": [
