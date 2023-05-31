@@ -25,7 +25,7 @@ class memoryCache{
         if (this.cache.has(key)){
             // check timeout
             const val = this.cache.get(key)
-            console.log("retrieve from cache ",key,val)
+            // console.log("retrieve from cache ",key,val)
             // check timeout
             return val.data
         }

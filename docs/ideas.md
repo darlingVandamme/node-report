@@ -188,9 +188,14 @@
 - hash on input parameters (sorted)
 - cache time
 - No cache for user dependent data or time critical
+- cache params on engine, report and ds (and request) level
 - mongo / redis / file implementations
 - Memcache / redis  https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
-- https://www.npmjs.com/package/memjs
+- "cache":"default"
+- "cache":"none"
+- "cache":{ type:default, timeout:1000}
+         
+
 
 ## output format
 - String formatting
@@ -310,7 +315,6 @@
     - required fields?
     - hidden fields?
     
- 
 ## security
 - ENV?
 - secrets
@@ -323,6 +327,9 @@ https://medium.com/@tony.infisical/the-death-of-the-env-file-6d65bfc6ac5e
 - file acces ensure rootDir  ../ injection prevention  (fs.realpath(path[, options], callback)) 
 - avoid html injection in server side rendering and {{{ }}}
 - auth keys for API use ???
+- JWT https://medium.com/swlh/all-you-need-to-know-about-json-web-token-jwt-8a5d6131157f
+- https://github.com/auth0/node-jsonwebtoken
+- https://github.com/googleapis/google-auth-library-nodejs
 
 ## authentication
 - passport demo
@@ -487,16 +494,18 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  ## alternatives
  - https://kanaries.net/home
  
- ## deploy
- ### GCS 
-    - app engine  (adlens demo)
-    - headers https://cloud.google.com/appengine/docs/standard/reference/request-headers?tab=node.js#top
-    - cloud run https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-nodejs-service
-    - cloud functions (reporting in global  https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations)
-    - authenticate https://cloud.google.com/nodejs/getting-started/authenticate-users
-    - bigquery (user account login)
-    - cache in memcache or firestore
-    
-### AWS
-    
-### Kubernetes
+ 
+ 
+  ## deploy
+  ### GCS 
+     - app engine  (adlens demo)
+     - headers https://cloud.google.com/appengine/docs/standard/reference/request-headers?tab=node.js#top
+     - cloud run https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-nodejs-service
+     - cloud functions (reporting in global  https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations)
+     - authenticate https://cloud.google.com/nodejs/getting-started/authenticate-users
+     - bigquery (user account login)
+     - cache in memcache or firestore
+     
+ ### AWS
+     
+ ### Kubernetes

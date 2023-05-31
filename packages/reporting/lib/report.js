@@ -121,20 +121,8 @@ class Report {
         let channel = this.engine.getChannel(ds.options.channel || ds.options.source)
         if (channel) {
             ds.connection.channel = channel
-
-            let cacheKey = this.cacheKey(ds)
-            console.log("cacheKey" , cacheKey)
-            let cachedValue = this.engine.getCache(cacheKey)
-            if (cachedValue) {
-                // https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
-                console.log("got value from cache ",cachedValue)
-
-                // ds.data = cachedValue
-                cachedValue.forEach(r=>{
-                    ds.addRow(r)
-                })
-                ds.connection.status = "done"
-            } else {
+            await this.tryCache(ds)
+            if (ds.connection.status != "done"){
                 this.debug("init dataset channel ", ds.name)
                 if (channel.init) {
                     ds.connection.initDone = await channel.init(ds, ds.connection, ds.options)
@@ -143,7 +131,9 @@ class Report {
                 await channel.load(ds, ds.connection, ds.options)
                 ds.connection.status = "done"
                 //console.log("require done " + ds.name)
-                this.engine.setCache(cacheKey, ds.getData("raw") , {})
+                if(ds.cache.key) {
+                    this.engine.setCache(ds.cache.key, ds.getData("raw"), ds.cache)
+                }
                 this.loadList.push(ds.name)
             }
             return ds
@@ -155,18 +145,44 @@ class Report {
     }
 
     cacheKey(ds) {
-        let options = {}
-        let key
+        ds.cache = {}
         if (ds.options.cache){
+            if (ds.options.cache === "" || ds.options.cache === "none"){
+                ds.cache = {}
+                return null
+            }
             if (ds.options.cache === "default"){
                 // queryString hash
-                key = [ds.report.name, ds.name /* channel?? */ ].join("/")
-                options.timeout = 1000
+                let q = ""
+                if (ds.report.getDataset("query")){
+                    q=ds.report.getDataset("query").getHash()
+                }
+                ds.cache.key = [ds.report.name, ds.name , q ].join("/")
+                ds.cache.timeout = 1000
             }
-            // ....
         }
-        return key
+        return ds.cache.key
     }
+
+    tryCache(ds){
+        let cacheKey = this.cacheKey(ds)
+        if (cacheKey) {
+            console.log("cacheKey" , cacheKey)
+            let cachedValue = this.engine.getCache(cacheKey)
+            if (cachedValue) {
+                // https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
+                // console.log("got value from cache ",cachedValue)
+                // ds.data = cachedValue
+                cachedValue.forEach(r => {
+                    ds.addRow(r)
+                })
+                ds.connection.status = "done"
+                return true
+            }
+        }
+        return false
+    }
+
 
     /*
     dependencyPromises(ds) {

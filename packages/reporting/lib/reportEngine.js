@@ -189,13 +189,18 @@ class ReportEngine {
 
     // caching
     getCache(key,options){
-        console.log("get cache ",key,options)
+        // console.log("get cache ",key,options)
+        this.cache.tries++
         if (this.cache.caching){
             let val = this.cache.caching.get(key)
             if (val){
+                this.cache.hits++
                 // hit
                 return val
+            } else{
+                this.cache.misses++
             }
+
             // miss
         }
     }
@@ -287,18 +292,22 @@ class ReportEngine {
             // user
             // required
             // engine   # reports, users, speed, log ....
-            report.addData("server", {
-                "baseUrl":req.baseUrl,
-                "url":req.url,
-                "hostname":req.hostname,
-                "ip":req.ip,
-                "ips":req.ips,
-                "method":req.method,
-                "originalUrl":req.originalUrl,
-                "path":req.path,
-                "protocol":req.protocol
-            })
-            report.addData("query", req.query)
+            if (report.def.require?.includes("server")) {
+                report.addData("server", {
+                    "baseUrl": req.baseUrl,
+                    "url": req.url,
+                    "hostname": req.hostname,
+                    "ip": req.ip,
+                    "ips": req.ips,
+                    "method": req.method,
+                    "originalUrl": req.originalUrl,
+                    "path": req.path,
+                    "protocol": req.protocol
+                })
+            }
+            if (report.def.require?.includes("server")) {
+                report.addData("query", req.query)
+            }
             //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
         }).then(() => {
@@ -337,6 +346,9 @@ class ReportEngine {
                     stopTime:Date.now(),
                     bytes:Buffer.byteLength(html,"utf-8"),
                     error:{}
+                    // req info
+                    // server info
+                    // user info
                 })
                 // res.status?
                 // res.end() ?

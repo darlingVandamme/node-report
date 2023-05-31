@@ -2,6 +2,7 @@ import {getDisplay} from "./display.js";
 import {getColumn} from "./column.js";
 import {Accumulator} from "./accumulator.js";
 import * as utils from "./utils.js";
+import * as crypto from 'crypto';
 
 class Dataset {
     constructor(options, report) {
@@ -377,6 +378,13 @@ class Dataset {
         return result
     }
 
+    getHash(){
+        let hash = crypto.createHash("SHA256")
+        this.getRows().forEach(row => {
+            hash.update(JSON.stringify(row.getData("raw")))
+        })
+        return hash.digest("base64")
+    }
 
     render(options) {
             let hbs = this.report.handlebars
