@@ -16,15 +16,25 @@
 
     {
       "name": "server",
+      "channel": "request",
       "show": "*",
       "display" :{
         "template": "table",
         "position": "main"
       }
-
     },
     {
       "name": "headers",
+      "show": "*",
+      "display" :{
+        "template": "row",
+        "position": "main"
+      }
+    },
+    {
+      "name": "engine",
+      "channel": "server",
+      "data": "engine",
       "show": "*",
       "display" :{
         "template": "row",
@@ -46,7 +56,8 @@
       "include": [
         "server",
         "query",
-        "headers"
+        "headers",
+        "engine"
       ],
       "classes": {
         "header": "",

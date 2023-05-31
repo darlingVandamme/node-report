@@ -17,6 +17,7 @@ class ReportEngine {
         this.runtime = {
             startTime: Date.now(),
             errors: 0,
+            bytes: 0,
             reports: 0
         }
         const __filename = fileURLToPath(import.meta.url);
@@ -242,26 +243,7 @@ class ReportEngine {
                 } else {
                     report = r
                     let lang = req.get("Accept-Language")
-                    report.req = {
-                        url : req.url,
-                        originalUrl : req.originalUrl,
-                        base : req.protocol + '://' + req.get('host') ,
-                        fullUrl: req.protocol + '://' + req.get('host') + req.originalUrl,
-                        method:req.method,
-                        route:req.route.path,
-                        acceptLanguage:lang,
-                        lang: lang.substr(0,(lang.search("-")>-1?lang.search("-"):lang.length)),
-                        locale: lang.substr(0,(lang.search(",")>-1?lang.search(","):lang.length)),
-                        userAgent:req.get("User-Agent"),
-                        ip:req.ip,
-                        user:req.user,
-                        href:req.href
-                    }
-                    // set base
-                    // check is req.url is correct  anders originalURL  of combination of protocol, server ...
-                    // absolute vs relative
-                    // https?? base and protocol specs in reportEngine
-                    // report.logger.info("report get " + report.name)
+                    report.req = req
                 }
             }).then(() => {
                 let output = report.def?.output?.default || "json"
@@ -284,35 +266,7 @@ class ReportEngine {
                     options.layout = req.query["report.layout"]
                 }
 
-            // register query and body as singleton dataset
-
-            // headers
-            // session
-            // params
-            // user
-            // required
             // engine   # reports, users, speed, log ....
-            if (report.def.require?.includes("server")) {
-                report.addData("server", {
-                    "baseUrl": req.baseUrl,
-                    "url": req.url,
-                    "hostname": req.hostname,
-                    "ip": req.ip,
-                    "ips": req.ips,
-                    "method": req.method,
-                    "originalUrl": req.originalUrl,
-                    "path": req.path,
-                    "protocol": req.protocol
-                })
-            }
-            if (report.def.require?.includes("query")) {
-                report.addData("query", req.query)
-            }
-            console.log(req.headers)
-            if (report.def.require?.includes("headers")) {
-                report.addData("headers", req.headers)
-            }
-            //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
         }).then(() => {
             // todo check required params
@@ -326,13 +280,16 @@ class ReportEngine {
                 res.send(html)
                 console.log("requireList ",report.requireList)
                 console.log("loadList ",report.loadList)
+                let bytes = Buffer.byteLength((html || ""),"utf-8")
+                this.runtime.reports ++
+                this.runtime.bytes += bytes
                 this.usage({
                     name:report.name,
                     url:req.originalUrl,
                     user:req.user,
                     startTime:report.timestamp,
                     stopTime:Date.now(),
-                    bytes:Buffer.byteLength(html,"utf-8"),
+                    bytes:bytes,
                     error:{}
                     // req info
                     // server info

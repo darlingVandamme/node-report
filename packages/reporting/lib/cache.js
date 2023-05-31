@@ -22,11 +22,20 @@ class memoryCache{
     }
 
     get(key,options){
+        /*this.cache.forEach( (val, key) =>{
+            console.log("cache:  "+ key )
+        })*/
+
         if (this.cache.has(key)){
             // check timeout
             const val = this.cache.get(key)
             // console.log("retrieve from cache ",key,val)
             // check timeout
+            if (Date.now() > (val.timestamp + (val.timeout * 1000))){
+                console.log(" remove from cache timeout "+key )
+                this.cache.delete(key)
+                return null
+            }
             return val.data
         }
     }

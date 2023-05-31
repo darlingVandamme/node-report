@@ -17,6 +17,39 @@
       }
     },
     {
+      "name": "server",
+      "type": "server",
+      "source": "./channels/ServerChannel.js",
+      "options": {
+      }
+    },
+
+    {
+      "name": "request",
+      "type": "request",
+      "source": "./channels/RequestChannel.js",
+      "options": {
+        "data": "request"
+      }
+    },
+    {
+      "name": "query",
+      "type": "request",
+      "source": "./channels/RequestChannel.js",
+      "options": {
+        "data": "query"
+      }
+    },
+    {
+      "name": "headers",
+      "type": "request",
+      "source": "./channels/RequestChannel.js",
+      "options": {
+        "data": "headers"
+      }
+    },
+
+    {
       "name": "paging",
       "type": "paging",
       "source": "./channels/PagingChannel.js",
