@@ -62,7 +62,8 @@ class Report {
         // console.log("URL :" +this.url)
         // remove report. settings?
         // other base ???
-        return new Link(this.req.url, this.req.base, options)
+        const base = this.req.protocol + '://' + this.req.get('host')
+        return new Link(this.req.url, base, options)
     }
 
     async require(dsName) {
@@ -118,7 +119,7 @@ class Report {
         }) // col.init(ds, report/this)
 
         // source deprecated
-        let channel = this.engine.getChannel(ds.options.channel || ds.options.source)
+        let channel = this.engine.getChannel(ds.options.channel || ds.options.source || ds.name)
         if (channel) {
             ds.connection.channel = channel
             await this.tryCache(ds)

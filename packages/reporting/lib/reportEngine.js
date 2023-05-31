@@ -242,9 +242,9 @@ class ReportEngine {
                 } else {
                     report = r
                     let lang = req.get("Accept-Language")
-                    report.req = {
-                        url : req.url,
-                        originalUrl : req.originalUrl,
+                    report.req = req
+                    // needed ???
+                    /*report.req = {
                         base : req.protocol + '://' + req.get('host') ,
                         fullUrl: req.protocol + '://' + req.get('host') + req.originalUrl,
                         method:req.method,
@@ -253,10 +253,7 @@ class ReportEngine {
                         lang: lang.substr(0,(lang.search("-")>-1?lang.search("-"):lang.length)),
                         locale: lang.substr(0,(lang.search(",")>-1?lang.search(","):lang.length)),
                         userAgent:req.get("User-Agent"),
-                        ip:req.ip,
-                        user:req.user,
-                        href:req.href
-                    }
+                    }*/
                     // set base
                     // check is req.url is correct  anders originalURL  of combination of protocol, server ...
                     // absolute vs relative
@@ -292,26 +289,6 @@ class ReportEngine {
             // user
             // required
             // engine   # reports, users, speed, log ....
-            if (report.def.require?.includes("server")) {
-                report.addData("server", {
-                    "baseUrl": req.baseUrl,
-                    "url": req.url,
-                    "hostname": req.hostname,
-                    "ip": req.ip,
-                    "ips": req.ips,
-                    "method": req.method,
-                    "originalUrl": req.originalUrl,
-                    "path": req.path,
-                    "protocol": req.protocol
-                })
-            }
-            if (report.def.require?.includes("query")) {
-                report.addData("query", req.query)
-            }
-            console.log(req.headers)
-            if (report.def.require?.includes("headers")) {
-                report.addData("headers", req.headers)
-            }
             //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
         }).then(() => {
