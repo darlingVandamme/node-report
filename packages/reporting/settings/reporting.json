@@ -36,7 +36,15 @@
       "source": "./channels/AggregateChannel.js",
       "options": {
       }
+    },
+    {
+      "name": "summary",
+      "type": "summary",
+      "source": "./channels/SummaryChannel.js",
+      "options": {
+      }
     }
+
   ]
 }
 

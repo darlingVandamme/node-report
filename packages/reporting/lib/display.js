@@ -34,7 +34,8 @@ registerDisplay("default", (value, options)=>{
             return value // escape???
         }
         case "number":{
-            return value // decimal ....
+            return parseFloat(value.toFixed(2))
+            // return value // decimal ....
         }
         case "object":{
             if (value instanceof Date){

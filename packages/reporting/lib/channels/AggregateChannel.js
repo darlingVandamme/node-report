@@ -1,14 +1,18 @@
 class AggregateChannel {
-    constructor(options) {
+    constructor(options, engine) {
         this.options = options.options
         this.name = options.name
     }
 
 
     async load(ds, connection, params) {
-        connection.sourceDS = await ds.require(params.from)
+        //console.log("getting data from "+params.from)
+        let sourceDS = await ds.require(params.from)
+
+        // sourceDS = ds.report.getDataset(params.from)
         // let data = this.sourceDS.getRow(0).data
-        let accumulator = connection.sourceDS.accumulator()
+
+        let accumulator = sourceDS.accumulator()
         let columns = accumulator.dimensions
         /*if (ds.options.columns){
             columns = ds.options.columns

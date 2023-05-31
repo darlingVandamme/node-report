@@ -2,6 +2,7 @@ import {getDisplay} from "./display.js";
 import {getColumn} from "./column.js";
 import {Accumulator} from "./accumulator.js";
 import * as utils from "./utils.js";
+import * as crypto from 'crypto';
 
 class Dataset {
     constructor(options, report) {
@@ -19,8 +20,6 @@ class Dataset {
         // this.connectOptions = {}
         // batches?
         console.log("create dataset " + JSON.stringify(options))
-
-        this.getResult = this.getData
 
         this.readColumns(this.options)
 
@@ -138,11 +137,9 @@ class Dataset {
             if (!this.dependencies.includes(name)) {
                 this.dependencies.push(name)
                 this.report.debug("dependency ", JSON.stringify({from: this.name, require: name, param: paramName}))
-
-                return this.report.require(name)
-
                 // console.log("start Dependency "+this.name+" waiting on "+name)
             }
+            return this.report.require(name)
             // todo check paramName as required field!
         }
      }
@@ -294,9 +291,17 @@ class Dataset {
         }
     }
 
+    getData(columns){
+        let data = []
+        this.getRows().forEach(row => {
+            let rowData = row.getData(columns)
+            data.push(rowData)
+        })
+        return data
+    }
         // andere naam? result?  getResult?  context??
         // handlebars helpers?
-    getData(options = {display: false, json: false, html:false}) {  // filter?
+    getResult(options = {display: false, json: false, html:false}) {  // filter?
         let result = {
             name: this.name,
             description: this.description,
@@ -373,6 +378,13 @@ class Dataset {
         return result
     }
 
+    getHash(){
+        let hash = crypto.createHash("SHA256")
+        this.getRows().forEach(row => {
+            hash.update(JSON.stringify(row.getData("raw")))
+        })
+        return hash.digest("base64")
+    }
 
     render(options) {
             let hbs = this.report.handlebars

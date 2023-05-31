@@ -37,6 +37,7 @@ function hbs(options) {
     this.encoding = "utf8"
     this.loadTime = 0
 
+    console.log("create hbs "+this.root)
     this.getInstance = function(){
         return hbsInstance
     }
@@ -98,7 +99,7 @@ function hbs(options) {
         let key = subDir+"/"+name
         // let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
         let fileName = path.resolve(path.join(this.root, subDir, name + this.ext))
-
+        console.log("try template "+fileName)
         try{
             await fs.access(fileName)
         } catch {
@@ -373,13 +374,19 @@ function paging(report,rtOptions){
 }
 
 function includeHelper(report,rtOptions) {
-    return function (includeType, prefix, reportResult, options) {
+    return function (includeType, prefix, options) {
         let content = options.fn(this)
 //        console.log("include Helper1 "+JSON.stringify(reportResult))
-//        console.log("include Helper "+JSON.stringify(options))
+        console.log("include Helper "+JSON.stringify(options))
+
+        let reportResult = options.data.root
+        if(reportResult.report){
+            reportResult = reportResult.report
+        }
 
         switch(includeType){
             case "css": reportResult.include.css.push(content); break;
+            // naming??
             case "script" : reportResult.include.scripts.push(content); break;
             case "javascript" : reportResult.include.javascript.push(content); break;
             default: console.log("include type not found "+includeType)

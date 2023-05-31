@@ -69,6 +69,7 @@ class MysqlChannel {
             // todo try to reconnect??
             //throw error
         } finally {
+
             this.stats.stop(startTime)
         }
     }

@@ -22,7 +22,10 @@ class MongoChannel{
         this.client = new MongoClient(this.options.url , connectionConf)
         try {
             this.connection = this.client.connect()
-        } catch (error) {console.error(error)}
+        } catch (e) {
+            console.log(error)
+
+        }
     }
 
     async load(ds, connection, params) {
@@ -99,7 +102,7 @@ class MongoChannel{
                 ds.addRow(await cursor.next())
             }
         } catch(error) {
-            console.log("Mongho error ",error)
+            console.log("Mongo error ",error)
             ds.report.error("error in mongo", error)
             // todo try to reconnect??
             //throw error

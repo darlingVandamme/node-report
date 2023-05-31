@@ -20,7 +20,7 @@
 + report level logging in dataset
 - log to library (pino?)
 - error handling? (log and error dataset?)
-- Cost & timing logging per user
++ Cost & timing logging per user
 - user quota, short term quota
 - messages? / flash
 - Unique request ID?
@@ -28,7 +28,7 @@
 ## performance
 - timeout?
 - cost quota
-- cost, timings & bytes  per user  logging
++ cost, timings & bytes  per user  logging
 
 ## ES6 import
 + dual mode library https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
@@ -147,14 +147,19 @@
     - filter rows / columns
     - transpose
     - crosstab !!!
-    - running sums / totals    
+    - running sums / totals
+    - group by
+- temporary datasets???     
+    - not included in result, but directly consumed by aggregating dataset?
+    - needed? 
+        
 - system
     - process
     - reportengine channels
     - performance & counters        
 
 ## conditional sources
-- choice between different queries (depending on availability of params)
++ choice between different queries (depending on availability of params)
 - intelligent query creation?  select:"   " , from: "  "....
 + Query builder object
 
@@ -174,13 +179,23 @@
 - estimate total number of pages (maxHint)
 
 - endless scroll instead of paging??? load more...
-- server side paging (a href) <> client side paging (reload list of datasets) 
+- server side paging (a href) <> client side paging (reload list of datasets)
+- backend service paging. Store next and previous keys in the paging dataset
+  
 
 ## caching
 - caching on dataset level (dataset cache ID)
 - hash on input parameters (sorted)
 - cache time
 - No cache for user dependent data or time critical
+- cache params on engine, report and ds (and request) level
+- mongo / redis / file implementations
+- Memcache / redis  https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
+- "cache":"default"
+- "cache":"none"
+- "cache":{ type:default, timeout:1000}
+         
+
 
 ## output format
 - String formatting
@@ -257,7 +272,13 @@
 - Hover effecten  https://stackoverflow.com/questions/74454315/how-to-highlight-a-line-when-mouse-over-it-in-observable-plot-using-javascript
 - https://observablehq.com/@mkfreeman/plot-tooltip
 - https://observablehq.com/d/2e1daf099a7aaaea
-
+- Betere tooltip option: https://github.com/observablehq/plot/pull/1304
+- server side svg generation is possible, but not ideal. 
+    - dependency on jsdom
+- client side svg rendering 
+    - allows dynamic client side js
+    - faster load
+    - both client side data (+filter) or server side data fetch is possible    
 
 ## testing
 - ???
@@ -294,10 +315,10 @@
     - required fields?
     - hidden fields?
     
- 
 ## security
 - ENV?
-- secrets 
+- secrets
+https://medium.com/@tony.infisical/the-death-of-the-env-file-6d65bfc6ac5e 
 - roles
 - authentication
 - passwords and keys in private config file
@@ -306,12 +327,16 @@
 - file acces ensure rootDir  ../ injection prevention  (fs.realpath(path[, options], callback)) 
 - avoid html injection in server side rendering and {{{ }}}
 - auth keys for API use ???
+- JWT https://medium.com/swlh/all-you-need-to-know-about-json-web-token-jwt-8a5d6131157f
+- https://github.com/auth0/node-jsonwebtoken
+- https://github.com/googleapis/google-auth-library-nodejs
 
 ## authentication
 - passport demo
 - bigquery end user auth token
 - API's??
--  
+- JWT ??
+ 
 
 ## Frameworks
 - express 
@@ -463,7 +488,24 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - MySQL RNA  https://docs.rfam.org/en/latest/database.html
  - Bigquery https://cloud.google.com/bigquery/public-data
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
+ - https://github.com/vega/vega-datasets/blob/next/SOURCES.md#weathercsv
+ - 538 https://github.com/fivethirtyeight/data
  
  ## alternatives
  - https://kanaries.net/home
  
+ 
+ 
+  ## deploy
+  ### GCS 
+     - app engine  (adlens demo)
+     - headers https://cloud.google.com/appengine/docs/standard/reference/request-headers?tab=node.js#top
+     - cloud run https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-nodejs-service
+     - cloud functions (reporting in global  https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations)
+     - authenticate https://cloud.google.com/nodejs/getting-started/authenticate-users
+     - bigquery (user account login)
+     - cache in memcache or firestore
+     
+ ### AWS
+     
+ ### Kubernetes

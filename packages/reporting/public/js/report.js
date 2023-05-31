@@ -120,6 +120,12 @@ function clickClosePopup(e) {
     }
 }
 
+function dialog(url){
+    const dialog = document.createElement("DIALOG");
+    document.body.append(dialog)
+    fetch(url).then(res=>{return res.text()}).then(text=>{dialog.innerHTML=text})
+    dialog.showModal()
+}
 
 async function fetchDataset(url) {
     let resp = await fetch(url)
