@@ -78,12 +78,24 @@ header > h1 {
 }
 
 .container {
+  width: 90%;
   display: flex;
   justify-content: flex-start;
+  margin-left: auto;
+}
+
+/* voorlopige oplossing */
+.block {
+  width: 100%;
+}
+
+.main_container {
+  display: flex;
+  justify-content: center;
 }
 
 nav {
-  width: 25vw;
+  width: 20vw;
   text-align: center;
   overflow: hidden;
   transition: all 1s ease;
@@ -93,6 +105,10 @@ main {
   flex-basis: 80vw;
   flex-grow: 1;
   overflow-x: hidden;
+}
+main.row {
+  display: flex;
+  justify-content: center;
 }
 
 .dataset_table {
@@ -130,6 +146,7 @@ main {
 }
 
 .dataset {
+  max-width: 90%;
   padding: 1%;
 }
 
