@@ -160,6 +160,11 @@ class Report {
                 ds.cache.key = [ds.report.name, ds.name , q ].join("/")
                 ds.cache.timeout = 1000
             }
+            if (typeof ds.options.cache == "object"){
+                // calculate key ?
+                // include queryHash?
+                ds.cache=ds.options.cache
+            }
         }
         return ds.cache.key
     }

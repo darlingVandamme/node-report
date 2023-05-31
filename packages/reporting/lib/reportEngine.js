@@ -305,8 +305,12 @@ class ReportEngine {
                     "protocol": req.protocol
                 })
             }
-            if (report.def.require?.includes("server")) {
+            if (report.def.require?.includes("query")) {
                 report.addData("query", req.query)
+            }
+            console.log(req.headers)
+            if (report.def.require?.includes("headers")) {
+                report.addData("headers", req.headers)
             }
             //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
