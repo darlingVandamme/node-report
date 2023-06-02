@@ -75,7 +75,7 @@ main {
 }
 main.row {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .logo {
@@ -113,26 +113,27 @@ main.row {
 .dataset_table {
   border-collapse: collapse;
 }
-
 .dataset_table td, .dataset_table th {
-  /* border: 3px solid var(--color-3); */
   padding: 8px;
 }
-
-.dataset_table tr:nth-child(even) {
-  background-color: var(--color-4);
-}
-
 .dataset_table tr:hover {
   background-color: var(--color-3);
 }
-
 .dataset_table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: var(--color-3);
   color: var(--color-text);
+}
+.dataset_table.border td, .dataset_table.border th {
+  border: 3px solid var(--color-3);
+}
+.dataset_table.zebra tr:nth-child(even) {
+  background-color: var(--color-4);
+}
+.dataset_table.zebra tr:nth-child(even):hover {
+  background-color: var(--color-3);
 }
 
 .table {
@@ -147,6 +148,13 @@ main.row {
 .dataset {
   max-width: 90%;
   padding: 1%;
+}
+
+.graph {
+  box-shadow: 3px 3px 3px var(--color-5);
+  border-radius: 3px;
+  border: 2px solid var(--color-3);
+  width: auto;
 }
 
 .dataset_cards {

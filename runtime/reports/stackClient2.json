@@ -79,7 +79,8 @@
       "template": "general",
       "type" : "hbs",
       "classes": {
-        "main": "row"
+        "main": "row",
+        "nav": "hide_anim"
       }
     },
     "arg": {

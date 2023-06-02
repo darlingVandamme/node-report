@@ -5,7 +5,7 @@
     <div>{{this.description}} ({{rows}} rows)</div>
 
     <div class="table">
-<table  class='dataset_table'>
+<table  class='dataset_table {{this.display.class}}'>
     <thead>
     <tr>{{#each columns}}
         <th class='{{this.class}}' data-colName="{{@key}}">{{this.header}}</th>
