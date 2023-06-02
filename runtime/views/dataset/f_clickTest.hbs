@@ -6,7 +6,9 @@
 
     <div {{datasetID this.name}}>
         {{this.name}}
-        <div></div>
+        <div class="graph">
+            <div></div>
+        </div>
 
     </div>
 
@@ -34,7 +36,7 @@ function showGraph(evt, position){
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector("#dataset_{{options.source}}").
-        addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_{{this.name}}" )})
+        addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_{{this.name}} div" )})
 })
 
     {{/include}}

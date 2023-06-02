@@ -1,0 +1,17 @@
+{{#with dataset}}
+<div {{datasetID this.name}}>
+
+    <h2>{{this.name}}</h2>
+    <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+
+    <div class='dataset_list'>
+{{#each displayData}}
+    <ul class="dataset_row" data-rowNr="{{this.rowNr}}">
+        {{#each this.data}}
+            <li class="{{this.class}}"><span class="header">{{this.column}}</span> {{this.value}}</div>
+        {{/each}}
+    </ul>
+{{/each}}
+</div>
+</div>
+{{/with}}

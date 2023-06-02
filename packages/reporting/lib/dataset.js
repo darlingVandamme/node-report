@@ -313,8 +313,8 @@ class Dataset {
             position: {},
             url: this.getLink(),
             //options: this.options,
+            display: this.options.display,
             data: [],
-            class: this.options.class
 
             // display
             // storage??

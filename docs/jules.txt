@@ -1,13 +1,21 @@
 table:
     -geen scheiding tussen colommen
     -laatste colom data leeg?? -> json file error
+    -opties voor styling
+        -zebra -> werkt
+        -border -> werkt
+
+list:
+    -styling opties voorzien
 
 main: 
     -data blocks onder/naast elkaar
         -bij naast elkaar via flexbox: 
             -brede tabellen geven overflow -> .dataset max-width geven
         -bij StackClient1: verspringen wanneer er een grafiek komt -> !!!#dataset_block width 100% geven!!! (voorlopig) (main in hbs)
+    -grafiek styling geven -> svg binnen dataset stylen
     -alternatieven voor general.hbs
+    -opties voor styling
 
 form:
     -styling van form
@@ -23,7 +31,7 @@ kleuren:
     -interessante kleurschemas vinden
 
 general:
-    -scss cleaner
+    -scss cleaner -> meer in parts verdeeld
 
 
 
