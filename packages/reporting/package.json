@@ -1,6 +1,6 @@
 {
   "name": "@darling_be/report",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reporting engine",
   "main": "index.js",
   "type": "module",

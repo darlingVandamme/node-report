@@ -24,7 +24,6 @@ class MongoChannel{
             this.connection = this.client.connect()
         } catch (e) {
             console.log(error)
-
         }
     }
 
