@@ -107,7 +107,6 @@ function hbs(options) {
         }
 
         console.log("read template "+fileName)
-        // todo check if exists
 
         let stat = await fs.stat(fileName)
 

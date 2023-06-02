@@ -4,7 +4,13 @@
         <script src='https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6'></script>
     {{/include}}
 
-        //  import {showGraph} from "/reporting/js/graphTest.js"
+    <div {{datasetID this.name}}>
+        {{this.name}}
+        <div></div>
+
+    </div>
+
+{{#include "javascript" this.name }}
 
 function showGraph(evt, position){
     let clickedData = getData(evt.target)
@@ -21,13 +27,15 @@ function showGraph(evt, position){
             y: {grid: true}
         })
         const div = document.querySelector(position);
-        div.replaceChild(graph,div.firstChild )
+        div.replaceChild(graph,div.children[0] )
+
     }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector("#dataset_{{options.source}}").
-        addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_detail .dataset_div" )})
+        addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_{{this.name}}" )})
 })
 
+    {{/include}}
 {{/with}}

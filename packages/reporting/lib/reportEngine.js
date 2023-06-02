@@ -78,7 +78,8 @@ class ReportEngine {
             this.loadConfig(this.configFile)
         ]).then(r => {
             // todo views folder specify
-            this.hbs = new hbs({root:  path.join(this.paths.root, "views") , "module": path.join(this.paths.module, "views")}) // options
+            //this.hbs = new hbs({root:  path.join(this.paths.root, "views") , "module": path.join(this.paths.module, "views")}) // options
+            this.hbs = new hbs({root:  path.join(this.paths.report, "../views") , "module": path.join(this.paths.module, "views")}) // options
             this.cache.caching = cache(this.conf.cache)
             console.log(this.paths)
             // console.log("all setup")
@@ -96,11 +97,10 @@ class ReportEngine {
                 if (conf.reports) {
                     this.paths.report = path.join(this.paths.root, conf.reports )
                     console.log(" read reports dir "+this.paths.report)
-
                 }
 
                 this.paths.query =  path.join(this.paths.root, (conf.query || conf.report || "./runtime/reports"))
-
+// todo views path
                 let promises = []
                 promises.push(this.addChannels(conf.channels))
 

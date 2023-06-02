@@ -23,6 +23,11 @@ class ServerChannel {
             }
             ds.addRow(data)
         }
+        // memory,
+        // network https://nodejs.org/api/net.html
+        // OS  https://nodejs.org/api/os.html
+        // process
+        //
 
     }
 }
