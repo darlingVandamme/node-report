@@ -1,0 +1,16 @@
+.container {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: auto;
+}
+
+/* voorlopige oplossing */
+    .block {
+        width: 100%;
+    }
+
+.main_container {
+    display: flex;
+    justify-content: center;
+}
