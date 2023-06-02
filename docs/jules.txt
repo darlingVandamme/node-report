@@ -6,6 +6,7 @@ table:
         -border -> werkt
 
 list:
+    -list.hbs goed werkende krijgen
     -styling opties voorzien
 
 main: 

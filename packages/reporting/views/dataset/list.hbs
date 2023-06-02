@@ -5,13 +5,17 @@
     <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
 
     <div class='dataset_list'>
-{{#each displayData}}
-    <ul class="dataset_row" data-rowNr="{{this.rowNr}}">
-        {{#each this.data}}
-            <li class="{{this.class}}"><span class="header">{{this.column}}</span> {{this.value}}</div>
+        {{#each displayData}}
+            <ul data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
+                {{#each this.data}}
+                    {{#if this.options.template}}
+                        <li class="{{this.class}}">{{element this @root.dataset}}</li>
+                    {{else}}
+                        <li class="{{this.class}}">{{this.display}}</li>
+                    {{/if}}
+                {{/each}}
+            </ul>
         {{/each}}
-    </ul>
-{{/each}}
-</div>
+    </div>
 </div>
 {{/with}}

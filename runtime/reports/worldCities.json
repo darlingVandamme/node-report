@@ -34,7 +34,7 @@
       "cache": "default",
       "require": "query",
       "display" : {
-        "template": "table",
+        "template": "list",
         "position": "main",
         "class" : "zebra"
       },
