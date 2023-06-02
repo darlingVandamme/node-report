@@ -113,5 +113,5 @@ dist
 .idea/modules.xml
 .idea/node-report.iml
 /package-lock.json
-./package/package-lock.json
-./runtime/package-lock.json
+/package/package-lock.json
+/runtime/package-lock.json
