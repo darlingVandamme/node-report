@@ -81,7 +81,10 @@
         "template": "f_clickTest",
         "position" : "function"
       },
-      "source" : "months"
+      "source" : "months",
+      "x": "d",
+      "y": "posts"
+
     }
 
 

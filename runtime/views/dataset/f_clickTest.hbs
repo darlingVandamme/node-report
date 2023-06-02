@@ -1,15 +1,33 @@
 {{#with dataset}}
-    {{#include "script" this.name @root/report}}
+    {{#include "script" this.name }}
         <script src='https://cdn.jsdelivr.net/npm/d3@7'></script>
         <script src='https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6'></script>
     {{/include}}
 
-import {showGraph} from "/reporting/js/graphTest.js"
+        //  import {showGraph} from "/reporting/js/graphTest.js"
+
+function showGraph(evt, position){
+    let clickedData = getData(evt.target)
+    if (clickedData){
+        let month = clickedData.month
+        let year = clickedData.year
+        let data = report.data["main"].data.filter((d)=>{return (d.d.getMonth() == (month-1) && d.d.getFullYear() == year)})
+        let graph = Plot.plot({
+            marks: [
+                Plot.ruleY([0]),
+                Plot.line(data, {x: "{{options.x}}", y: "{{options.y}}"}),
+                Plot.circle(data, {x: "{{options.x}}", y: "{{options.y}}", stroke:"red",r:2,class:"info" })
+            ],
+            y: {grid: true}
+        })
+        const div = document.querySelector(position);
+        div.replaceChild(graph,div.firstChild )
+    }
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector("#dataset_{{options.source}}").
         addEventListener("mouseover",(event)=>{showGraph(event, "#dataset_detail .dataset_div" )})
 })
-
 
 {{/with}}

@@ -1,0 +1,82 @@
+{
+  "name": "server",
+  "description": "Server info ",
+  "keywords": ["demo","server"],
+
+  "require": ["query","server","headers"],
+  "datasets": [
+    {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "row",
+        "position": "main"
+      }
+    },
+
+    {
+      "name": "server",
+      "channel": "request",
+      "show": "*",
+      "display" :{
+        "template": "table",
+        "position": "main"
+      }
+    },
+    {
+      "name": "headers",
+      "show": "*",
+      "display" :{
+        "template": "row",
+        "position": "main"
+      }
+    },
+    {
+      "name": "engine",
+      "channel": "server",
+      "data": "engine",
+      "show": "*",
+      "display" :{
+        "template": "row",
+        "position": "main"
+      }
+
+    }
+  ],
+  "output": {
+    "json": {
+      "include": [
+        "query",
+        "server",
+        "headers"
+      ],
+      "type": "json"
+    },
+    "html": {
+      "include": [
+        "server",
+        "query",
+        "headers",
+        "engine"
+      ],
+      "classes": {
+        "header": "",
+        "left_column": "hidden",
+        "nav": "",
+        "main": ""
+      },
+      "template": "general",
+      "type": "hbs",
+      "main" : "row"
+    },
+    "arg": {
+      "include": [
+        "query"
+      ],
+      "extension": "html",
+      "type": "hbs",
+      "template": "general"
+    }
+  }
+
+}

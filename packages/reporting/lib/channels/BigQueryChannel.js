@@ -1,4 +1,4 @@
-import {BigQuery} from '@google-cloud/bigquery';
+import {BigQuery, BigQueryDate} from '@google-cloud/bigquery';
 import {profileStats} from "../profileStats.js";
 import {Query} from "../query.js"
 
@@ -53,27 +53,37 @@ class BigQueryChannel {
         }
         query.build(context)
 
-        ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
-        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.params}))
+        ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
+        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
 
         const opt = {
             query: query.query,
             location: connection.location,
-            params: query.params
+            params: query.flatParams
             // dryRun: true,
         };
 
-        return this.bigquery.query(opt)
+        const [job] = await this.bigquery.createQueryJob(opt);
+        return job.getQueryResults(opt)
             .then(([rows]) => {
-                console.log("Done Query " + rows.length)
+                console.log("Done Query " , job)
                 let i = 0
                 rows.forEach(row => {
                     // console.log("read row " + i++)
+                    // convert bigquerydate to normal dates
+                    Object.entries(row).forEach(([k,v])=>{
+                        // console.log("convert "+k+" "+v)
+                        if (v instanceof BigQueryDate){
+                            // console.log("convert "+k+" "+v.value)
+                            row[k] = new Date(v.value)
+                        }
+                    })
                     ds.addRow(row)
                 })
             })
             .catch(error => {
                 ds.report.error("error in Bigquery", error)
+                console.error("error in Bigquery", error)
                 // todo try to reconnect??
                 //throw error
             }).finally(()=>{

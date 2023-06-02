@@ -15,7 +15,20 @@
     </style>
 </head>
 <body>
+
+<header class="header  {{@root.output.classes.header}}" id="header">
+    {{> logo}}
+    <h1 class="report_name">{{name}}</h1>
+    {{position "header"}}
+    <div>{{date moment}} Prof: {{profile}}ms  </div>
+</header>
+
 {{{body}}}
+<footer class="footer  {{@root.output.classes.footer}}" >
+    <div>{{date moment}} Prof: {{profile}}ms  </div>
+    {{position "footer"}}
+</footer>
+
 </body>
 
 </html>

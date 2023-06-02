@@ -31,6 +31,8 @@
     {
       "name" : "main",
       "description" : "",
+      "cache": "default",
+      "require": "query",
       "display" : {
         "template": "table",
         "position": "main",

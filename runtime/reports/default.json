@@ -52,7 +52,8 @@
 
     {
       "name" : "server",
-      "display":{"position" : "hidden",
+      "display":{
+        "position" : "hidden",
         "template" : "row"
       },
       "show": "*"
@@ -60,7 +61,6 @@
     {
       "name" : "paging",
       "show": "*",
-
       "display":{"position" : "hidden",
         "template" : "row"
       },

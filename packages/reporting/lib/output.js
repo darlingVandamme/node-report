@@ -1,3 +1,5 @@
+import {renderPlot} from "./graph.js"
+
 const outputs = {}
 const columnOutputs = {}
 
@@ -29,11 +31,11 @@ registerOutput("json", function(report, options){
 }
 )
 
-
 registerOutput("hbs",  hbs)
 
 registerOutput('serverHtml', hbs ) // name???
 registerOutput('error', error ) // name???
+registerOutput("graph",  renderPlot )
 
 
 function error(report, options){
@@ -50,7 +52,7 @@ async function hbs(report, options) {
     //if (options.reload){
     report.hbs.reload()
     //}
-    let result = report.getResult({datasets: true, display: true})
+    let result = report.getResult({datasets: true, display: true, options:true})
     result.datasets = result.data
     options.include.forEach(dsName => {
         if (report.getDataset(dsName).getDisplayType().template != "container") {
@@ -70,14 +72,14 @@ async function hbs(report, options) {
         return result.data[dsName].rendering
     }))
 
-    let reportHtml = await report.hbs.renderFile("report", options.template, {report:result},report)
+    let reportHtml = await report.hbs.renderFile("report", options.template, {report:result, output:options},report)
     result.body = reportHtml
     //console.log("using layout "+JSON.stringify(options))
     if (typeof options.layout == "undefined") options.layout = "main"
     //console.log("using layout "+JSON.stringify(options))
     if (options.layout != "" && options.layout != "none") {
         // check if layout exists ...
-        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result})
+        reportHtml = await report.hbs.renderFile("layouts", options.layout, {report:result, output:options},report)
     }
     return reportHtml
 }

@@ -1,0 +1,68 @@
+{
+  "name": "stack Plot",
+  "description": "Test report for Mysql stackexchange Server side plot demo ",
+
+  "require": ["query","server"],
+
+  "datasets":[
+    {
+      "name" : "query",
+      "show": "*",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      },
+      "columns": {
+        "startDate": {
+          "template" : "date",
+          "required" : true
+        },
+        "endDate": {
+          "template" : "date",
+          "required" : true
+        }
+      }
+    },
+    {
+      "name": "main",
+      "description" : "",
+      "display" : {
+        "template": "table",
+        "position": "main",
+        "class": "zebra"
+      },
+      "channel" : "StackExchange",
+      "show" : "*",
+      "query": { "file": "stackDaily.sql"},
+      "columns": {
+
+      }
+    }
+
+  ],
+
+  "output": {
+    "json": {
+      "include": ["query","paging","main","log"],
+      "type" : "json"
+    },
+    "html": {
+      "include": ["query","main","log"],
+      "template": "general",
+      "type" : "hbs"
+    },
+    "svg": {
+      "include": ["main"],
+      "template": "line",
+      "dimension" : "posts",
+      "type" : "graph"
+    },
+    "arg": {
+      "include" : ["args","query"],
+      "extension" : "html",
+      "type": "hbs",
+      "template": "general"
+
+    }
+  }
+}

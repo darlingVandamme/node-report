@@ -16,6 +16,19 @@ class Accumulator{
         return Object.keys(this.dims)
     }
 
+    get(param, dimension){
+        switch(param){
+            case "sum": return this.sum(dimension);break
+            case "count": return this.count(dimension);break
+            case "min": return this.min(dimension);break
+            case "max": return this.max(dimension);break
+            case "first": return this.first(dimension);break
+            case "last": return this.last(dimension);break
+
+        }
+    }
+
+
     add(data, dimensions ){
         //console.log("add data "+JSON.stringify(data))
         if (!dimensions){
@@ -29,6 +42,10 @@ class Accumulator{
                 let dim = this.getDim(dimension)
                 dim.sum += value
                 dim.n ++
+                dim.last = value
+                if (dim.n==1){
+                    dim.first=value
+                }
                 dim.ss = dim.ss + value**2
 
                 dim.max = Math.max(value,dim.max)
@@ -45,6 +62,18 @@ class Accumulator{
                     })
                 }
             }
+            if (typeof value == "string"){
+                // if (this.options.alfa)
+                let dim = this.getDim(dimension)
+                // concat? dim.sum += value
+                dim.n ++
+                dim.last = value
+                if (dim.n==1){
+                    dim.first=value
+                }
+
+            }
+            // date ???
         })
     }
 
@@ -81,6 +110,8 @@ class Accumulator{
                 n: 0,
                 sum: 0.0,
                 ss:   0.0,
+                first: 0,
+                last: 0,
                 min:Number.MAX_SAFE_INTEGER,
                 max:Number.MIN_SAFE_INTEGER,
                 values:[],
@@ -107,6 +138,8 @@ class Accumulator{
 
     rank(dimension,val){ return  this.getValues(dimension).indexOf(val)+1}
 
+    first(dimension){return  (this.getDim(dimension).first)}
+    last(dimension){return  (this.getDim(dimension).last)}
     min(dimension){return  (this.getDim(dimension).min)}
     max(dimension) {return (this.getDim(dimension).max)}
     sum(dimension) {return (this.getDim(dimension).sum)}

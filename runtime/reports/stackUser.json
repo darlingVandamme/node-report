@@ -60,6 +60,7 @@
     {
       "name" : "main",
       "description" : "",
+      "header" : "Main data ",
       "display":{
         "template" : "table",
         "class" : "zebra",
@@ -111,9 +112,9 @@
     },
     "html": {
       "include": ["query","main","args","posts","server","log"],
-      "argForm": {
-          "dataset": "args",
-          "extension" : "html"
+      "classes": {
+        "main": "row",
+        "nav" : "hidden"
       },
       "template": "general",
       "type" : "hbs",
@@ -124,7 +125,6 @@
       "extension" : "html",
       "type": "hbs",
       "template": "general"
-
     }
   }
 }

@@ -5,6 +5,7 @@ import {getOutput} from "./output.js"
 import {hbs}  from './handlebars.js';
 import { fileURLToPath } from 'url';
 import express from 'express'
+import {cache} from './cache.js'
 
 function createEngine(configFile){
     return new ReportEngine(configFile)
@@ -16,6 +17,7 @@ class ReportEngine {
         this.runtime = {
             startTime: Date.now(),
             errors: 0,
+            bytes: 0,
             reports: 0
         }
         const __filename = fileURLToPath(import.meta.url);
@@ -27,12 +29,17 @@ class ReportEngine {
         }
         this.configFile = path.join(this.paths.root, configFile)
         this.paths.config = this.configFile
-        this.paths.reports =  path.join(this.paths.root,  "./runtime/reports")
+        this.paths.report =  path.join(this.paths.root,  "./runtime/reports")
         this.paths.query =  path.join(this.paths.root, "./runtime/reports")
-
-        this.hbs = new hbs({root: "runtime/views", "module": path.join(this.paths.module, "views")}) // options
+        console.log(" init reports dir "+this.paths.report)
 
         this.channels = {}
+        this.cache = {
+            tries:0,
+            hits :0,
+            misses:0,
+            caching:null,
+        }
 
         this.logger = console
 
@@ -70,6 +77,9 @@ class ReportEngine {
             this.readDefaults(path.join(this.paths.module, "settings/reporting.json")),
             this.loadConfig(this.configFile)
         ]).then(r => {
+            // todo views folder specify
+            this.hbs = new hbs({root:  path.join(this.paths.root, "views") , "module": path.join(this.paths.module, "views")}) // options
+            this.cache.caching = cache(this.conf.cache)
             console.log(this.paths)
             // console.log("all setup")
             next()
@@ -85,6 +95,8 @@ class ReportEngine {
                 this.conf = conf
                 if (conf.reports) {
                     this.paths.report = path.join(this.paths.root, conf.reports )
+                    console.log(" read reports dir "+this.paths.report)
+
                 }
 
                 this.paths.query =  path.join(this.paths.root, (conf.query || conf.report || "./runtime/reports"))
@@ -101,7 +113,7 @@ class ReportEngine {
                 this.logger.error(error, "config file not found or invalid " + configFile)
                 throw error
             })
-   }
+    }
 
 
     readDefaults(fileName){
@@ -176,8 +188,36 @@ class ReportEngine {
         })*/
     }
 
+    // caching
+    getCache(key,options){
+        // console.log("get cache ",key,options)
+        this.cache.tries++
+        if (this.cache.caching){
+            let val = this.cache.caching.get(key)
+            if (val){
+                this.cache.hits++
+                // hit
+                return val
+            } else{
+                this.cache.misses++
+            }
+
+            // miss
+        }
+    }
+    setCache(key,data,options){
+        console.log("set cache ",key)
+        if (this.cache.caching){
+            this.cache.caching.set(key,data)
+        }
+    }
+
+
+    // usage log
     usage(item){
         // log usage
+        // ip, browser, ....
+        // query, server , ....
         /*{ name:reportName
             url
             user
@@ -186,10 +226,8 @@ class ReportEngine {
             bytes
             error
         }
-
          */
         console.log(item)
-
     }
 
     express(req,res,next) {
@@ -205,26 +243,7 @@ class ReportEngine {
                 } else {
                     report = r
                     let lang = req.get("Accept-Language")
-                    report.req = {
-                        url : req.url,
-                        originalUrl : req.originalUrl,
-                        base : req.protocol + '://' + req.get('host') ,
-                        fullUrl: req.protocol + '://' + req.get('host') + req.originalUrl,
-                        method:req.method,
-                        route:req.route.path,
-                        acceptLanguage:lang,
-                        lang: lang.substr(0,(lang.search("-")>-1?lang.search("-"):lang.length)),
-                        locale: lang.substr(0,(lang.search(",")>-1?lang.search(","):lang.length)),
-                        userAgent:req.get("User-Agent"),
-                        ip:req.ip,
-                        user:req.user,
-                        href:req.href
-                    }
-                    // set base
-                    // check is req.url is correct  anders originalURL  of combination of protocol, server ...
-                    // absolute vs relative
-                    // https?? base and protocol specs in reportEngine
-                    // report.logger.info("report get " + report.name)
+                    report.req = req
                 }
             }).then(() => {
                 let output = report.def?.output?.default || "json"
@@ -247,48 +266,12 @@ class ReportEngine {
                     options.layout = req.query["report.layout"]
                 }
 
-            // register query and body as singleton dataset
-
-            // headers
-            // session
-            // params
-            // user
-            // required
             // engine   # reports, users, speed, log ....
-            report.addData("server", {
-                "baseUrl":req.baseUrl,
-                "url":req.url,
-                "hostname":req.hostname,
-                "ip":req.ip,
-                "ips":req.ips,
-                "method":req.method,
-                "originalUrl":req.originalUrl,
-                "path":req.path,
-                "protocol":req.protocol
-            })
-            report.addData("query", req.query)
-            //// console.log("query1 "+report.getDataset("query").rows())
             return report.init(output,options)
         }).then(() => {
-            // argument form
-            // report info
-            // create context
-            // report.arguments.addAll(req.query)
             // todo check required params
-            //// console.log("query2 "+JSON.stringify(report.getDataset("query").data))
-            //return report.load()
-        //}).then((result) => {
-            //// console.log(JSON.stringify(report))
-            // check if exists, fallback to default (first)
             let output = getOutput(report.output.type)
-            //let output = getOutput("serverHtml")
-            //let output = getOutput("json")
-            //// console.log("output options: "+JSON.stringify(report.output))
-
             let outputOptions = report.output
-            // if  (!outputOptions.layout) outputOptions.layout = "main" // default layout???
-            // console.log("output options "+JSON.stringify(report.output))
-            // outputOptions.res = res  // send res to allow serverHTML
             output(report, outputOptions).then(html=>{
                 if (outputOptions.mime){
                     // console.log("mime type "+outputOptions.mime)
@@ -297,14 +280,20 @@ class ReportEngine {
                 res.send(html)
                 console.log("requireList ",report.requireList)
                 console.log("loadList ",report.loadList)
+                let bytes = Buffer.byteLength((html || ""),"utf-8")
+                this.runtime.reports ++
+                this.runtime.bytes += bytes
                 this.usage({
                     name:report.name,
                     url:req.originalUrl,
                     user:req.user,
                     startTime:report.timestamp,
                     stopTime:Date.now(),
-                    bytes:Buffer.byteLength(html,"utf-8"),
+                    bytes:bytes,
                     error:{}
+                    // req info
+                    // server info
+                    // user info
                 })
                 // res.status?
                 // res.end() ?
@@ -321,10 +310,10 @@ class ReportEngine {
                     report.error(error.message,JSON.stringify(error))
                     let output = getOutput("error")
                     output(report,res, report.output)
-                    usage({
+                    this.usage({
                         name:report.name,
                         url:req.originalUrl,
-                        user:user,
+                        user:req.user,
                         startTime:report.startTime,
                         stopTime:Date.now(),
                         bytes: 0, // Buffer.byteLength(html,"utf-8"),

@@ -299,3 +299,25 @@ registerColumn("select" , function (name,options){
     }
 
 )
+
+// aggregates
+registerColumn("aggregate" , function (name,options) {
+    this.name = name
+    this.options = options || {}
+    this.from = options.from
+
+    this.init = function (ds, report) {
+        this.ds = ds
+        this.report = report
+        if (!this.from) {
+            this.from = ds.options.from
+        }
+    }
+    this.getValue = function (row, colName) {
+        let from = this.report.getDataset(this.from)
+        let accumulator = from.accumulator()
+        console.log("get sum from "+this.from+" "+this.options.column)
+        return accumulator.get(this.options.param, this.options.column)
+
+    }
+})
