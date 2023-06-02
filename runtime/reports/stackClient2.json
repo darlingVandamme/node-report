@@ -1,6 +1,7 @@
 {
   "name": "stack Monthly",
   "description": "Test report for Mysql stackexchange Client side functionality test ",
+  "version": "0.0.1",
 
   "require": ["query","server"],
 
@@ -24,22 +25,12 @@
       }
     },
     {
-      "name" : "block",
-      "show": "",
-      "display" : {
-        "template": "container",
-        "position": "main"
-      },
-      "columns": {
-      }
-    },
-    {
       "name": "main",
       "description": "",
       "channel": "StackExchange",
       "display" : {
-        "template": "table",
-        "class": "zebra"
+         "template": "table",
+         "class": "zebra"
       },
       "query": { "file": "stackDaily.sql"},
       "show": "*",
@@ -51,7 +42,7 @@
       "description" : "",
       "display" : {
         "template": "table",
-        "position": "block",
+        "position": "main",
         "class": "zebra"
       },
       "channel" : "StackExchange",
@@ -67,7 +58,7 @@
       "description" : "",
       "display" : {
         "template": "f_clickTest",
-        "position" : "block"
+        "position" : "main"
       },
       "source" : "months",
       "x": "d",
@@ -86,7 +77,10 @@
     "html": {
       "include": ["query","block","months","click","log","main"],
       "template": "general",
-      "type" : "hbs"
+      "type" : "hbs",
+      "classes": {
+        "main": "row"
+      }
     },
     "arg": {
       "include" : ["args","query"],

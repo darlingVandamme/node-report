@@ -131,6 +131,7 @@ class Report {
                     ds.connection.initDone = await channel.init(ds, ds.connection, ds.options)
                 }
                 // this.done = ...
+                console.log("Channel "+ds.name)
                 await channel.load(ds, ds.connection, ds.options)
                 ds.connection.status = "done"
                 //console.log("require done " + ds.name)
