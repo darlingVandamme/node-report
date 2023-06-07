@@ -220,7 +220,7 @@ function link(report,rtOptions){
 function element(report,rtOptions){
     return function( context, dataset, options) {
         let col = dataset.columns[context.column]
-        console.log("Element helper "+JSON.stringify(context))
+        //console.log("Element helper "+JSON.stringify(context))
         // todo add rowNr to context
         // add report ???
         //console.log("Element helper "+JSON.stringify(dataset))
@@ -240,8 +240,8 @@ function formElement(report,rtOptions){
     return function( context, dataset, options) {
         // dynamic template idea https://stackoverflow.com/questions/13396543/how-do-i-load-different-partials-dynamically-using-handlebars-templates
         // console.log("FormElement "+Object.keys(options) )
-         console.log("FormElement context "+JSON.stringify(context) )
-         console.log("dataset "+JSON.stringify(dataset) )
+         //console.log("FormElement context "+JSON.stringify(context) )
+         //console.log("dataset "+JSON.stringify(dataset) )
         /*
         FormElement lookupProperty,name,hash,data,loc
         context {"column":"id","value":"23","display":"23"}
@@ -376,7 +376,7 @@ function includeHelper(report,rtOptions) {
     return function (includeType, prefix, options) {
         let content = options.fn(this)
 //        console.log("include Helper1 "+JSON.stringify(reportResult))
-        console.log("include Helper "+JSON.stringify(options))
+        //console.log("include Helper "+JSON.stringify(options))
 
         let reportResult = options.data.root
         if(reportResult.report){

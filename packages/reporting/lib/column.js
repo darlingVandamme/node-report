@@ -300,6 +300,27 @@ registerColumn("select" , function (name,options){
 
 )
 
+registerColumn("rowsum" , function (name,options){
+        this.name = name
+        this.options = options || {}
+        this.source = options.source
+
+        this.init = function(ds,report){
+            this.ds = ds
+            this.report = report
+        }
+
+        this.getValue = function(row,colName) {
+            let data = row.getData(options.columns || "raw")
+            let sum = 0
+            Object.values(data).forEach(val => { if (typeof val == "number"){sum+=val}})
+            return sum
+        }
+    }
+
+)
+
+
 // aggregates
 registerColumn("aggregate" , function (name,options) {
     this.name = name
@@ -316,7 +337,7 @@ registerColumn("aggregate" , function (name,options) {
     this.getValue = function (row, colName) {
         let from = this.report.getDataset(this.from)
         let accumulator = from.accumulator()
-        console.log("get sum from "+this.from+" "+this.options.column)
+        //console.log("get sum from "+this.from+" "+this.options.column)
         return accumulator.get(this.options.param, this.options.column)
 
     }

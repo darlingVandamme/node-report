@@ -19,7 +19,7 @@ class Dataset {
         this.connection = {status:"init"}
         // this.connectOptions = {}
         // batches?
-        console.log("create dataset " + JSON.stringify(options))
+        //console.log("create dataset " + JSON.stringify(options))
 
         this.readColumns(this.options)
 
@@ -93,12 +93,15 @@ class Dataset {
                     })
                     missing = missing.sort((a, b) => {
                         //// console.log(a+" col Order "+ this.getColumn(a).options?.order)
+
                         return (this.getColumn(a).options?.order || 100) - (this.getColumn(b).options?.order || 100)
                     })
+
                     //// console.log("missing:"+[...missing])
                     // // console.log("index:"+index)
                     list.splice(index, 1, ...missing)
                     // // console.log("list:"+list)
+                    console.log("Sort columns ",list)
                 }
             })
             this.report.debug(this.name + " columns", list)

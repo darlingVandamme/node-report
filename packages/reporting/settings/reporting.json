@@ -76,9 +76,17 @@
       "source": "./channels/SummaryChannel.js",
       "options": {
       }
+    },
+    {
+      "name": "crosstab",
+      "type": "crosstab",
+      "source": "./channels/CrosstabChannel.js",
+      "options": {
+      }
     }
 
-  ]
+
+      ]
 }
 
 
