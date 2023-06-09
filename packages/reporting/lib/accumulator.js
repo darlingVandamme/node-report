@@ -1,6 +1,14 @@
 
 // object to calculate basic statistics
 
+const reducers = {
+    sum : {initial:0, red:(acc,val)=>{return acc+val}},
+    count : {initial:0, red:(acc,val)=>{return acc+1}},
+    min : {initial:Number.MAX_SAFE_INTEGER, red:(acc,val)=>{return Math.min(acc,val)}},
+    max : {initial:0, red:(acc,val)=>{return Math.max(acc,val)}},
+    
+}
+
 class Accumulator{
     values = true // keep info to calculate ordered stats
     cross = true // keep info to calculate cross stats (correlations)
@@ -17,7 +25,10 @@ class Accumulator{
     }
 
     get(param, dimension){
-        switch(param){
+        if ( ["sum","count","min","max","first","last"].includes(param)) {
+            return this[param](dimension)
+        }
+        /*switch(param){
             case "sum": return this.sum(dimension);break
             case "count": return this.count(dimension);break
             case "min": return this.min(dimension);break
@@ -25,7 +36,7 @@ class Accumulator{
             case "first": return this.first(dimension);break
             case "last": return this.last(dimension);break
 
-        }
+        }*/
     }
 
 
@@ -198,4 +209,4 @@ function test(){
 
 // test()
 
-export {Accumulator}
+export {Accumulator, reducers}

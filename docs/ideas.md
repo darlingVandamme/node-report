@@ -490,6 +490,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
  - https://github.com/vega/vega-datasets/blob/next/SOURCES.md#weathercsv
  - 538 https://github.com/fivethirtyeight/data
+ - https://baryon.be/small-datasets-to-practice-data-visualization-skills/
  
  ## alternatives
  - https://kanaries.net/home

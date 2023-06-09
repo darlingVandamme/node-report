@@ -54,7 +54,7 @@ class BigQueryChannel {
         query.build(context)
 
         ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
-        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
+        //console.log("replace params " + this.name, JSON.stringify({stmt: query.query, params: query.flatParams}))
 
         const opt = {
             query: query.query,
@@ -66,7 +66,7 @@ class BigQueryChannel {
         const [job] = await this.bigquery.createQueryJob(opt);
         return job.getQueryResults(opt)
             .then(([rows]) => {
-                console.log("Done Query " , job)
+                //console.log("Done Query " , job)
                 let i = 0
                 rows.forEach(row => {
                     // console.log("read row " + i++)
