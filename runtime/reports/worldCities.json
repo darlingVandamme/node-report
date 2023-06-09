@@ -34,9 +34,31 @@
       "cache": "default",
       "require": "query",
       "display" : {
-        "template": "table",
+        "template": "list2",
         "position": "main",
         "class" : "zebra"
+      },
+      "channel" : "world",
+      "paging" : true,
+      "query" : ["select * from City where 1=1 ",
+        { "condition": "available", "key":"query.code",
+          "query": { "condition": "array", "key":"query.code", "query": " and CountryCode in ({{query.code}}) ", "else": " and CountryCode = {{query.code}} "},
+          "else": { "condition": "available", "key":"query.city", "query": " and Name like {{query.city2}} ", "else":" and 1=2 " }
+        }
+      ],
+      "show" : "*",
+      "columns": {
+      }
+    },
+
+    {
+      "name" : "dropdown",
+      "description" : "",
+      "cache": "default",
+      "require": "query",
+      "display" : {
+        "template": "dropdown",
+        "position": "dropdown"
       },
       "channel" : "world",
       "paging" : true,
@@ -59,7 +81,10 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","main","server","log"],
+      "include": ["query","main","dropdown","server","log"],
+      "classes": {
+          "main": ""
+      },
       "argForm": {
           "dataset": "query",
           "extension" : "html"

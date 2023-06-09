@@ -1,0 +1,20 @@
+main {
+    &.row {
+        flex-direction: row;
+        &.center {
+            align-items: baseline;
+        }
+    }
+
+    &.column {
+        flex-direction: column;
+        &.center {
+            justify-content: baseline;
+        }
+    }
+
+    &.center {
+        justify-content: center;
+        align-items: center;
+    }
+}

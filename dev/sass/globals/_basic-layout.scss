@@ -32,19 +32,24 @@ header {
 }
 
 nav {
+    margin: 10px;
+    padding-top: 50px;
+    min-height: 300px;
+    max-height: 100vw;
     width: 20vw;
     text-align: center;
     overflow: hidden;
     transition: all 1s ease;
+    background-color: var(--color-3);
+    border-radius: 25px;
 }
 
 
 main {
+    padding: 5%;
     flex-basis: 80vw;
     flex-grow: 1;
     overflow-x: hidden;
-    &.row {
-        display: flex;
-        justify-content: flex-start;
-    }
+    display: flex;
+    justify-content: flex-start;
 }

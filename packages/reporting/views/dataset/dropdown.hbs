@@ -1,9 +1,5 @@
 {{#with dataset}}
 <div {{datasetID this.name}}>
-
-    <h2>{{this.name}}</h2>
-    <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
-
     <div class='dataset_list'>
         <ul data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each displayData}}
