@@ -4,10 +4,25 @@ table:
     -opties voor styling
         -zebra -> werkt
         -border -> werkt
+        -highlight -> werkt maar door specificity moet soms extra worden benoemd -> mixin
+            -row
+            -column
+        -warning -> werkt maar door specificity moet soms extra worden benoemd -> mixin
+        -emphasis -> werkt
 
 list:
     -list.hbs goed werkende krijgen
     -styling opties voorzien
+        -highlight -> werkt
+        -warning -> werkt
+        -emphasis -> werkt
+        -border -> werkt
+        -markings -> werkt
+
+hide button:
+    -floating ball
+        -animatie aanpassen
+        
 
 main: 
     -data blocks onder/naast elkaar
@@ -17,6 +32,10 @@ main:
     -grafiek styling geven -> svg binnen dataset stylen
     -alternatieven voor general.hbs
     -opties voor styling
+        -center
+        -row
+        -column
+        
 
 form:
     -styling van form

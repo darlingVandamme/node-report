@@ -34,7 +34,7 @@
       "cache": "default",
       "require": "query",
       "display" : {
-        "template": "list",
+        "template": "list2",
         "position": "main",
         "class" : "zebra"
       },
@@ -60,6 +60,9 @@
     },
     "html": {
       "include": ["query","main","server","log"],
+      "classes": {
+          "main": ""
+      },
       "argForm": {
           "dataset": "query",
           "extension" : "html"

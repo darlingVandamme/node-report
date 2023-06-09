@@ -12,9 +12,11 @@
 
 <div class="main_container">
     <div class="left_column {{@root.output.classes.left_column}}" >
-        <div class="hide_button toggle_hide icon" data-target="nav" data-level="1" data-toggleclass="hide_anim">
+        <div class="hide_button toggle_hide ball" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav class="{{@root.output.classes.nav}}">
+{{!--             <div class="hide_button toggle_hide icon" data-target="nav" data-level="0" data-toggleclass="hide_anim">
+            </div> --}}
             {{position "nav" }}
             <div class="dark_mode">
                 <input type="checkbox" id="dark_mode">

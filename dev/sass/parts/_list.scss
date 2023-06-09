@@ -1,3 +1,21 @@
 .dataset_list {
+    width: fit-content;
+    padding: 1em;
+    & ul {
+        list-style-type: none;
+        &.markings {
+            list-style-type: disc;
+        }
+    }
+    &.markings {
+        & ul {
+        list-style-type: disc;
+        }
+    }
+}
+
+.border {
     border: 1px solid var(--color-3);
+    box-shadow: 1px 1px 1px var(--color-5);
+    border-radius: 3px;
 }

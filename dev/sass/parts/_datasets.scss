@@ -1,0 +1,33 @@
+@mixin specitivity {
+    &.highlight {
+        background-color: var(--color-3);
+    }
+    &.warning {
+        background-color: var(--color-warning);
+    }
+}
+
+.dataset {
+    max-width: 100%;
+    padding: 1%;
+  }
+
+.zebra {
+    & tr:nth-child(even) {
+        background-color: var(--color-4);
+        @include specitivity;
+    }
+}
+
+.highlight {
+    background-color: var(--color-3);
+}
+
+.warning {
+    background-color: var(--color-warning);
+}
+
+.emphasis {
+    font-weight: bold;
+    border: 3px solid var(--color-emphasis);
+}

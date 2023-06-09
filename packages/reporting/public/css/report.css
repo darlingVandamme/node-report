@@ -24,6 +24,8 @@
   --color-4: var(--color-4-light);
   --color-5: var(--color-5-light);
   --color-text: var(--color-text-dark);
+  --color-warning: red;
+  --color-emphasis: green;
   --xmark: var(--xmark-light);
   --arrow: var(--arrow-light);
 }
@@ -62,20 +64,42 @@ header.fixed {
 }
 
 nav {
+  margin: 10px;
+  padding-top: 50px;
+  min-height: 300px;
+  max-height: 100vw;
   width: 20vw;
   text-align: center;
   overflow: hidden;
   transition: all 1s ease;
+  background-color: var(--color-3);
+  border-radius: 25px;
 }
 
 main {
+  padding: 5%;
   flex-basis: 80vw;
   flex-grow: 1;
   overflow-x: hidden;
-}
-main.row {
   display: flex;
   justify-content: flex-start;
+}
+
+main.row {
+  flex-direction: row;
+}
+main.row.center {
+  align-items: baseline;
+}
+main.column {
+  flex-direction: column;
+}
+main.column.center {
+  justify-content: baseline;
+}
+main.center {
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
@@ -116,9 +140,6 @@ main.row {
 .dataset_table td, .dataset_table th {
   padding: 8px;
 }
-.dataset_table tr:hover {
-  background-color: var(--color-3);
-}
 .dataset_table th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -129,12 +150,6 @@ main.row {
 .dataset_table.border td, .dataset_table.border th {
   border: 3px solid var(--color-3);
 }
-.dataset_table.zebra tr:nth-child(even) {
-  background-color: var(--color-4);
-}
-.dataset_table.zebra tr:nth-child(even):hover {
-  background-color: var(--color-3);
-}
 
 .table {
   width: fit-content;
@@ -143,11 +158,6 @@ main.row {
   box-shadow: 1px 1px 1px var(--color-5);
   border-radius: 3px;
   border: 1px solid var(--color-3);
-}
-
-.dataset {
-  max-width: 90%;
-  padding: 1%;
 }
 
 .graph {
@@ -255,7 +265,8 @@ input[type=submit]:hover {
   min-width: 0vw;
   text-align: end;
   position: absolute;
-  left: 0%;
+  left: 10px;
+  top: 10px;
   z-index: 100;
 }
 
@@ -284,6 +295,13 @@ input[type=submit]:hover {
   height: 30px;
 }
 
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: var(--color-3);
+}
+
 .icon {
   background-image: var(--xmark);
   background-repeat: no-repeat;
@@ -294,6 +312,13 @@ input[type=submit]:hover {
 
 .toggled.icon {
   background-image: var(--arrow);
+}
+
+.toggled.ball {
+  background-image: var(--xmark);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center;
 }
 
 .tabs {
@@ -369,6 +394,8 @@ input[type=submit]:hover {
   width: 0;
   height: 0;
   padding: 0;
+  min-height: 0;
+  max-height: 0;
 }
 .hide_anim > * {
   display: none;
@@ -392,5 +419,49 @@ input[type=submit]:hover {
 }
 
 .dataset_list {
+  width: fit-content;
+  padding: 1em;
+}
+.dataset_list ul {
+  list-style-type: none;
+}
+.dataset_list ul.markings {
+  list-style-type: disc;
+}
+.dataset_list.markings ul {
+  list-style-type: disc;
+}
+
+.border {
   border: 1px solid var(--color-3);
+  box-shadow: 1px 1px 1px var(--color-5);
+  border-radius: 3px;
+}
+
+.dataset {
+  max-width: 100%;
+  padding: 1%;
+}
+
+.zebra tr:nth-child(even) {
+  background-color: var(--color-4);
+}
+.zebra tr:nth-child(even).highlight {
+  background-color: var(--color-3);
+}
+.zebra tr:nth-child(even).warning {
+  background-color: var(--color-warning);
+}
+
+.highlight {
+  background-color: var(--color-3);
+}
+
+.warning {
+  background-color: var(--color-warning);
+}
+
+.emphasis {
+  font-weight: bold;
+  border: 3px solid var(--color-emphasis);
 }/*# sourceMappingURL=report.css.map */
