@@ -1,5 +1,12 @@
 {{#with report}}
 
+<div class="dropdown">
+    <div class="dropdown-content">
+        <input type="text">
+        {{position "dropdown"}}
+    </div>
+</div>
+
 <div class="float_right">
     <div class="hide_button_right toggle_hide icon toggled" data-target=".checkboxes" data-level="0" data-toggleclass="hide_anim">
     </div>
@@ -15,13 +22,7 @@
         <div class="hide_button toggle_hide ball" data-target="nav" data-level="1" data-toggleclass="hide_anim">
         </div>
         <nav class="{{@root.output.classes.nav}}">
-{{!--             <div class="hide_button toggle_hide icon" data-target="nav" data-level="0" data-toggleclass="hide_anim">
-            </div> --}}
             {{position "nav" }}
-            <div class="dark_mode">
-                <input type="checkbox" id="dark_mode">
-                <label for="dark_mode"> dark mode </label>
-            </div>
             {{paging}}
         </nav>
     </div>

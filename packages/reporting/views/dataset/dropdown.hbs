@@ -1,0 +1,17 @@
+{{#with dataset}}
+<div {{datasetID this.name}}>
+    <div class='dataset_list'>
+        <ul data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
+            {{#each displayData}}
+                {{#each this.data}}
+                        {{#if this.options.template}}
+                            <li class="{{this.class}}">{{element this @root.dataset}}</li>
+                        {{else}}
+                            <li class="{{this.class}}">{{this.display}}</li>
+                        {{/if}}
+                {{/each}}
+            {{/each}} 
+        </ul>
+    </div>
+</div>
+{{/with}}

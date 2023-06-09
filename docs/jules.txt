@@ -17,12 +17,12 @@ list:
         -warning -> werkt
         -emphasis -> werkt
         -border -> werkt
-        -markings -> werkt
+        -markings -> werkt (li)
 
 hide button:
     -floating ball
         -animatie aanpassen
-        
+
 
 main: 
     -data blocks onder/naast elkaar
