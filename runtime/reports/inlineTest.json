@@ -126,7 +126,7 @@
         "total"
       ],
       "classes": {
-        "main": "row"
+        "main": "row center"
       },
       "argForm": {
         "dataset": "args",

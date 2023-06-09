@@ -1,0 +1,32 @@
+{{#with dataset}}
+<div {{datasetID this.name}}>
+
+    <h2>{{this.name}}</h2>
+    <div>{{this.description}} ({{this.loadTime}}ms  {{rows}} rows)</div>
+
+    <div class='dataset_list'>
+        
+        {{#each displayData}}
+            <ul data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
+                {{#each this.data}}
+                    {{#if @first}}
+                        <li> {{this.display}}
+                    {{/if}}
+                    {{#if @first}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+                <ul>
+                    {{#each this.data}}
+                            {{#if this.options.template}}
+                                <li class="{{this.class}}">{{element this @root.dataset}}</li>
+                            {{else}}
+                                <li class="{{this.class}}">{{this.display}}</li>
+                            {{/if}}
+                    {{/each}}
+                </ul>
+            </ul>
+        {{/each}} 
+    </div>
+</div>
+{{/with}}
