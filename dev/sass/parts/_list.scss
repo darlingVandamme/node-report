@@ -16,6 +16,6 @@
 
 .border {
     border: 1px solid var(--color-3);
-    box-shadow: 1px 1px 1px var(--color-5);
+    filter: drop-shadow(0px 0px 5px var(--color-5));
     border-radius: 3px;
 }

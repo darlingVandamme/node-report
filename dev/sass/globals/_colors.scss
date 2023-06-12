@@ -2,12 +2,13 @@
     --color-1-light : rgb(237, 242, 247);
     --color-2-light : rgb(143, 162, 202);
     --color-2-alpha-light : rgba(143, 162, 202, 0.3);
-    --color-3-light : rgb(181, 198, 184);
+    --color-3-light : rgb(194, 202, 195);  /* rgb(181, 198, 184) */
     --color-4-light : rgb(228, 232, 244);
     --color-5-light : rgb(72, 82, 61);
     --color-text-light : rgb(181, 181, 181);
     --xmark-light : url('/reporting/icons/xmark-solid.svg');
     --arrow-light : url('/reporting/icons/arrow-right-solid.svg');
+    --bars-light : url('/reporting/icons/bars-solid.svg');
     
     --color-1-dark : rgb(38, 50, 56);
     --color-2-dark : rgb(18, 25, 29);
@@ -30,4 +31,5 @@
     --color-emphasis: green;
     --xmark : var(--xmark-light);
     --arrow : var(--arrow-light);
+    --bars : var(--bars-light);
 }

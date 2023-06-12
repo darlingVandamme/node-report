@@ -53,6 +53,13 @@ kleuren:
 general:
     -scss cleaner -> meer in parts verdeeld
 
+material desing:
+    -https://m3.material.io/foundations/content-design/style-guide/ux-writing-best-practices
+
+    -drop shadow ipv box shadow
+    
+
+
 
 
 

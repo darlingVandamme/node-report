@@ -11,7 +11,7 @@
     color: var(--color-text);
     margin: 1%;
     padding: 1%;
-    box-shadow: 3px 3px 3px var(--color-5);
+    filter: drop-shadow(0px 0px 5px var(--color-5));
     border-radius: 10px;
     border: 1px solid var(--color-3);
     overflow: hidden;
@@ -19,7 +19,7 @@
     transition: all .5s ease;
     cursor: pointer;
     &:hover {
-        box-shadow: 7px 7px 7px var(--color-5);
+        filter: drop-shadow(0px 0px 7px var(--color-5));
     }
     & h2 {
         padding: 0;

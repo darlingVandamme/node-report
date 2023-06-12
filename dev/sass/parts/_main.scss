@@ -1,15 +1,19 @@
-main {
+.main-content {
+    padding: 5%;
+    display: flex;
+    justify-content: flex-start;
+
     &.row {
         flex-direction: row;
         &.center {
-            align-items: baseline;
+            align-items: flex-start;
         }
     }
 
     &.column {
         flex-direction: column;
         &.center {
-            justify-content: baseline;
+            justify-content: flex-start;
         }
     }
 
@@ -18,3 +22,4 @@ main {
         align-items: center;
     }
 }
+

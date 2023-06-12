@@ -57,7 +57,10 @@
         "main"
       ],
       "template": "general",
-      "type": "hbs"
+      "type": "hbs",
+      "classes": {
+        "main": "center"
+      }
     },
     "arg": {
       "include": [
