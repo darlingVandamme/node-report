@@ -5,27 +5,27 @@
     <div>{{this.description}} ({{rows}} rows)</div>
 
     <div class="table">
-<table  class='dataset_table {{this.display.class}}'>
-    <thead>
-    <tr>{{#each columns}}
-        <th class='{{this.class}}' data-colName="{{@key}}">{{this.header}}</th>
-    {{/each}}
-    </tr>
-    </thead>
-    <tbody>
-    {{#each displayData}}
-        <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
-            {{#each this.data}}
-                {{#if this.options.template}}
-                    <td class="{{this.class}}">{{element this @root.dataset}}</td>
-                {{else}}
-                    <td class="{{this.class}}">{{this.display}}</td>
-                {{/if}}
+        <table  class='dataset_table {{this.display.class}}'>
+            <thead>
+            <tr>{{#each columns}}
+                <th class='{{this.class}}' data-colName="{{@key}}">{{this.header}}</th>
             {{/each}}
-        </tr>
-    {{/each}}
-    </tbody>
-</table>
-</div>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each displayData}}
+                <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
+                    {{#each this.data}}
+                        {{#if this.options.template}}
+                            <td class="{{this.class}}">{{element this @root.dataset}}</td>
+                        {{else}}
+                            <td class="{{this.class}}">{{this.display}}</td>
+                        {{/if}}
+                    {{/each}}
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 {{/with}}

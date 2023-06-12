@@ -26,16 +26,10 @@
             {{paging}}
         </nav>
     </div>
-
-    <div id="overlay" class="hidden">
-        <div class="xmark overlay_hide" onclick="closeOverlay()">
+    <main>
+        <div class="main-content {{@root.output.classes.main}}">
+            {{position "main" }}
         </div>
-        <div class="table_info">
-        </div>
-    </div>
-
-    <main  class="{{@root.output.classes.main}}">
-        {{position "main" }}
     </main>
 </div>
 

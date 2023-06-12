@@ -38,6 +38,10 @@
   height: 50px;
   border-radius: 25px;
   background-color: var(--color-3);
+  background-image: var(--bars);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center;
 }
 
 .icon {
@@ -54,7 +58,7 @@
 
 .toggled.ball {
     background-image: var(--xmark);
-    background-repeat: no-repeat;
+/*     background-repeat: no-repeat;
     background-size: 20px 20px;
-    background-position: center;
+    background-position: center; */
 }

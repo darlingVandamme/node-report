@@ -1,8 +1,9 @@
 .left_column {
-    top: 3em;
+    top: 5em;
+    min-width: 35px;
+    margin-top: 3em;
     position: sticky;
-    height: 90vh;
-    background-color: var(--color-1);
+    background-color: var(--color-4);
     z-index: 2;
 }
 

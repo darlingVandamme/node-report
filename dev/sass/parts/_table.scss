@@ -19,21 +19,21 @@
         border: 3px solid var(--color-3);
       }
     }
+
   }
 
 .table {
     width: fit-content;
     max-width: 100%;
     overflow-x: auto;
-    box-shadow: 1px 1px 1px var(--color-5);
-    border-radius: 3px;
-    border: 1px solid var(--color-3);
+    box-shadow: 0px 0px 5px var(--color-5);
+    border-radius: 5px;
 }
 
 .graph {
-  box-shadow: 3px 3px 3px var(--color-5);
-    border-radius: 3px;
-    border: 2px solid var(--color-3);
+    filter: drop-shadow(0px 0px 3px var(--color-5));
+    border-radius: 5px;
     width: auto;
+    overflow: hidden;
 }
 
