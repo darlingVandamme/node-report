@@ -220,6 +220,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle));
     document.querySelectorAll('tbody>tr').forEach(row => row.addEventListener('click', showHiddenColumns));
     document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs));
-    document.getElementById("dark_mode").addEventListener('click', darkMode);
+    //document.getElementById("dark_mode").addEventListener('click', darkMode);
     console.log("report loaded "+report.name)
 });

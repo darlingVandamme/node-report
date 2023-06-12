@@ -1,6 +1,6 @@
 {
-  "name": "stack User",
-  "description": "Test report for Mysql stackexchange",
+  "name": "World",
+  "description": "World data",
 
   "require": ["query","server"],
 
@@ -8,8 +8,10 @@
   {
     "name" : "query",
     "show": "*",
-    "type" :  "form",
-    "position" : "nav",
+    "display": {
+      "type": "form",
+      "position": "nav"
+    },
     "columns": {
       "country" : {
         
@@ -25,9 +27,12 @@
   {
     "name" : "Cards",
     "description" : "",
-    "type" : "cards_world",
+    "display": {
+      "template": "cards_world",
+      "class": "zebra",
+      "position": "main"
+    },
     "source" : "world",
-    "class" : "zebra",
     "query" : {"file":"country.sql"},
     "show" : "*",
     "columns" : {
@@ -47,14 +52,11 @@
       "type" : "json"
     },
     "html": {
-      "include": ["query","Cards","args","server","log"],
-      "argForm": {
-          "dataset": "args",
-          "extension" : "html"
-      },
+      "include": ["query","Cards"],
       "template": "general",
       "type" : "hbs"
     },
+
     "arg": {
       "include" : ["args","query"],
       "target" : "html",

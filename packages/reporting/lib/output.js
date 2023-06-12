@@ -1,4 +1,3 @@
-import {renderPlot} from "./graph.js"
 
 const outputs = {}
 const columnOutputs = {}
@@ -35,7 +34,7 @@ registerOutput("hbs",  hbs)
 
 registerOutput('serverHtml', hbs ) // name???
 registerOutput('error', error ) // name???
-registerOutput("graph",  renderPlot )
+// registerOutput("graph",  renderPlot )
 
 
 function error(report, options){

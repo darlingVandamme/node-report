@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/reporting/css/custom.css" >
     <script src="/reporting/js/report.js"></script>
     {{#each include.scripts}}{{{this}}}{{/each}}
-    <script language="JavaScript" type="module">
+    <script language="JavaScript" >
         {{#each include.javascript }} {{{this}}}{{/each}}
     </script>
     <style>
@@ -19,6 +19,7 @@
 <header class="header  {{@root.output.classes.header}}" id="header">
     {{> logo}}
     <h1 class="report_name">{{name}}</h1>
+    {{description}}
     {{position "header"}}
     <div>{{date moment}} Prof: {{profile}}ms  </div>
 </header>
