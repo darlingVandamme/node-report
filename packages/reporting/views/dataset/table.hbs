@@ -24,22 +24,10 @@
                 {{/if}}
             {{/with}}
             {{/each}}
-            </tr>
-            </thead>
-            <tbody>
-            {{#each displayData}}
-                <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
-                    {{#each this.data}}
-                        {{#if this.options.template}}
-                            <td class="{{this.class}}">{{element this @root.dataset}}</td>
-                        {{else}}
-                            <td class="{{this.class}}">{{this.display}}</td>
-                        {{/if}}
-                    {{/each}}
-                </tr>
-            {{/each}}
-            </tbody>
-        </table>
-    </div>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+</div>
 </div>
 {{/with}}
