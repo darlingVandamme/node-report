@@ -13,7 +13,7 @@ class CopyChannel {
         // connection.sourceDS = ds.report.getDataset(params.from)
         connection.copyColumns = params.copyColumns
 
-        console.log("SourceDS " + connection.sourceDS.name + connection.sourceDS.rows())
+        //console.log("SourceDS " + connection.sourceDS.name + connection.sourceDS.rows())
         connection.sourceDS.getRows().forEach(row => {
             ds.addRow(row.getData(connection.copyColumns))
         })

@@ -38,8 +38,7 @@
     "readline-promise": "^1.0.5",
     "mongodb" : "^5.5.0",
     "csv-parse": "^5.3.10",
-    "@observablehq/plot": "^0.6.6",
-    "jsdom": "^22.0.0"
+    "@observablehq/plot": "^0.6.6"
   },
   "comment": {
     "mysql2": " move to separate mysql package "

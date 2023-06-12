@@ -48,7 +48,7 @@ class MysqlChannel {
         query.build(context)
 
         ds.report.debug("replace params " + this.name, JSON.stringify({stmt: query.query, ordered: query.ordered}))
-        console.log("replace params " + this.name, JSON.stringify({stmt: query.query, ordered: query.ordered}))
+        // console.log("replace params " + this.name, JSON.stringify({stmt: query.query, ordered: query.ordered}))
 
 
         let conn = this.pool

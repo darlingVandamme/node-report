@@ -16,6 +16,7 @@
 
     {
       "name": "main",
+      "description": "List ",
       "show": "*",
       "display" :{
         "template": "table",
