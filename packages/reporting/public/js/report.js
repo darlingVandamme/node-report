@@ -1,5 +1,44 @@
 // Data and report related functions
 
+function filterDataset(dataset,filter) {
+    // set all hidden
+    document.querySelectorAll("#dataset_" + dataset + "  [data-rownr]").forEach(item => {
+        item.classList.add("hidden")
+    })
+    // filter on dataset => unset hidden
+    report.data.menu.data.forEach((item, i) => {
+        if (filter(item)) {
+            document.querySelector("#dataset_menu  [data-rownr='" + i + "']").classList.remove("hidden")
+        }
+    })
+}
+
+function sortDataset(dataset,sort,asc) {
+    if (typeof sort =="string"){
+        let sortColunm = sort
+        if (asc && asc=="desc"){
+            sort = (a,b)=>{if (a[sortColunm]<b[sortColunm]) return 1;if (a[sortColunm]>b[sortColunm]) return -1;return 0}
+        } else {
+            sort = (a,b)=>{if (a[sortColunm]>b[sortColunm]) return 1;if (a[sortColunm]<b[sortColunm]) return -1;return 0}
+        }
+    }
+    console.log(sort)
+    let c = [...report.data[dataset].data]
+    c.forEach((item,i)=>{item.rowNr=i})
+    c.sort(sort)
+    c.forEach((item,i)=>{console.log(item.rowNr)})
+    let table = document.getElementById("dataset_"+dataset)
+    let rows = [...document.getElementById("dataset_"+dataset).querySelectorAll("[data-rowNr]")]
+    rows.sort((a,b) => {return a.dataset.rownr - b.dataset.rownr})
+    let tbody = table.querySelector("tbody")
+    let sorted = []
+
+    c.forEach(item=>{ sorted.push(rows[item.rowNr]) })
+    tbody.replaceChildren(...sorted)
+return c
+}
+
+
 //  find data from DOM element
 function getDatasetName(element){
     let id = element.closest(".dataset").getAttribute("id")
