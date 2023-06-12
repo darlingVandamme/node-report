@@ -189,16 +189,16 @@ class ReportEngine {
     }
 
     // caching
-    getCache(key,options){
+    async getCache(key, options) {
         // console.log("get cache ",key,options)
         this.cache.tries++
-        if (this.cache.caching){
-            let val = this.cache.caching.get(key)
-            if (val){
+        if (this.cache.caching) {
+            let val = await this.cache.caching.get(key)
+            if (val) {
                 this.cache.hits++
                 // hit
                 return val
-            } else{
+            } else {
                 this.cache.misses++
             }
 

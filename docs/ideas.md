@@ -218,6 +218,8 @@
 - email / save to file
 - excel
 - JSON (custom stringify  (date))
+- pdf https://www.npmjs.com/package/html-pdf-node 
+- pdf https://www.bannerbear.com/blog/how-to-convert-html-into-pdf-with-node-js-and-puppeteer/
 
 ## HTML output
 - single dataset
@@ -490,6 +492,7 @@ app.get("/report/:name",(req,res,next)=>reports.express(req,res,next))
  - Observable https://observablehq.com/@observablehq/sample-datasets#-aapl
  - https://github.com/vega/vega-datasets/blob/next/SOURCES.md#weathercsv
  - 538 https://github.com/fivethirtyeight/data
+ - https://baryon.be/small-datasets-to-practice-data-visualization-skills/
  
  ## alternatives
  - https://kanaries.net/home

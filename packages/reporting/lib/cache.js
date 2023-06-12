@@ -1,7 +1,4 @@
 import * as fs from "fs/promises";
-//import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
-//import { getFirestore, Timestamp, FieldValue, Filter } from 'firebase-admin/firestore';
-
 
 function cache(options){
     if (!options) return null
@@ -13,7 +10,7 @@ function cache(options){
 
     }
     if (options.type == "firestore"){
-        return new firestoreCache(options)
+//        return new firestoreCache(options)
     }
 
 }
@@ -54,40 +51,57 @@ class memoryCache{
     }
 }
 
-/*class firestoreCache{
+/*
+
+class firestoreCache{
     constructor(options) {
-        console.log("Setup cache Firestore")
+        console.log("Setup cache Firestore ",options)
+        this.options = options
+        let serviceAccount
         if (options.auth){
-            const auth = fs.readFileSync('/home/geert/projects/AdLens/online/settings/GCP_auth.json')
-            const serviceAccount =JSON.parse(auth)
+            fs.readFile('/home/geert/projects/AdLens/online/settings/GCP_auth.json').then( data=>{
+                console.log(data)
+                serviceAccount = JSON.parse(data)
+                console.log(serviceAccount)
+
+                initializeApp({
+                    credential: cert(serviceAccount)
+                });
+                this.db = getFirestore();
+
+            })
         }
 // https://firebase.google.com/docs/firestore/quickstart
 
-        initializeApp({
-            credential: cert(serviceAccount)
-        });
-
-        const db = getFirestore();
-
-        // this.connection =
-        // size. expire, ....
     }
 
-    get(key,options){
-
+    async get(key, options) {
+        return null
+        const collection = this.options.collection
+        const res = await this.db.collection(collection).doc(key).set(data);
+        if (res){
+            // check timeout
+            return res.data
+        }
+        console.log("result ")
+        console.log(res)
+        return null
     }
 
     set(key,data,options){
-        this.cache.set(key,{
+        const item = {
+            key:key,
             data:data,
             timestamp:Date.now(),
             timeout: (options?.timeout || 1000)
-        })
-
+        }
+        const collection = this.options.collection
+        this.db.collection(collection).doc(key).set(data);
+        console.log("Save in cache "+key)
     }
 }
 
-*/
 
+*/
 
 export {cache}

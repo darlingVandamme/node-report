@@ -173,11 +173,12 @@ class Report {
         return ds.cache.key
     }
 
-    tryCache(ds) {
+    async tryCache(ds) {
         let cacheKey = this.cacheKey(ds)
         if (cacheKey) {
             console.log("cacheKey", cacheKey)
-            let cachedValue = this.engine.getCache(cacheKey)
+            let cachedValue = await this.engine.getCache(cacheKey)
+            console.log(cachedValue)
             if (cachedValue) {
                 // https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/main/appengine/memcached/app.js
                 // console.log("got value from cache ",cachedValue)
