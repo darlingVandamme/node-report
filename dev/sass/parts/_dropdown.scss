@@ -3,7 +3,6 @@
     left: 0;
     min-width: 70px;
     min-height: 70px;
-    /* background-color: aqua; */
     position: fixed;
     display: inline-block;
     z-index: 20;
@@ -36,6 +35,10 @@
         background-color: var(--color-3);
         padding: 5px;
         cursor: pointer;
+    }
+    & a {
+        text-decoration: none;
+        color: var(--color-text);
     }
 }
 
