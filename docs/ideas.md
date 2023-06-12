@@ -218,6 +218,8 @@
 - email / save to file
 - excel
 - JSON (custom stringify  (date))
+- pdf https://www.npmjs.com/package/html-pdf-node 
+- pdf https://www.bannerbear.com/blog/how-to-convert-html-into-pdf-with-node-js-and-puppeteer/
 
 ## HTML output
 - single dataset

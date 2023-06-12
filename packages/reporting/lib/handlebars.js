@@ -165,6 +165,9 @@ function hbs(options) {
             rtOptions.helpers["dataset"] = datasetHelper(report, rtOptions)
             rtOptions.helpers["include"] = includeHelper(report, rtOptions)
             rtOptions.helpers["datasetID"] = datasetID(report, rtOptions)
+            rtOptions.helpers["value"] = reportValue(report, rtOptions)
+            rtOptions.helpers["recurse"] = recurse(report, rtOptions)
+
         }
         //console.log("helpers "+Object.keys(rtOptions.helpers))
         return template(data, rtOptions)
@@ -355,6 +358,25 @@ function datasetID(report,rtOptions) {
 
         let result = ' id="dataset_'+datasetName+'" class="'+style+'" data-src="'+ds.getLink()+'"'
         return new hbsInstance.SafeString(result)
+    }
+}
+
+function recurse(report,rtOptions) {
+    return function (value,options) {
+        if (value.includes("{{")){
+            let f = report.hbs.formatter(value)
+            let result = f(options.root)
+        } else {
+            return value
+        }
+    }
+}
+
+function reportValue(report,rtOptions) {
+    // can be done with  eg  {{@root.report.data.query.data.0.name}}
+    return function (value,options) {
+        console.log("get value "+value,options)
+        return report.getValue(value)
     }
 }
 

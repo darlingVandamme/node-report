@@ -2,7 +2,7 @@
 <div {{datasetID this.name}} >
 
     <h2>{{this.options.header}}</h2>
-    <div>{{this.description}} ({{rows}} rows)</div>
+    <div>{{this.description}} ({{rows}} {{@root.report.data.query.data.0.name}} rows)</div>
 
     <div class="table">
 <table  class='dataset_table {{this.display.class}}'>
