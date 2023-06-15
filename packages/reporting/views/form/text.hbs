@@ -1,8 +1,6 @@
 <div class='formField {{this.style}}'>
-
-<label >{{this.columnOptions.header}}
-<input type="text"  name='{{this.column}}' value='{{this.value}}'
-    {{#if columnOptions.required}}required{{/if}}
-/>
-</label>
+    <label> {{this.columnOptions.header}} </label>
+    <input type="text" name='{{this.column}}' value='{{this.value}}' placeholder='{{this.columnOptions.header}}'
+        {{#if columnOptions.required}}required{{/if}}
+    />
 </div>

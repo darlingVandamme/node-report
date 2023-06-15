@@ -100,13 +100,13 @@ function getPaging(data){
     let maxPage = 1000 // ???
     if (data.max) maxPage = data.max/data.pageSize
     // console.log("maxPage "+maxPage+" "+data.max)
-    let start = Math.max(data.page - 4,1)
-    let showPages = 10
+    let start = Math.max(data.page - 3,1)
+    let showPages = 6
     let result = {}
     // first
 
     result.first={
-        name:"first",
+        name:"First",
         page:1,
         url: link.set("paging.page",0).relative()
     }

@@ -1,7 +1,8 @@
 <div class='formField {{this.style}}'>
-<label >{{this.columnOptions.header}}
+<label >{{this.columnOptions.header}}</label>
 <input type="date"  name='{{this.column}}' value='{{this.value}}'
-    {{#if columnOptions.required}}required{{/if}}
+    {{#if columnOptions.required}}
+        required
+    {{/if}}
 />
-</label>
 </div>
