@@ -1,28 +1,21 @@
 {{#include "javascript" this.name}}
     function filterMenu(txt){
         console.log(txt)
-        let filter = (item)=>{ txt = txt.toLowerCase();
+        let filter = (item)=>{ txt = txt.trim().toLowerCase();
                 let s = item.name+" "+item.description+" "
                 if (item.keywords){
                     s=s+item.keywords.join(" ")
                 }
                 return s.toLowerCase().includes(txt)
         }
-        // set all hidden
-        document.querySelectorAll("#dataset_menu  [data-rownr]").forEach(item=>{item.classList.add("hidden")})
-        // filter on dataset => unset hidden
-        report.data.menu.data.forEach((item,i)=>{
-            if (filter(item)){
-                document.querySelector("#dataset_menu  [data-rownr='"+i+"']").classList.remove("hidden")
-            }
-        })
+        filterDataset("menu",filter)
     }
 {{/include}}
 
 {{#with dataset}}
 <div {{datasetID this.name}}>
     <div class='dataset_list'>
-        <input type="text" onchange="filterMenu(this.value)" onkeydown="filterMenu(this.value)">
+        <input type="text" onchange="filterMenu(this.value)" onkeyup="filterMenu(this.value)">
         <ul  {{#if ../options.classColumn}} class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each displayData}}
                 {{#each this.data}}
