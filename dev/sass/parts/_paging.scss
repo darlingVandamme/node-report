@@ -1,0 +1,18 @@
+.paging {
+    & a {
+        font-weight: 400;
+        text-decoration: none;
+        color: var(--color-text);
+        padding: 2px 5px;
+        border-radius: 2px;
+        transition: background-color .5s ease;
+        transition: font-weight .5s ease;
+        &.active {
+            background-color: var(--color-2);
+        }
+        &:hover:not(.active) {
+            background-color: var(--color-2-alpha);
+            font-weight: 700;
+        }
+    }
+}

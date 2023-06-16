@@ -1,35 +1,15 @@
 :root {
-    --color-1-light : rgb(237, 242, 247);
-    --color-2-light : rgb(143, 162, 202);
-    --color-2-alpha-light : rgba(143, 162, 202, 0.3);
-    --color-3-light : rgb(194, 202, 195);  /* rgb(181, 198, 184) */
-    --color-4-light : rgb(228, 232, 244);
-    --color-5-light : rgb(72, 82, 61);
-    --color-text-light : rgb(181, 181, 181);
-    --xmark-light : url('/reporting/icons/xmark-solid.svg');
-    --arrow-light : url('/reporting/icons/arrow-right-solid.svg');
-    --bars-light : url('/reporting/icons/bars-solid.svg');
-    
-    --color-1-dark : rgb(38, 50, 56);
-    --color-2-dark : rgb(18, 25, 29);
-    --color-2-alpha-dark : rgba(18, 25, 29, 0.3);
-    --color-3-dark : rgb(101, 43, 120);
-    --color-4-dark : rgb(56, 74, 83);
-    --color-5-dark : rgb(17, 17, 17);
-    --color-text-dark : rgb(72, 82, 61);
-    --xmark-dark : url('/reporting/icons/xmark-solid-light.svg');
-    --arrow-dark : url('/reporting/icons/arrow-right-solid-light.svg');
-
-    --color-1: var(--color-1-light);
-    --color-2 : var(--color-2-light);
-    --color-2-alpha : var(--color-2-alpha-light);
-    --color-3 : var(--color-3-light);
-    --color-4 : var(--color-4-light);
-    --color-5 : var(--color-5-light);
-    --color-text: var(--color-text-dark);
+    --color-1: rgb(237, 242, 247);
+    --color-1-alpha : rgba(237, 242, 247, 0.4);
+    --color-2 : rgb(143, 162, 202);
+    --color-2-alpha : rgba(143, 162, 202, 0.3);
+    --color-3 : rgb(181, 198, 184);
+    --color-4 : rgb(228, 232, 244);
+    --color-5 : rgb(72, 82, 61);
+    --color-text: rgb(72, 82, 61);
     --color-warning: red;
     --color-emphasis: green;
-    --xmark : var(--xmark-light);
-    --arrow : var(--arrow-light);
-    --bars : var(--bars-light);
+    --xmark : url('/reporting/icons/xmark-solid.svg');
+    --arrow : url('/reporting/icons/arrow-right-solid.svg');
+    --bars : url('/reporting/icons/bars-solid.svg');
 }

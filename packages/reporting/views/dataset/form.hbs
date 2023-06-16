@@ -1,13 +1,15 @@
 {{#with dataset}}
     <div {{datasetID this.name}}>
-
-    <form  method="get" {{link this "action"}} ">
-{{#each displayData}}
-        {{#each this.data}}
-                {{formElement this @root.dataset}}
-        {{/each}}
-    {{/each}}
-    <input type='submit' >
-</form>
+        <h2>{{this.options.header}}</h2>
+        <form  method="get" {{link this "action"}} ">
+            <div class="inputs">
+                {{#each displayData}}
+                    {{#each this.data}}
+                            {{formElement this @root.dataset}}
+                    {{/each}}
+                {{/each}}
+            </div>
+            <input type='submit'>
+        </form>
     </div>
 {{/with}}

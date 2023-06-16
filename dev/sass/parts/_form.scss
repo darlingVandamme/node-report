@@ -2,39 +2,68 @@ form {
     width: 20vw;
     text-align: center;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .formField {
+    margin: 5px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 label {
-    font-size: medium;
+    font-size: small;
     font-weight: 700;
 }
 
-input[type=text], select {
-    width: 90%;
-    padding: 12px 20px;
-    margin: 8px 0;
+input, select {
+    width: auto;
+    padding: 5px 10px;
+    margin: 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border: none;
+    background-color: var(--color-1-alpha);
+    border-radius: 15px;
+    &:focus {
+        box-shadow : 0px 0px 2px var(--color-5);
+        background-color: var(--color-1);
+        outline-width: 0;
+    }
+    /* &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    } */
 }
 
+input[type=text] {
+    width: 15vw;
+}
+
+input[type=date] {
+    width: auto;
+}
+
+
 input[type=submit] {
-    width: 90%;
-    background-color: var(--color-3);
+    width: 50%;
+    background-color: var(--color-4);
     color: var(--color-text);
-    padding: 14px 20px;
+    padding: 10px;
     margin: 8px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
     &:hover {
-        background-color: var(--color-5);
-        color: var(--color-text-light);
+        background-color: var(--color-2);
+        box-shadow : 0px 0px 2px var(--color-5);
     }
 }

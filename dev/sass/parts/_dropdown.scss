@@ -3,7 +3,6 @@
     left: 0;
     min-width: 70px;
     min-height: 70px;
-    /* background-color: aqua; */
     position: fixed;
     display: inline-block;
     z-index: 20;
@@ -20,9 +19,9 @@
     filter: drop-shadow(0px 0px 5px var(--color-5));
     z-index: 20;
     & input[type=text] {
-        width: 80%;
-        padding: 5px 5px;
-        margin: 5px;
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0px;
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 10px;
@@ -32,10 +31,18 @@
         padding: 0px;
         margin: 0;
     }
+    & li {
+        margin: 3px 0px;
+        border-radius: 10px;
+    }
     & li:hover {
         background-color: var(--color-3);
         padding: 5px;
         cursor: pointer;
+    }
+    & a {
+        text-decoration: none;
+        color: var(--color-text);
     }
 }
 

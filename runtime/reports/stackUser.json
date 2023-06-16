@@ -8,8 +8,10 @@
     {
       "name" : "query",
       "show": "*",
-      "type" :  "form",
-      "position" : "nav",
+      "display" : {
+        "template": "form",
+        "position": "nav"
+      },
       "require" : ["lookup_test"],
       "columns": {
         "id": {
