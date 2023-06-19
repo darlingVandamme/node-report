@@ -1,7 +1,8 @@
 {
   "name": "marriage",
+  "version": "0.0.1",
   "description": "CSV file demo  https://github.com/fivethirtyeight/data/tree/master/marriage",
-  "keywords": ["demo","CSVChannel","link"],
+  "keywords": ["demo","CSVChannel","link","large","filter","paging"],
 
   "require": ["query","paging"],
   "datasets": [
@@ -59,6 +60,7 @@
     },
     "html": {
       "include": [
+        "menu",
         "query",
         "log",
         "main"

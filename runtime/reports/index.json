@@ -1,9 +1,9 @@
 {
   "name": "index",
+  "version": "0.0.1",
   "description": "List of all reports ",
   "keywords": ["demo","reportChannel","link"],
-
-  "require": ["query"],
+  "url" : "index.html",
   "datasets": [
     {
       "name" : "query",
@@ -16,7 +16,7 @@
 
     {
       "name": "main",
-      "description": "List ",
+      "description": "",
       "show": "*",
       "display" :{
         "template": "table",
@@ -52,6 +52,7 @@
     },
     "html": {
       "include": [
+        "menu",
         "query",
         "log",
         "main"

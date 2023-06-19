@@ -1,5 +1,5 @@
 {
-  "name": "Mongo test ",
+  "name": "Mongo test 2",
   "description": "Test report for localhost mongo",
   "version" : "0.0.1",
   "keywords": ["mongo"],
@@ -7,9 +7,11 @@
   "datasets":[
     {
       "name" : "query",
-      "show": "*",
-      "type" :  "form",
-      "position" : "nav",
+      "display":{
+        "show": "*",
+        "type" :  "form",
+        "position" : "nav"
+      },
       "require" : ["lookup_test"],
       "columns" : {
         "min":{
@@ -35,9 +37,9 @@
       "source" : "atlas",
       "paging": true,
       "query" : "{}",
-      "db": "sample_guides",
-      "collection": "planets",
-      "sort": "{orderFromSun:1} ",
+      "db": "sample_mflix",
+      "collection": "theaters",
+      "sort": "{_id:1} ",
       "show" : "*"
     },
     {

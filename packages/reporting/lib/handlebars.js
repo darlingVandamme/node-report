@@ -242,7 +242,7 @@ function element(report,rtOptions){
 function formElement(report,rtOptions){
     return function( context, dataset, options) {
         // dynamic template idea https://stackoverflow.com/questions/13396543/how-do-i-load-different-partials-dynamically-using-handlebars-templates
-        // console.log("FormElement "+Object.keys(options) )
+        //console.log("FormElement "+Object.keys(options) )
          //console.log("FormElement context "+JSON.stringify(context) )
          //console.log("dataset "+JSON.stringify(dataset) )
         /*
@@ -386,7 +386,7 @@ function paging(report,rtOptions){
     return function( dataset) {
         if (report) {
             let pagingData = report.getDataset("paging").getValue("data")
-            // console.log(" paging "+JSON.stringify(pagingData))
+            console.log(" paging "+JSON.stringify(pagingData))
             if (partials["paging"]) {
                 return new hbsInstance.SafeString(partials["paging"](pagingData, rtOptions))
             }

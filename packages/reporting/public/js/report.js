@@ -22,20 +22,16 @@ function sortDataset(dataset,sort,asc) {
             sort = (a,b)=>{if (a[sortColunm]>b[sortColunm]) return 1;if (a[sortColunm]<b[sortColunm]) return -1;return 0}
         }
     }
-    console.log(sort)
     let c = [...report.data[dataset].data]
     c.forEach((item,i)=>{item.rowNr=i})
     c.sort(sort)
-    c.forEach((item,i)=>{console.log(item.rowNr)})
     let table = document.getElementById("dataset_"+dataset)
     let rows = [...document.getElementById("dataset_"+dataset).querySelectorAll("[data-rowNr]")]
     rows.sort((a,b) => {return a.dataset.rownr - b.dataset.rownr})
     let tbody = table.querySelector("tbody")
     let sorted = []
-
     c.forEach(item=>{ sorted.push(rows[item.rowNr]) })
     tbody.replaceChildren(...sorted)
-return c
 }
 
 

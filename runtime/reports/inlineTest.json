@@ -1,7 +1,8 @@
 {
   "name": "inlineTest",
+  "version": "0.0.1",
   "description": "Testing",
-  "require": ["query"],
+  "keywords": ["demo","inlineChannel", "clock", "function column","aggregate" ],
   "datasets": [
     {
       "name" : "query",

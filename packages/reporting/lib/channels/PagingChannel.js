@@ -18,7 +18,7 @@ class PagingChannel {
     - url's
     ?? start , end , pageSize?
     */
-
+    // todo prevent overload attack max values for limit and page
 
     async load(ds, connection) {
         //let source = ds.report.getDataset(params.source)
@@ -106,14 +106,29 @@ function getPaging(data){
     // first
 
     result.first={
-        name:"First",
+        name:"1",
         page:1,
         url: link.set("paging.page",0).relative()
     }
+    if (data.page>0) {
+        result.previous = {
+            name: "previous",
+            page: data.page-1,
+            url: link.set("paging.page", data.page-1).relative()
+        }
+    }
+    result.next = {
+        name: "next",
+        page: data.page+1,
+        url: link.set("paging.page", data.page+1).relative()
+    }
+
+
     result.pages = []
     for (let p = start;(p<(start + showPages)&& (p<maxPage)) ;p++ ){
         result.pages.push({
             name:""+(p+1),
+            current:(p==data.page),
             page:p,
             url: link.set("paging.page",p).relative()
         })
