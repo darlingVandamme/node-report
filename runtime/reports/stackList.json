@@ -6,6 +6,15 @@
 
   "datasets":[
     {
+      "name": "query",
+      "show": "*",
+      "display": {
+        "template": "form",
+        "position": "nav"
+      }
+    },
+
+    {
       "name" : "args",
       "show": "*",
       "display": {

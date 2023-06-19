@@ -1,9 +1,9 @@
 {
   "name": "server",
+  "version": "0.0.1",
   "description": "Server info ",
-  "keywords": ["demo","server"],
+  "keywords": ["demo","server","headers","classes","layout"],
 
-  "require": ["query","server","headers"],
   "datasets": [
     {
       "name" : "query",
@@ -21,7 +21,7 @@
       "header" : "server info ",
       "show": "*",
       "display" :{
-        "template": "table",
+        "template": "row",
         "position": "main"
       }
     },
@@ -56,10 +56,12 @@
     },
     "html": {
       "include": [
+        "menu",
+        "engine",
         "server",
         "query",
-        "headers",
-        "engine"
+        "headers"
+
       ],
       "classes": {
         "header": "",
@@ -73,6 +75,8 @@
     },
     "arg": {
       "include": [
+        "menu",
+        "menu",
         "query"
       ],
       "extension": "html",

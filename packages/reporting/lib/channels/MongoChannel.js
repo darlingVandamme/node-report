@@ -13,12 +13,14 @@ class MongoChannel{
         this.queryPath = engine.paths.query
         const connectionConf ={}
 
-        if (options.user){
+        if (options.options.username){
             // todo use secrets
-            connectionConf.auth = {user : options.user,
-                password : options.password}
+            console.log("connect to mongo using user "+options.options.username)
+            connectionConf.auth = {username : options.options.username,
+                password : options.options.password}
+            delete  options.options.password
         }
-        console.log(options)
+        // console.log(options)
         this.client = new MongoClient(this.options.url , connectionConf)
         /*try {
             this.connection = this.client.connect()
