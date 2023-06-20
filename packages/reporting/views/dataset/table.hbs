@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     {{#each displayData}}
-        <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}}class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
+        <tr data-rowNr="{{this.rowNr}}" {{#if ../options.classColumn}} class="{{classColumn this.data ../options.classColumn}}"{{/if}}>
             {{#each ../show}}{{#with (lookup ../data this)}}
                 {{#if this.options.template}}
                     <td class="{{this.class}}">{{element this @root.dataset}}</td>

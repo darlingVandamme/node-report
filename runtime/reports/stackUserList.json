@@ -19,42 +19,6 @@
         }
       }
     },
-
-  {
-    "name" : "Cards",
-    "description" : "",
-    "display":{
-      "position": "main",
-      "template" : "cards",
-      "class" : "zebra"
-    },
-    "channel" : "StackExchange",
-    "query" : "select * from users where DisplayName like {{args.name}}",
-    "show" : "name,AboutMe,Id,ProfileImageUrl,url",
-    "columns": {
-      "LastAccessDate": {
-        "display": "date",
-        "header": "Last Access",
-        "year1": "numeric",
-        "month1": "long"
-      },
-      "Details": {
-        "type": "link",
-        "header": "link"
-      },
-      "name" : {
-        "type" : "copy",
-        "sourceColumn": "DisplayName"
-      },
-      "AboutMe": {
-        "display": "html"
-      },
-      "url" : {
-        "type"  :"format",
-        "format" : "http://localhost:3000/report/stackUser.html?id={{Id}}"
-      }
-    }
-    },
     {
       "name" : "main",
       "description" : "",
@@ -72,6 +36,11 @@
           "header": "Last Access",
           "year1": "numeric",
           "month1": "long"
+        },
+        "image" : {
+          "type" :"copy",
+          "sourceColumn" : "ProfileImageUrl",
+          "default" : "/reporting/images/logo-placeholder-image.png"
         },
         "Details": {
           "type": "link",
