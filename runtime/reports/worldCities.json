@@ -15,12 +15,10 @@
       },
       "columns": {
         "code": {
-          "hidden":true,
           "header" : "Geef hier de landcode in",
           "template" : "text"
         },
         "city2": {
-          "hidden":true,
           "header" : "Geef hier de stad in",
           "template": "text",
           "type": "format",

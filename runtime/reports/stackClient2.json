@@ -80,7 +80,7 @@
       "type" : "hbs",
       "classes": {
         "main": "row",
-        "nav": "hide_anim"
+        "nav": "hide_menu"
 
       }
     },

@@ -4,8 +4,8 @@
     text-align: end;
     position: absolute;
     left: 10px;
-    top: 10px;
-    z-index: 100;
+    top: 100px;
+    z-index: 110;
   }
 
   .xmark {
@@ -27,7 +27,7 @@
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background-color: var(--color-3);
+  background-color: var(--color-2);
   background-image: var(--bars);
   background-repeat: no-repeat;
   background-size: 20px 20px;
@@ -44,4 +44,6 @@
 
 .toggled.ball {
     background-image: var(--xmark);
+    background-color: transparent;
+    transition: background-color 1s;
 }

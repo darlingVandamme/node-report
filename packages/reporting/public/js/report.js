@@ -127,6 +127,47 @@ function classToggle(event) {
     event.target.classList.toggle("toggled");
 }
 
+function focusForm(event) {
+    document.querySelectorAll('.inputs').forEach(
+        inputs => {
+            if (!document.querySelector("nav").classList.contains('hide_menu')) {
+                inputs.querySelector('input').select();
+            }
+        }
+    );
+}
+
+function menuButton(event) {
+    document.querySelectorAll('.toggle_menu').forEach(
+        toggler => {
+            if (document.querySelector("nav").classList.contains('hide_menu')) {
+                    toggler.classList.remove('toggled');
+            } else {
+                toggler.classList.add('toggled');
+            }
+        }
+    );
+}
+
+function menuToggle(event) {
+    document.querySelectorAll("nav").forEach(
+        nav => nav.classList.toggle('hide_menu')
+    );
+    menuButton();
+    focusForm();
+}
+
+function showMenu(event) {
+    document.querySelectorAll("nav").forEach(
+        nav => {
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('hide_menu');
+            }
+        }
+    );
+    focusForm();
+}
+    
 function showOverlay(body){
     document.removeEventListener("click",clickClosePopup)
 
@@ -213,10 +254,22 @@ function tabs(event) {
     })
 }
 
+function shortCut(e) {
+    console.log(e);
+    if (e.ctrlKey && e.key === "m") {
+        menuToggle();
+    }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
+    showMenu();
+    menuButton();
+    document.querySelectorAll('.toggle_menu').forEach(toggler => toggler.addEventListener('click', menuToggle))
     document.querySelectorAll('.toggle_hide').forEach(toggler => toggler.addEventListener('click', classToggle));
     document.querySelectorAll('checkboxes>input[type=checkbox]').forEach(toggler => toggler.addEventListener('click', classToggle));
     document.querySelectorAll('tbody>tr').forEach(row => row.addEventListener('click', showHiddenColumns));
     document.querySelectorAll('.tabs>.tab').forEach(tab => tab.addEventListener('click', tabs));
     console.log("report loaded "+report.name)
 });
+
+document.addEventListener("keydown", shortCut);

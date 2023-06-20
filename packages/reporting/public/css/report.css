@@ -2,7 +2,7 @@
   --color-1: rgb(237, 242, 247);
   --color-1-alpha: rgba(237, 242, 247, 0.4);
   --color-2: rgb(143, 162, 202);
-  --color-2-alpha: rgba(143, 162, 202, 0.3);
+  --color-2-alpha: rgba(143, 162, 202, 0.9);
   --color-3: rgb(181, 198, 184);
   --color-4: rgb(228, 232, 244);
   --color-5: rgb(72, 82, 61);
@@ -41,16 +41,21 @@ header > h1 {
 }
 
 nav {
-  margin: 10px;
+  top: 100px;
+  left: 10px;
+  position: fixed;
+  margin: 0;
   padding-top: 20px;
-  min-height: 300px;
+  min-height: 150px;
   max-height: 100vw;
   width: 20vw;
   text-align: center;
   overflow: hidden;
   transition: all 1s ease;
-  background-color: var(--color-3);
+  box-shadow: 0px 0px 10px var(--color-5);
+  background-color: var(--color-2-alpha);
   border-radius: 25px;
+  z-index: 100;
 }
 
 main {
@@ -96,7 +101,7 @@ footer {
   min-height: 70px;
   position: fixed;
   display: inline-block;
-  z-index: 20;
+  z-index: 200;
 }
 
 .dropdown-content {
@@ -108,7 +113,7 @@ footer {
   border-radius: 15px;
   min-width: 160px;
   filter: drop-shadow(0px 0px 5px var(--color-5));
-  z-index: 20;
+  z-index: 200;
 }
 .dropdown-content input[type=text] {
   width: 100%;
@@ -215,15 +220,14 @@ footer {
 }
 
 .card {
-  width: 20vw;
-  height: 60vh;
+  width: 300px;
+  height: 400px;
   background-color: var(--color-4);
   color: var(--color-text);
   margin: 1%;
-  padding: 1%;
-  filter: drop-shadow(0px 0px 5px var(--color-5));
+  padding: 0;
+  filter: drop-shadow(0px 0px 3px var(--color-5));
   border-radius: 10px;
-  border: 1px solid var(--color-3);
   overflow: hidden;
   text-align: center;
   transition: all 0.5s ease;
@@ -232,8 +236,8 @@ footer {
 .card:hover {
   filter: drop-shadow(0px 0px 7px var(--color-5));
 }
-.card h2 {
-  padding: 0;
+.card h2, .card h3 {
+  padding: 3px;
   margin: 0;
 }
 .card .card_aboutme {
@@ -249,9 +253,17 @@ footer {
   background-color: var(--color-1);
   overflow: hidden;
 }
-.card img {
-  width: 7rem;
-  height: 7rem;
+.card .card_image_container {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.card .card_image_container img {
+  width: 100%;
 }
 .card a {
   display: block;
@@ -294,7 +306,7 @@ input, select {
   display: inline-block;
   border: none;
   background-color: var(--color-1-alpha);
-  border-radius: 15px;
+  border-radius: 3px;
   /* &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
@@ -321,11 +333,11 @@ input[type=submit] {
   padding: 10px;
   margin: 8px 0;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: var(--color-2);
+  background-color: var(--color-3);
   box-shadow: 0px 0px 2px var(--color-5);
 }
 
@@ -335,8 +347,8 @@ input[type=submit]:hover {
   text-align: end;
   position: absolute;
   left: 10px;
-  top: 10px;
-  z-index: 100;
+  top: 100px;
+  z-index: 110;
 }
 
 .xmark {
@@ -358,7 +370,7 @@ input[type=submit]:hover {
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background-color: var(--color-3);
+  background-color: var(--color-2);
   background-image: var(--bars);
   background-repeat: no-repeat;
   background-size: 20px 20px;
@@ -375,6 +387,8 @@ input[type=submit]:hover {
 
 .toggled.ball {
   background-image: var(--xmark);
+  background-color: transparent;
+  transition: background-color 1s;
 }
 
 .tabs {
@@ -419,6 +433,19 @@ input[type=submit]:hover {
   max-height: 0;
 }
 .hide_anim > * {
+  display: none;
+}
+
+.hide_menu {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px var(--color-5);
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  min-height: 0;
+  max-height: 0;
+}
+.hide_menu > * {
   display: none;
 }
 

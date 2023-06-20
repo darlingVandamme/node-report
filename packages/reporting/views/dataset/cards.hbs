@@ -4,11 +4,16 @@
 {{#each displayData}}
     <div class="card">
         <a href="{{this.data.url.value}}">
-            <img src="{{this.data.ProfileImageUrl.value}}" alt="profile">
+            {{#if this.data.image}}
+                <div class="card_image_container">
+                    <img  class="card_image" src="{{this.data.image.value}}" alt="profile">
+                </div>
+            {{/if}}
+            
             <div class="card_name">
                 <h2>{{this.data.name.display}}</h2>
             </div>
-            <div class="card_id"> <h2>id: {{this.data.Id.display}}</h2></div>
+            <div class="card_id"> <h3>id: {{this.data.Id.display}}</h3></div>
             
             <div class="card_aboutme">
                 About me: 

@@ -116,7 +116,7 @@
       "include": ["query","main","args","posts","server","log"],
       "classes": {
         "main": "row",
-        "nav" : "hide_anim"
+        "nav" : "show"
       },
       "template": "general",
       "type" : "hbs",

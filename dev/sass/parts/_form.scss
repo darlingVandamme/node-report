@@ -32,7 +32,7 @@ input, select {
     display: inline-block;
     border: none;
     background-color: var(--color-1-alpha);
-    border-radius: 15px;
+    border-radius: 3px;
     &:focus {
         box-shadow : 0px 0px 2px var(--color-5);
         background-color: var(--color-1);
@@ -60,10 +60,10 @@ input[type=submit] {
     padding: 10px;
     margin: 8px 0;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     cursor: pointer;
     &:hover {
-        background-color: var(--color-2);
+        background-color: var(--color-3);
         box-shadow : 0px 0px 2px var(--color-5);
     }
 }

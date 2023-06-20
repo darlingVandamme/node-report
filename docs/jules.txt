@@ -41,8 +41,18 @@ form:
     -styling van form
     -verschillende types input
 
+
+nav:
+    - over main weergeven
+
+paging:
+    -pijltjes laten werken
+    -.active
+
 cards:
     -opnieuw werkende krijgen
+    -image /= ProfileImageUrl
+    -image dimensions
 
 bigquery:
     -interessante datasets zoeken voor demo
@@ -57,7 +67,7 @@ material desing:
     -https://m3.material.io/foundations/content-design/style-guide/ux-writing-best-practices
 
     -drop shadow ipv box shadow
-    
+
 
 
 
